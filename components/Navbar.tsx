@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { navLinks } from "@/data/navigation";
+import MobileMenu from "@/components/MobileMenu";
 
 // Hidden until the shop has products and the Arabic site exists. The
 // components below are ready; flip these to render them.
@@ -51,15 +52,17 @@ export default function Navbar() {
           </ul>
         </nav>
 
+        {/* Figma order: mobile = Arabic, Book, cart, menu; desktop = cart, Book, Arabic. */}
         <div className="flex items-center gap-[6px] xl:gap-[14px]">
           {SHOW_CART && <CartButton />}
           <Link
             href="/book"
-            className="inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-4 text-sm font-bold text-white xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
+            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-4 text-sm font-bold text-white xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
           >
             Book a Session
           </Link>
           {SHOW_LANGUAGE_SWITCH && <LanguageButton />}
+          <MobileMenu />
         </div>
       </div>
     </header>
@@ -71,7 +74,7 @@ function CartButton() {
     <button
       type="button"
       aria-label="Cart"
-      className="flex size-[34px] items-center justify-center rounded-full bg-mist xl:size-11"
+      className="order-3 flex size-[34px] items-center xl:order-1 justify-center rounded-full bg-mist xl:size-11"
     >
       <Image
         src="/images/icons/shopping-cart.svg"
@@ -90,7 +93,7 @@ function LanguageButton() {
       type="button"
       lang="ar"
       dir="rtl"
-      className="whitespace-nowrap rounded-full bg-pink px-[10px] py-[6px] text-[10px] font-bold text-white xl:px-6 xl:py-3 xl:text-[15px]"
+      className="order-1 whitespace-nowrap rounded-full bg-pink px-[10px] xl:order-3 py-[6px] text-[10px] font-bold text-white xl:px-6 xl:py-3 xl:text-[15px]"
     >
       العربية
     </button>
