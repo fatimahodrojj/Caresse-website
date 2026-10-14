@@ -12,6 +12,8 @@ export const team: TeamMember[] = [
     name: "Ali Atie",
     role: "Applied Behavior Analysis Technician (ABAT)",
     photo: "/images/team/ali-atie.jpg",
+    // Tall full-body portrait: zoom in on head and shoulders to match Rawan.
+    photoCrop: { position: "50% 19%", zoom: 1.15, origin: "50% 30%" },
     character: "/images/illustrations/team-character-ali-atie.png",
   },
   {

@@ -50,6 +50,13 @@ function TeamCard({ member }: { member: TeamMember }) {
           fill
           sizes="(min-width: 1280px) 350px, 120px"
           className="object-cover"
+          style={
+            member.photoCrop && {
+              objectPosition: member.photoCrop.position,
+              transform: `scale(${member.photoCrop.zoom})`,
+              transformOrigin: member.photoCrop.origin,
+            }
+          }
         />
       </div>
       <div className="flex flex-col gap-1">
