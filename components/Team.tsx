@@ -10,7 +10,7 @@ import type { TeamMember } from "@/lib/types";
 export default function Team() {
   return (
     <section id="team" className="bg-rose px-4 py-5 font-sans xl:px-[120px] xl:py-20">
-      <div className="mx-auto flex max-w-[1200px] flex-col gap-3 xl:gap-10">
+      <div data-reveal className="mx-auto flex max-w-[1200px] flex-col gap-3 xl:gap-10">
         <div className="flex flex-col gap-[10px] text-center xl:gap-3">
           <h2 className="font-heading text-[32px] xl:text-5xl">Meet Our Team</h2>
           <p className="text-sm opacity-80 xl:text-lg">

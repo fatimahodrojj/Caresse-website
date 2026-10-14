@@ -8,6 +8,7 @@ import TherapyShop from "@/components/TherapyShop";
 import Team from "@/components/Team";
 import CTA from "@/components/CTA";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 import type { Product } from "@/lib/types";
 
 // Shop products come from the database (admin panel). None yet, so the shop
@@ -29,6 +30,7 @@ export default function Home() {
         <CTA />
       </main>
       <Footer />
+      <ScrollReveal />
     </>
   );
 }

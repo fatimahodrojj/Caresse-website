@@ -15,7 +15,7 @@ const dotColor: Record<Service["dot"], string> = {
 export default function Services() {
   return (
     <section id="services" className="bg-cream px-4 py-4 xl:px-20 xl:pb-[120px] xl:pt-12">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:gap-[88px]">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:gap-[88px]">
         <h2 className="text-center font-heading text-[32px] xl:text-[56px]">Our Services</h2>
         <Carousel
           label="Our Services"

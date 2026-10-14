@@ -42,7 +42,7 @@ const points = [
 export default function WhyChooseUs() {
   return (
     <section id="about" className="bg-ice p-4 font-sans xl:px-20 xl:py-[120px]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:gap-20">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:gap-20">
         <div className="flex flex-col gap-3 xl:min-w-0 xl:flex-1 xl:gap-10">
           <h2 className="font-heading text-[32px] xl:text-[56px]">Why Families Choose Caresse</h2>
           <ul className="flex flex-col gap-[10px] xl:gap-6">

@@ -35,7 +35,7 @@ type Mode = (typeof modes)[number];
 export default function HowWeReachYou() {
   return (
     <section className="bg-cream-warm p-3 font-sans xl:px-20 xl:py-24">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-12">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-12">
         <div className="flex flex-col gap-[6px] text-center xl:gap-3">
           <h2 className="text-2xl font-bold leading-[1.2] xl:text-[40px]">How We Reach You</h2>
           <p className="text-sm leading-[1.6] opacity-75 xl:text-base">

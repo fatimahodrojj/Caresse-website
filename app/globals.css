@@ -40,6 +40,21 @@ button:focus-visible {
   display: none;
 }
 
+/* Scroll reveal (components/ScrollReveal.tsx): sections fade in and move up
+   20px the first time they enter the viewport. Sections are only hidden
+   after the script has run (.reveal-ready), and never with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms ease-out;
+  }
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

@@ -36,7 +36,7 @@ const serviceLinks = ["Speech Therapy", "ABA Therapy", "Occupational Therapy", "
 export default function Footer() {
   return (
     <footer id="contact" className="bg-navy p-3 font-sans text-white xl:px-20 xl:pb-10 xl:pt-6">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-16">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-16">
         <div className="flex flex-col gap-2 xl:flex-row xl:justify-between">
           <div className="flex flex-col gap-[6px] xl:w-[360px] xl:gap-6">
             <p className="flex gap-[2px] font-heading text-2xl xl:text-4xl" aria-label="Caresse">

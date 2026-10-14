@@ -15,7 +15,7 @@ const stats = [
 export default function Stats() {
   return (
     <section className="bg-navy p-4 font-sans xl:px-20 xl:py-16">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:justify-between xl:gap-0">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:justify-between xl:gap-0">
         <dl className="flex gap-3 text-center xl:flex-1 xl:gap-12">
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-1 flex-col-reverse gap-[6px] xl:gap-2">

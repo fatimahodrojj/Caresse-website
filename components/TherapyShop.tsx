@@ -18,7 +18,7 @@ const priceFormat = new Intl.NumberFormat("en-US", {
 export default function TherapyShop({ products }: { products: Product[] }) {
   return (
     <section id="shop" className="bg-mist px-4 py-3 font-sans xl:px-20 xl:py-20">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-12">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-12">
         <div className="flex flex-col gap-2 text-center">
           <h2 className="font-heading text-[32px] xl:text-[56px]">Our Therapy Shop</h2>
           <p className="text-sm leading-[1.6] opacity-80 xl:text-lg">

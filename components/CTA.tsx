@@ -9,7 +9,7 @@ import Link from "next/link";
 export default function CTA() {
   return (
     <section className="bg-cta px-4 py-5 font-sans text-white xl:px-20 xl:py-[120px]">
-      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:gap-20">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:gap-20">
         <div className="flex flex-col gap-4 xl:flex-1 xl:gap-8">
           <h2 className="font-heading text-[32px] xl:text-[64px]">Ready to Take the First Step?</h2>
           <p className="text-sm leading-[1.6] opacity-90 xl:text-lg">
