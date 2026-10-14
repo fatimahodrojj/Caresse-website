@@ -19,3 +19,14 @@ export interface Stat {
   value: string;
   label: string;
 }
+
+/** A shop product. Products are managed in the admin panel and stored in the database. */
+export type Product = {
+  id: string;
+  name: string;
+  description: string;
+  /** Price in US dollars. */
+  price: number;
+  /** Image URL (from the admin panel). */
+  imageUrl: string;
+};
