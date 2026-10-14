@@ -55,6 +55,9 @@ const config: Config = {
       fontFamily: {
         display: ["var(--font-display)", "cursive"],
         body: ["var(--font-body)", "sans-serif"],
+        sans: ["var(--font-sans)", "sans-serif"],
+        heading: ["var(--font-heading)", "cursive"],
+        script: ["var(--font-script)", "cursive"],
       },
       borderRadius: {
         xl2: "1.75rem",
