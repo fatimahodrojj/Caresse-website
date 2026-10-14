@@ -1,23 +1,10 @@
 import type { Metadata } from "next";
-import { Boogaloo, Chewy, Dancing_Script, Nunito, Sora } from "next/font/google";
+import { Boogaloo, Dancing_Script, Sora } from "next/font/google";
 import "./globals.css";
 
-// next/font self-hosts these at build time — no external request to
-// fonts.googleapis.com at runtime, better performance + no layout shift.
-const chewy = Chewy({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-display",
-});
-
-const nunito = Nunito({
-  subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
-  variable: "--font-body",
-});
-
-// Design-system fonts (docs/design-system.md). Loaded alongside Chewy and
-// Nunito until the last old component is replaced.
+// Design-system fonts (docs/design-system.md). next/font self-hosts them at
+// build time: no request to fonts.googleapis.com at runtime and no layout
+// shift.
 const sora = Sora({
   subsets: ["latin"],
   weight: ["400", "600", "700"],
@@ -39,7 +26,7 @@ const dancingScript = Dancing_Script({
 export const metadata: Metadata = {
   title: "Caresse — Multitherapeutic Services",
   description:
-    "Speech, ABA, occupational, psychomotor, and psychological therapy for children, teens, and adults — under one warm roof.",
+    "Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence.",
 };
 
 export default function RootLayout({
@@ -50,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${chewy.variable} ${nunito.variable} ${sora.variable} ${boogaloo.variable} ${dancingScript.variable} font-body bg-cream text-navy`}
+        className={`${sora.variable} ${boogaloo.variable} ${dancingScript.variable} bg-cream font-sans text-navy`}
       >
         {children}
       </body>
