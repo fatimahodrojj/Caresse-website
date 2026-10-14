@@ -1,11 +1,13 @@
 export type BrandAccent = "gold" | "sky" | "pink";
 
-export interface Service {
-  slug: string;
+export type Service = {
   title: string;
   description: string;
-  accent: BrandAccent;
-}
+  /** Path under public/ to the service character illustration. */
+  image: string;
+  /** Colour of the small dot in the card's top-right corner. */
+  dot: "pink" | "purple";
+};
 
 export interface TeamMember {
   name: string;

@@ -1,56 +1,60 @@
+import Image from "next/image";
+import Carousel from "@/components/Carousel";
 import { services } from "@/data/services";
-import { BrandAccent } from "@/lib/types";
+import type { Service } from "@/lib/types";
 
-const accentBg: Record<BrandAccent, string> = {
-  gold: "bg-gold-soft",
-  sky: "bg-sky-soft",
-  pink: "bg-pink-soft",
+const dotColor: Record<Service["dot"], string> = {
+  pink: "bg-pink",
+  purple: "bg-purple",
 };
 
+/**
+ * Our Services. Mobile: one card at a time in a carousel.
+ * Desktop (xl): 3-column grid of all six cards.
+ */
 export default function Services() {
   return (
-    <section id="services" className="bg-cream-light py-24">
-      <div className="max-w-[1180px] mx-auto px-8">
-        <div className="text-center max-w-xl mx-auto mb-14">
-          <span className="inline-block bg-white px-4 py-2 rounded-full font-extrabold text-xs text-pink shadow-sm mb-4">
-            What we offer
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl mb-3">
-            Six ways we help you thrive
-          </h2>
-          <p className="text-navy-soft text-lg leading-relaxed">
-            Every plan starts with an assessment — because no two people
-            communicate, move, or grow the same way.
-          </p>
-        </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-7">
+    <section id="services" className="bg-cream px-4 py-4 xl:px-20 xl:pb-[120px] xl:pt-12">
+      <div className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:gap-[88px]">
+        <h2 className="text-center font-heading text-[32px] xl:text-[56px]">Our Services</h2>
+        <Carousel
+          label="Our Services"
+          itemClassName="basis-full md:basis-[calc((100%-12px)/2)] xl:basis-auto"
+          listClassName="py-1 xl:grid xl:grid-cols-3 xl:gap-6 xl:overflow-visible xl:py-0"
+          arrowClassName="size-10"
+          hideArrowsFrom="xl"
+        >
           {services.map((service) => (
-            <article
-              key={service.slug}
-              className="bg-white rounded-xl2 p-8 shadow-md border-2 border-transparent hover:border-pink hover:-translate-y-2 transition-all"
-            >
-              <div
-                className={`w-16 h-16 rounded-2xl mb-5 flex items-center justify-center ${
-                  accentBg[service.accent]
-                }`}
-                aria-hidden="true"
-              >
-                {/* Icon slot — swap for a small blob mascot icon per
-                    the illustration brief once assets exist. */}
-                <span className="w-6 h-6 rounded-full bg-navy/10" />
-              </div>
-              <h3 className="font-display text-xl mb-2">{service.title}</h3>
-              <p className="text-navy-soft text-sm leading-relaxed">
-                {service.description}
-              </p>
-              <span className="inline-block mt-4 font-extrabold text-sm text-pink">
-                Learn more →
-              </span>
-            </article>
+            <ServiceCard key={service.title} service={service} />
           ))}
-        </div>
+        </Carousel>
       </div>
     </section>
+  );
+}
+
+function ServiceCard({ service }: { service: Service }) {
+  return (
+    <article className="flex w-full flex-col gap-2 rounded-panel bg-white p-3 font-sans drop-shadow-card xl:gap-5 xl:rounded-card xl:p-8">
+      <div className="flex items-center justify-between">
+        <Image
+          src={service.image}
+          alt=""
+          width={70}
+          height={70}
+          className="size-8 rounded-full xl:size-[70px]"
+        />
+        <span
+          aria-hidden="true"
+          className={`size-3 rounded-full xl:size-4 ${dotColor[service.dot]}`}
+        />
+      </div>
+      <div className="flex flex-col gap-1 xl:gap-2">
+        <h3 className="font-heading text-xl xl:text-[28px]">{service.title}</h3>
+        <p className="text-xs leading-[1.45] opacity-80 xl:text-[15px] xl:leading-[1.5]">
+          {service.description}
+        </p>
+      </div>
+    </article>
   );
 }

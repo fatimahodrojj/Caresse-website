@@ -21,6 +21,15 @@ button:focus-visible {
   text-shadow: 0 8px 18px rgba(42, 59, 77, 0.08);
 }
 
+/* Hide the scrollbar on carousels (they have arrow buttons and can be
+   swiped), but keep them scrollable. */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
