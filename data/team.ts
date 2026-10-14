@@ -1,15 +1,24 @@
-import { TeamMember, Stat } from "@/lib/types";
+import { TeamMember } from "@/lib/types";
 
+// Names and roles from docs/homepage-content.md (Meet Our Team).
 export const team: TeamMember[] = [
-  { name: "Layla Haddad", role: "Speech-Language Pathologist", accent: "pink" },
-  { name: "Karim Sfeir", role: "ABA Program Lead", accent: "sky" },
-  { name: "Dr. Nour Aziz", role: "Occupational Therapist", accent: "gold" },
-  { name: "Sara Khalil", role: "Clinical Psychologist", accent: "pink" },
-];
-
-export const stats: Stat[] = [
-  { value: "500+", label: "Families supported" },
-  { value: "12", label: "Specialist therapists" },
-  { value: "6", label: "Therapy disciplines" },
-  { value: "4.9★", label: "Average parent rating" },
+  {
+    name: "Rawan Cherry",
+    role: "Founder | Speech-Language Therapist | Feeding Therapist | Family Coach",
+    photo: "/images/team/rawan-cherry.jpg",
+    character: "/images/illustrations/team-character-rawan-cherry.png",
+  },
+  {
+    name: "Ali Atie",
+    role: "Applied Behavior Analysis Technician (ABAT)",
+    photo: "/images/team/ali-atie.jpg",
+    // Illustration not exported yet (team-character-ali-atie.png).
+    character: null,
+  },
+  {
+    name: "Mariam Al-Itawi",
+    role: "Occupational Therapist",
+    photo: "/images/team/mariam-al-itawi.jpg",
+    character: "/images/illustrations/team-character-mariam-al-itawi.png",
+  },
 ];

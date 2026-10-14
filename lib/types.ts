@@ -1,5 +1,3 @@
-export type BrandAccent = "gold" | "sky" | "pink";
-
 export type Service = {
   title: string;
   description: string;
@@ -9,16 +7,14 @@ export type Service = {
   dot: "pink" | "purple";
 };
 
-export interface TeamMember {
+export type TeamMember = {
   name: string;
   role: string;
-  accent: BrandAccent;
-}
-
-export interface Stat {
-  value: string;
-  label: string;
-}
+  /** Path under public/ to the team photo. */
+  photo: string;
+  /** Path under public/ to the member's character, or null if not available yet. */
+  character: string | null;
+};
 
 /** A shop product. Products are managed in the admin panel and stored in the database. */
 export type Product = {
