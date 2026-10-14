@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { navLinks } from "@/data/navigation";
+import { homeHref, navLinks } from "@/data/navigation";
 import MobileMenu from "@/components/MobileMenu";
 
 // Hidden until the shop has products and the Arabic site exists. The
@@ -17,7 +17,7 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-[14px] px-3 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
-        <Link href="/" className="shrink-0">
+        <Link href={homeHref} className="shrink-0">
           <Image
             src="/images/brand/logo.png"
             alt="Caresse – Multitherapeutic Services"
@@ -32,7 +32,7 @@ export default function Navbar() {
         <nav aria-label="Main" className="hidden xl:ml-auto xl:block">
           <ul className="flex items-center gap-10 text-xl font-semibold">
             {navLinks.map((link) => {
-              const isCurrent = link.href === "/";
+              const isCurrent = link.href === homeHref;
               return (
                 <li key={link.href}>
                   <Link

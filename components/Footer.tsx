@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { homeHref } from "@/data/navigation";
 
 // Wordmark letter colours from Figma (docs/design-system.md, Core palette).
 const wordmark = [
@@ -20,7 +21,7 @@ const socials = [
 ];
 
 const quickLinks = [
-  { label: "Home", href: "/" },
+  { label: "Home", href: homeHref },
   { label: "Services", href: "/#services" },
   { label: "About Us", href: "/#about" },
   { label: "Our Team", href: "/#team" },

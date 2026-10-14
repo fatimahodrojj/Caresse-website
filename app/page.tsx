@@ -18,14 +18,16 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <Hero />
-      <Services />
-      <Stats />
-      <WhyChooseUs />
-      <HowWeReachYou />
-      <TherapyShop products={products} />
-      <Team />
-      <CTA />
+      <main id="top">
+        <Hero />
+        <Services />
+        <Stats />
+        <WhyChooseUs />
+        <HowWeReachYou />
+        <TherapyShop products={products} />
+        <Team />
+        <CTA />
+      </main>
       <Footer />
     </>
   );

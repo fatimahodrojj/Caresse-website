@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { navLinks } from "@/data/navigation";
+import { homeHref, navLinks } from "@/data/navigation";
 
 /**
  * Hamburger button + dropdown panel for screens below xl.
@@ -52,7 +52,7 @@ export default function MobileMenu() {
       >
         <ul>
           {navLinks.map((link) => {
-            const isCurrent = link.href === "/";
+            const isCurrent = link.href === homeHref;
             return (
               <li key={link.href} className="border-t border-line first:border-t-0">
                 <Link
