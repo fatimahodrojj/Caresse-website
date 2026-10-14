@@ -4,6 +4,15 @@
 
 html {
   scroll-behavior: smooth;
+  /* Section links (/#team etc.) stop below the 72px sticky mobile header.
+     The desktop navbar is not sticky, so no offset is needed there. */
+  scroll-padding-top: 72px;
+}
+
+@media (min-width: theme("screens.xl")) {
+  html {
+    scroll-padding-top: 0;
+  }
 }
 
 /* Visible focus ring for keyboard navigation. Navy outline with a white
