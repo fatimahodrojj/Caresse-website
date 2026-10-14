@@ -11,7 +11,7 @@ import Footer from "@/components/Footer";
 import type { Product } from "@/lib/types";
 
 // Shop products come from the database (admin panel). None yet, so the shop
-// section is hidden.
+// section shows its "coming soon" message.
 const products: Product[] = [];
 
 export default function Home() {
