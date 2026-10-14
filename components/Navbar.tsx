@@ -16,7 +16,7 @@ const SHOW_LANGUAGE_SWITCH = false;
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
-      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] md:px-8 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
         <Link href={homeHref} className="flex min-h-10 shrink-0 items-center">
           <Image
             src="/images/brand/logo.png"
@@ -24,8 +24,8 @@ export default function Navbar() {
             width={1080}
             height={391}
             priority
-            sizes="(min-width: 1280px) 199px, 105px"
-            className="h-[38px] w-auto xl:h-[72px]"
+            sizes="(min-width: 1280px) 199px, (min-width: 768px) 122px, 105px"
+            className="h-[38px] w-auto md:h-[44px] xl:h-[72px]"
           />
         </Link>
 
