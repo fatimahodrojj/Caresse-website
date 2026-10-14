@@ -44,7 +44,10 @@ export default function CTA() {
             alt=""
             width={149}
             height={140}
-            className="h-[110px] w-[116px] rounded-[55px] object-cover xl:h-[140px] xl:w-[149px] xl:rounded-[70px]"
+            // The image's white disc is a 280px circle flush with its right
+            // edge; the corners carry Figma's pink gradient. A square box,
+            // right-aligned and clipped to a circle, shows only the disc.
+            className="size-[110px] rounded-full object-cover object-right xl:size-[140px]"
           />
         </div>
       </div>
