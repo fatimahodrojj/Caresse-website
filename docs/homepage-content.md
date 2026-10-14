@@ -79,7 +79,13 @@ Section title: **Our Therapy Shop**
 
 Subtitle: Explore the materials and tools our therapists use - now available for home practice
 
-| Product | Description | Price | Number next to price |
+**Products are not static content.** The shop is managed from the admin
+panel: product names, descriptions, prices and images come from the
+database, not from files in this repo. The products below are the
+placeholder examples shown in the Figma design. They show the card layout
+only and are not real catalogue data.
+
+| Product (Figma placeholder) | Description | Price | Number next to price |
 | --- | --- | --- | --- |
 | Sensory Play Kit | Textured balls, fidget tools, and sensory boards for tactile development | $35 | 4 |
 | Speech Therapy Cards | Illustrated flashcards for articulation and language building exercises | $25 | 7 |

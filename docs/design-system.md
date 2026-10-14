@@ -202,4 +202,4 @@ Team cards have no shadow.
 25. **Ali Atie's photo** has a 25px radius inside a 16px-radius frame; the other two photos have none.
 26. **Broken mobile arrow:** the Services carousel's right arrow (`116:7`) is a flattened vector with the chevron off-centre, unlike every other carousel arrow.
 27. **Logo is raster only:** the logo is a 1080×391 PNG; no vector version exists in the file. The footer wordmark is live text, not the logo.
-28. **Large product images:** the four shop images are 1184×864 PNGs of 1.1–1.4 MB each, placed in 180px-tall slots.
+28. **Shop product images are not static assets:** the shop is managed from the admin panel, so product images, names, descriptions and prices come from the database. The four product photos in the Figma design are placeholders and are not stored in this repo. Image slots are 180px tall on desktop and 140px on mobile, with a 16px radius and `object-fit: cover`.
