@@ -31,7 +31,7 @@ export default function Team() {
         </Carousel>
         <Link
           href="/#services"
-          className="text-center text-lg font-bold tracking-[0.5px] text-sky xl:text-[22px]"
+          className="flex min-h-10 items-center justify-center text-center text-lg font-bold tracking-[0.5px] text-sky xl:block xl:min-h-0 xl:text-[22px]"
         >
           Know More About Our Therapy →
         </Link>

@@ -16,8 +16,8 @@ const SHOW_LANGUAGE_SWITCH = false;
 export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
-      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-[14px] px-3 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
-        <Link href={homeHref} className="shrink-0">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
+        <Link href={homeHref} className="flex min-h-10 shrink-0 items-center">
           <Image
             src="/images/brand/logo.png"
             alt="Caresse – Multitherapeutic Services"
@@ -57,7 +57,7 @@ export default function Navbar() {
           {SHOW_CART && <CartButton />}
           <Link
             href="/book"
-            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-4 text-sm font-bold text-white xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
+            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-3 text-sm font-bold text-white min-[360px]:px-4 xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
           >
             Book a Session
           </Link>

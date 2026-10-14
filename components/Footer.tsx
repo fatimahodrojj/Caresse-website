@@ -88,8 +88,13 @@ export default function Footer() {
               <li>
                 <a href="tel:+96171056803">+961 71056803</a>
               </li>
-              <li className="break-all xl:break-normal">
-                <a href="mailto:caresseclinic@gmail.com">caresseclinic@gmail.com</a>
+              <li>
+                {/* Break only after the "@" on narrow screens. */}
+                <a href="mailto:caresseclinic@gmail.com">
+                  caresseclinic@
+                  <wbr />
+                  gmail.com
+                </a>
               </li>
             </FooterColumn>
           </div>
@@ -129,7 +134,7 @@ function FooterColumn({
   return (
     <div className={`flex min-w-0 flex-1 flex-col gap-1 xl:flex-none xl:gap-4 ${className}`}>
       <h3 className="text-sm font-bold text-gold xl:text-base">{title}</h3>
-      <ul className="flex flex-col gap-1 text-[13px] leading-[1.2] opacity-80 xl:gap-4 xl:text-sm xl:leading-normal">
+      <ul className="flex flex-col text-[13px] leading-[1.2] opacity-80 [&>li]:flex [&>li]:min-h-10 [&>li]:items-center [&_a]:flex [&_a]:min-h-10 [&_a]:w-full [&_a]:items-center xl:gap-4 xl:text-sm xl:leading-normal xl:[&>li]:block xl:[&>li]:min-h-0 xl:[&_a]:inline xl:[&_a]:min-h-0 xl:[&_a]:w-auto">
         {children}
       </ul>
     </div>

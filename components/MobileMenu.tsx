@@ -35,7 +35,7 @@ export default function MobileMenu() {
         aria-controls="mobile-menu"
         aria-label={open ? "Close menu" : "Open menu"}
         onClick={() => setOpen((value) => !value)}
-        className="flex size-9 items-center justify-center rounded-full bg-mist"
+        className="flex size-10 items-center justify-center rounded-full bg-mist"
       >
         {open ? (
           <CloseIcon />

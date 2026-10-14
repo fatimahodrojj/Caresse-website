@@ -25,6 +25,22 @@ button:focus-visible {
   border-radius: 8px;
 }
 
+/* Phones and tablets: avoid single words on the last line of paragraphs and
+   balance multi-line headings. Desktop (xl) keeps its current line breaks. */
+@media (max-width: 1279px) {
+  p,
+  li,
+  dd,
+  dt {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
 /* Hero tagline text-shadow from the design system. Tailwind v3 has no
    text-shadow utility, so it lives here. */
 .text-shadow-tagline {
