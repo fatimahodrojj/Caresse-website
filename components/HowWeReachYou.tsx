@@ -29,7 +29,8 @@ const modes = [
 type Mode = (typeof modes)[number];
 
 /**
- * How We Reach You. Mobile: carousel of horizontal cards (image left).
+ * How We Reach You. Mobile: carousel of horizontal cards (image left;
+ * stacked below 375px, where the arrows leave too little width).
  * Desktop (xl): three vertical cards side by side.
  */
 export default function HowWeReachYou() {
@@ -61,7 +62,7 @@ export default function HowWeReachYou() {
 
 function ModeCard({ mode }: { mode: Mode }) {
   return (
-    <article className="flex w-full items-center gap-[10px] rounded-panel border border-line bg-white p-2 drop-shadow-card-strong xl:flex-col xl:items-stretch xl:gap-4 xl:rounded-card-lg xl:p-6">
+    <article className="flex w-full flex-col items-center gap-[10px] rounded-panel border border-line bg-white p-2 drop-shadow-card-strong min-[375px]:flex-row xl:flex-col xl:items-stretch xl:gap-4 xl:rounded-card-lg xl:p-6">
       <div
         className={`flex size-20 shrink-0 items-center justify-center overflow-hidden rounded-media border border-line xl:h-[220px] xl:w-full xl:rounded-panel ${mode.tint}`}
       >
@@ -73,7 +74,7 @@ function ModeCard({ mode }: { mode: Mode }) {
           className="size-20 rounded-full xl:size-[180px]"
         />
       </div>
-      <div className="flex flex-col gap-[2px] xl:gap-4">
+      <div className="flex flex-col gap-[2px] text-center min-[375px]:text-left xl:gap-4">
         <h3 className="text-base font-bold leading-[1.3] xl:text-xl">{mode.title}</h3>
         <p className="text-xs leading-[1.5] opacity-80 xl:text-sm xl:leading-[1.6]">
           {mode.description}
