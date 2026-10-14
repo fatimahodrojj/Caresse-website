@@ -39,8 +39,13 @@ export default function CTA() {
             height={160}
             className="mr-[-20px] h-[124px] w-[120px] rounded-[60px] xl:mr-[-30px] xl:h-40 xl:w-[154px] xl:rounded-[80px]"
           />
-          {/* Slot for cta-character-blue.png (not exported yet). */}
-          <span aria-hidden="true" className="h-[110px] w-[116px] xl:h-[140px] xl:w-[149px]" />
+          <Image
+            src="/images/illustrations/cta-character-blue.png"
+            alt=""
+            width={149}
+            height={140}
+            className="h-[110px] w-[116px] rounded-[55px] object-cover xl:h-[140px] xl:w-[149px] xl:rounded-[70px]"
+          />
         </div>
       </div>
     </section>

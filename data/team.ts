@@ -12,8 +12,7 @@ export const team: TeamMember[] = [
     name: "Ali Atie",
     role: "Applied Behavior Analysis Technician (ABAT)",
     photo: "/images/team/ali-atie.jpg",
-    // Illustration not exported yet (team-character-ali-atie.png).
-    character: null,
+    character: "/images/illustrations/team-character-ali-atie.png",
   },
   {
     name: "Mariam Al-Itawi",
