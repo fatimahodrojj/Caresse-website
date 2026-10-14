@@ -4,6 +4,7 @@ import ScallopDivider from "@/components/ScallopDivider";
 import Services from "@/components/Services";
 import Stats from "@/components/Stats";
 import WhyChooseUs from "@/components/WhyChooseUs";
+import HowWeReachYou from "@/components/HowWeReachYou";
 import Team from "@/components/Team";
 import Testimonial from "@/components/Testimonial";
 import CTA from "@/components/CTA";
@@ -19,6 +20,7 @@ export default function Home() {
       <Stats />
       <ScallopDivider fill="#FBDFE9" />
       <WhyChooseUs />
+      <HowWeReachYou />
       <Team />
       <Testimonial />
       <CTA />
