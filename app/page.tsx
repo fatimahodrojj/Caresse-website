@@ -3,7 +3,7 @@ import Hero from "@/components/Hero";
 import ScallopDivider from "@/components/ScallopDivider";
 import Services from "@/components/Services";
 import Stats from "@/components/Stats";
-import About from "@/components/About";
+import WhyChooseUs from "@/components/WhyChooseUs";
 import Team from "@/components/Team";
 import Testimonial from "@/components/Testimonial";
 import CTA from "@/components/CTA";
@@ -18,7 +18,7 @@ export default function Home() {
       <Services />
       <Stats />
       <ScallopDivider fill="#FBDFE9" />
-      <About />
+      <WhyChooseUs />
       <Team />
       <Testimonial />
       <CTA />
