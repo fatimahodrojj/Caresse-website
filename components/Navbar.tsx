@@ -13,7 +13,11 @@ const SHOW_LANGUAGE_SWITCH = false;
  * Mobile: white header, sticky at the top.
  * Desktop (xl, 1280px+): transparent, sits over the hero, not sticky.
  */
-export default function Navbar() {
+/**
+ * @param currentHref The nav link to mark as the current page (default: Home).
+ *   Pass null on pages that aren't in the nav, e.g. /book.
+ */
+export default function Navbar({ currentHref = homeHref }: { currentHref?: string | null }) {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
       <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] md:px-8 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
@@ -32,7 +36,7 @@ export default function Navbar() {
         <nav aria-label="Main" className="hidden xl:ml-auto xl:block">
           <ul className="flex items-center gap-10 text-xl font-semibold">
             {navLinks.map((link) => {
-              const isCurrent = link.href === homeHref;
+              const isCurrent = link.href === currentHref;
               return (
                 <li key={link.href}>
                   <Link
@@ -62,7 +66,7 @@ export default function Navbar() {
             Book a Session
           </Link>
           {SHOW_LANGUAGE_SWITCH && <LanguageButton />}
-          <MobileMenu />
+          <MobileMenu currentHref={currentHref} />
         </div>
       </div>
     </header>
