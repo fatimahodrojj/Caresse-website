@@ -378,7 +378,10 @@ function TextField({
         aria-required={required ? true : undefined}
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? `${field}-error` : undefined}
-        className={`${inputClass} ${borderFor(error)}`}
+        // Phone numbers are typed left-to-right; in Arabic they still align
+        // to the right like the other fields.
+        dir={type === "tel" ? "ltr" : undefined}
+        className={`${inputClass} ${borderFor(error)}${type === "tel" ? " rtl:text-right" : ""}`}
         {...inputProps}
       />
     </Field>

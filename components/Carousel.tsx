@@ -40,8 +40,11 @@ export default function Carousel({
   const update = useCallback(() => {
     const list = listRef.current;
     if (!list) return;
-    setCanPrev(list.scrollLeft > 1);
-    setCanNext(list.scrollLeft + list.clientWidth < list.scrollWidth - 1);
+    // Distance scrolled from the start. In right-to-left pages scrollLeft
+    // goes from 0 down to negative values.
+    const scrolled = Math.abs(list.scrollLeft);
+    setCanPrev(scrolled > 1);
+    setCanNext(scrolled + list.clientWidth < list.scrollWidth - 1);
   }, []);
 
   useEffect(() => {
@@ -60,8 +63,10 @@ export default function Carousel({
     const list = listRef.current;
     if (!list) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // "Next" moves towards the end: right in English, left in Arabic.
+    const inlineDirection = getComputedStyle(list).direction === "rtl" ? -1 : 1;
     list.scrollBy({
-      left: direction * list.clientWidth,
+      left: direction * inlineDirection * list.clientWidth,
       behavior: reduceMotion ? "auto" : "smooth",
     });
   }
