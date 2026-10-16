@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Font families (loaded with next/font in app/[locale]/layout.tsx), switched
+   per language. The wordmark always uses --font-boogaloo (font-wordmark). */
+body {
+  --font-sans: var(--font-sora);
+  --font-heading: var(--font-boogaloo);
+  --font-script: var(--font-dancing);
+}
+
+body:lang(ar) {
+  --font-sans: var(--font-readex);
+  --font-heading: var(--font-baloo);
+  --font-script: var(--font-aref);
+}
+
 html {
   scroll-behavior: smooth;
   /* Section links (/#team etc.) stop below the 72px sticky mobile header.

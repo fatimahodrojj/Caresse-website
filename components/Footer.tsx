@@ -49,7 +49,7 @@ export default function Footer() {
       <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 md:gap-8 xl:gap-16">
         <div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-8 xl:flex-row xl:justify-between xl:gap-2">
           <div className="flex flex-col gap-[6px] md:w-[280px] md:shrink-0 md:gap-4 xl:w-[360px] xl:shrink xl:gap-6">
-            <p className="flex gap-[2px] font-heading text-2xl md:text-3xl xl:text-4xl" aria-label={t("wordmarkLabel")} dir="ltr">
+            <p className="flex gap-[2px] font-wordmark text-2xl md:text-3xl xl:text-4xl" aria-label={t("wordmarkLabel")} dir="ltr">
               {wordmark.map((item, index) => (
                 <span key={index} aria-hidden="true" className={item.color}>
                   {item.letter}

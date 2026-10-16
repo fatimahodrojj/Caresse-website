@@ -60,7 +60,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
-        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] tracking-[2px] text-navy opacity-95 md:text-[44px] md:tracking-[3px] xl:text-[52px] xl:tracking-[3px]">
+        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] text-navy opacity-95 ltr:tracking-[2px] md:text-[44px] ltr:md:tracking-[3px] xl:text-[52px]">
           {t("tagline")}
         </p>
       </div>
