@@ -1,13 +1,9 @@
+import { getTranslations } from "next-intl/server";
 import { Resend } from "resend";
-import {
-  APPOINTMENT_FOR_OPTIONS,
-  SERVICE_OPTIONS,
-  TIME_SLOT_OPTIONS,
-  labelFor,
-} from "@/lib/booking/options";
 import type { BookingInput } from "@/lib/booking/schema";
 
-// Emails each new booking request to the clinic via Resend.
+// Emails each new booking request to the clinic via Resend. The email is
+// always in English (labels from messages/en.json, ClinicEmail).
 //
 // TODO(admin-panel): this email contains the full request, including notes
 // and the child's details (health information), because there is no admin
@@ -34,23 +30,28 @@ function formatBeirutTime(date: Date): string {
   }).format(date);
 }
 
-function emailRows(request: BookingInput & { id: string; createdAt: Date }): [string, string][] {
+async function emailRows(
+  request: BookingInput & { id: string; createdAt: Date },
+): Promise<[string, string][]> {
+  const t = await getTranslations({ locale: "en", namespace: "ClinicEmail" });
+  const tForm = await getTranslations({ locale: "en", namespace: "BookingForm" });
+  const tTherapies = await getTranslations({ locale: "en", namespace: "Therapies" });
   const forChild = request.appointmentFor === "CHILD";
   const rows: [string, string][] = [
-    ["For", labelFor(APPOINTMENT_FOR_OPTIONS, request.appointmentFor)],
-    [forChild ? "Parent's name" : "Name", `${request.firstName} ${request.lastName}`],
-    ["Phone", request.phone],
+    [t("for"), tForm(`appointmentFor.${request.appointmentFor}`)],
+    [forChild ? t("parentName") : t("name"), `${request.firstName} ${request.lastName}`],
+    [t("phone"), request.phone],
   ];
   if (forChild) {
-    rows.push(["Child's first name", request.childFirstName ?? ""]);
-    rows.push(["Child's age", String(request.childAge ?? "")]);
+    rows.push([t("childFirstName"), request.childFirstName ?? ""]);
+    rows.push([t("childAge"), String(request.childAge ?? "")]);
   }
   rows.push(
-    ["Service", labelFor(SERVICE_OPTIONS, request.service)],
-    ["Preferred time", labelFor(TIME_SLOT_OPTIONS, request.timeSlot)],
-    ["Needs or goals", request.notes ?? "(none)"],
-    ["Received", `${formatBeirutTime(request.createdAt)} (Beirut time)`],
-    ["Request ID", request.id],
+    [t("service"), tTherapies(request.service)],
+    [t("preferredTime"), tForm(`timeSlots.${request.timeSlot}`)],
+    [t("notes"), request.notes ?? t("notesNone")],
+    [t("received"), t("beirutTime", { time: formatBeirutTime(request.createdAt) })],
+    [t("requestId"), request.id],
   );
   return rows;
 }
@@ -67,16 +68,19 @@ export async function sendClinicEmail(
   const from = process.env.BOOKING_EMAIL_FROM;
   if (!apiKey || !to || !from) return "skipped";
 
-  const rows = emailRows(request);
-  const subject = `New appointment request: ${labelFor(SERVICE_OPTIONS, request.service)}`;
+  // Labels and the email body are in English for the clinic.
+  const t = await getTranslations({ locale: "en", namespace: "ClinicEmail" });
+  const tTherapies = await getTranslations({ locale: "en", namespace: "Therapies" });
+  const rows = await emailRows(request);
+  const subject = t("subject", { service: tTherapies(request.service) });
   const text = [
-    "A new appointment request was submitted on caresseclinic.com.",
+    t("intro"),
     "",
     ...rows.map(([label, value]) => `${label}: ${value}`),
   ].join("\n");
   const html = `
     <div style="font-family: Arial, sans-serif; color: #2A3B4D; font-size: 15px; line-height: 1.5;">
-      <p>A new appointment request was submitted on caresseclinic.com.</p>
+      <p>${escapeHtml(t("intro"))}</p>
       <table cellpadding="6" style="border-collapse: collapse;">
         ${rows
           .map(

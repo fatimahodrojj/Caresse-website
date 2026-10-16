@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Boogaloo, Dancing_Script, Sora } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { localeDirection, routing } from "@/i18n/routing";
 import "../globals.css";
 
@@ -27,11 +27,14 @@ const dancingScript = Dancing_Script({
   variable: "--font-script",
 });
 
-export const metadata: Metadata = {
-  title: "Caresse — Multitherapeutic Services",
-  description:
-    "Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence.",
-};
+export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({
+    locale: hasLocale(routing.locales, locale) ? locale : routing.defaultLocale,
+    namespace: "Metadata.home",
+  });
+  return { title: t("title"), description: t("description") };
+}
 
 // Both languages are rendered at build time.
 export function generateStaticParams() {

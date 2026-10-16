@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Children, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 type CarouselProps = {
@@ -110,11 +111,12 @@ function ArrowButton({
   onClick: () => void;
   className: string;
 }) {
+  const t = useTranslations("Carousel");
   const icon = direction === "previous" ? "chevron-left" : "chevron-right";
   return (
     <button
       type="button"
-      aria-label={direction === "previous" ? "Previous" : "Next"}
+      aria-label={direction === "previous" ? t("previous") : t("next")}
       disabled={disabled}
       onClick={onClick}
       className={`flex shrink-0 items-center justify-center rounded-full border border-navy/10 bg-white drop-shadow-control transition-opacity disabled:opacity-40 ${className}`}

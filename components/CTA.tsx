@@ -1,5 +1,6 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 /**
  * "Ready to Take the First Step?" call to action on the CTA gradient.
@@ -7,27 +8,27 @@ import Link from "next/link";
  * Desktop (xl): text left, characters right.
  */
 export default function CTA() {
+  const t = useTranslations("Cta");
   return (
     <section className="bg-cta px-4 py-5 font-sans text-white md:px-8 md:py-12 xl:px-20 xl:py-[120px]">
       <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 md:flex-row md:items-center md:gap-10 xl:flex-row xl:items-center xl:gap-20">
         <div className="flex flex-col gap-4 md:flex-1 md:gap-5 xl:flex-1 xl:gap-8">
-          <h2 className="font-heading text-[32px] md:text-[44px] xl:text-[64px]">Ready to Take the First Step?</h2>
+          <h2 className="font-heading text-[32px] md:text-[44px] xl:text-[64px]">{t("title")}</h2>
           <p className="text-sm leading-[1.6] opacity-90 md:text-base xl:text-lg">
-            Book a free initial consultation session and let us create a supportive, personalized
-            therapeutic plan for your family.
+            {t("body")}
           </p>
           <div className="flex gap-3 md:gap-4 xl:gap-4">
             <Link
               href="/book"
               className="flex h-12 flex-1 items-center justify-center rounded-full bg-gold px-[18px] text-[15px] font-bold text-navy md:flex-none md:px-8 xl:h-auto xl:flex-none xl:px-9 xl:py-4 xl:text-lg"
             >
-              Book Now
+              {t("bookNow")}
             </Link>
             <a
               href="tel:+96171056803"
               className="flex h-12 flex-1 items-center justify-center rounded-full border-2 border-white px-[18px] text-[15px] font-bold md:flex-none md:px-8 xl:h-auto xl:flex-none xl:px-9 xl:py-4 xl:text-lg"
             >
-              Call Us
+              {t("callUs")}
             </a>
           </div>
         </div>

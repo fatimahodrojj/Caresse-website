@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import {
   startTransition,
   useActionState,
@@ -12,13 +13,17 @@ import {
 } from "react";
 import { submitBookingRequest, type BookingFormState } from "@/lib/booking/actions";
 import {
-  APPOINTMENT_FOR_OPTIONS,
+  APPOINTMENT_FOR_VALUES,
   NOTES_MAX_LENGTH,
-  SERVICE_OPTIONS,
-  TIME_SLOT_OPTIONS,
+  SERVICE_VALUES,
+  TIME_SLOT_VALUES,
 } from "@/lib/booking/options";
 import { HONEYPOT_FIELD, STARTED_AT_FIELD } from "@/lib/booking/spam-fields";
-import type { BookingField } from "@/lib/booking/schema";
+import type { BookingErrorCode, BookingField } from "@/lib/booking/schema";
+
+// Clinic phone for error messages, wrapped in Unicode isolates (LRI…PDI) so it
+// reads left-to-right inside Arabic sentences.
+const CLINIC_PHONE = "\u2066+961 71056803\u2069";
 
 type Values = Record<Exclude<BookingField, "consent">, string> & { consent: boolean };
 
@@ -62,6 +67,8 @@ function borderFor(error: string | undefined) {
  * returns errors.
  */
 export default function BookingForm() {
+  const t = useTranslations("BookingForm");
+  const tTherapies = useTranslations("Therapies");
   const [state, formAction, isPending] = useActionState<BookingFormState, FormData>(
     submitBookingRequest,
     { status: "idle" },
@@ -71,7 +78,12 @@ export default function BookingForm() {
   const formErrorRef = useRef<HTMLParagraphElement>(null);
   const successRef = useRef<HTMLHeadingElement>(null);
 
-  const fieldErrors = state.status === "error" ? state.fieldErrors : {};
+  // Error codes from the server, shown as messages in the page's language.
+  const errorCodes = state.status === "error" ? state.fieldErrors : {};
+  const fieldErrors: Partial<Record<BookingField, string>> = {};
+  for (const [field, code] of Object.entries(errorCodes) as [BookingField, BookingErrorCode][]) {
+    fieldErrors[field] = t(`errors.${code}`);
+  }
 
   // When the form is shown (spam check: minimum fill time).
   useEffect(() => {
@@ -111,11 +123,9 @@ export default function BookingForm() {
             tabIndex={-1}
             className="font-heading text-[28px] outline-none md:text-4xl"
           >
-            Thank you!
+            {t("successTitle")}
           </h2>
-          <p className="text-sm leading-[1.5] opacity-80 md:text-base">
-            We&apos;ve received your request. Our team will contact you soon.
-          </p>
+          <p className="text-sm leading-[1.5] opacity-80 md:text-base">{t("successMessage")}</p>
         </div>
       </div>
     );
@@ -126,10 +136,8 @@ export default function BookingForm() {
   return (
     <div className="flex flex-col gap-3 rounded-panel bg-white p-4 drop-shadow-form md:gap-6 md:rounded-card md:p-8">
       <div className="flex flex-col gap-1 md:gap-2">
-        <h2 className="font-heading text-[28px] md:text-4xl">Request an Appointment</h2>
-        <p className="text-sm leading-[1.5] opacity-80 md:text-base">
-          Please provide complete details so we can assist you better.
-        </p>
+        <h2 className="font-heading text-[28px] md:text-4xl">{t("cardTitle")}</h2>
+        <p className="text-sm leading-[1.5] opacity-80 md:text-base">{t("cardSubtitle")}</p>
       </div>
 
       {/* With JavaScript, onSubmit dispatches the action without React's automatic
@@ -148,14 +156,14 @@ export default function BookingForm() {
             role="alert"
             className="rounded-control bg-danger/10 px-4 py-3 text-sm font-semibold text-danger outline-none"
           >
-            {state.formError}
+            {t(`formErrors.${state.formError}`, { phone: CLINIC_PHONE })}
           </p>
         )}
 
         {/* Spam protection: hidden from people and screen readers. */}
         <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
           <label>
-            Website
+            {t("honeypotLabel")}
             <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" />
           </label>
         </div>
@@ -166,24 +174,24 @@ export default function BookingForm() {
           aria-describedby={fieldErrors.appointmentFor ? "appointmentFor-error" : undefined}
         >
           <legend className="mb-[6px] text-sm font-semibold md:mb-2">
-            Who is this appointment for?
+            {t("appointmentForLegend")}
           </legend>
           <div className="grid grid-cols-2 gap-[10px] md:gap-4">
-            {APPOINTMENT_FOR_OPTIONS.map((option, index) => (
+            {APPOINTMENT_FOR_VALUES.map((option, index) => (
               <label
-                key={option.value}
+                key={option}
                 className={`flex h-11 cursor-pointer items-center gap-3 rounded-control border bg-white px-4 text-[15px] has-[:checked]:border-pink has-[:checked]:bg-pink/[0.06] has-[:focus-visible]:outline has-[:focus-visible]:outline-[3px] has-[:focus-visible]:outline-navy md:h-[52px] ${borderFor(fieldErrors.appointmentFor)}`}
               >
                 <input
                   type="radio"
                   name="appointmentFor"
-                  value={option.value}
-                  checked={values.appointmentFor === option.value}
-                  onChange={() => update("appointmentFor", option.value)}
+                  value={option}
+                  checked={values.appointmentFor === option}
+                  onChange={() => update("appointmentFor", option)}
                   data-field={index === 0 ? "appointmentFor" : undefined}
                   className="size-4 shrink-0 accent-pink"
                 />
-                {option.label}
+                {t(`appointmentFor.${option}`)}
               </label>
             ))}
           </div>
@@ -194,7 +202,7 @@ export default function BookingForm() {
           <div className="mt-[4px] hidden flex-col gap-[10px] group-has-[input[value=CHILD]:checked]:flex md:mt-2 md:flex-row md:gap-4">
             <TextField
               field="childFirstName"
-              label="Child's first name"
+              label={t("childFirstName")}
               value={values.childFirstName}
               onChange={(value) => update("childFirstName", value)}
               error={fieldErrors.childFirstName}
@@ -203,13 +211,13 @@ export default function BookingForm() {
             />
             <TextField
               field="childAge"
-              label="Child's age"
+              label={t("childAge")}
               value={values.childAge}
               onChange={(value) => update("childAge", value.replace(/\D/g, "").slice(0, 2))}
               error={fieldErrors.childAge}
               required={forChild}
               inputMode="numeric"
-              placeholder="0–17"
+              placeholder={t("childAgePlaceholder")}
               autoComplete="off"
             />
           </div>
@@ -218,21 +226,21 @@ export default function BookingForm() {
         <div className="flex flex-col gap-[10px] md:flex-row md:gap-4">
           <TextField
             field="firstName"
-            label="First Name"
+            label={t("firstName")}
             value={values.firstName}
             onChange={(value) => update("firstName", value)}
             error={fieldErrors.firstName}
-            placeholder="e.g. Sarah"
+            placeholder={t("firstNamePlaceholder")}
             autoComplete="given-name"
             required
           />
           <TextField
             field="lastName"
-            label="Last Name"
+            label={t("lastName")}
             value={values.lastName}
             onChange={(value) => update("lastName", value)}
             error={fieldErrors.lastName}
-            placeholder="e.g. Mitchell"
+            placeholder={t("lastNamePlaceholder")}
             autoComplete="family-name"
             required
           />
@@ -240,21 +248,21 @@ export default function BookingForm() {
 
         <TextField
           field="phone"
-          label="Phone Number"
+          label={t("phone")}
           type="tel"
           value={values.phone}
           onChange={(value) => update("phone", value)}
           error={fieldErrors.phone}
-          placeholder="+961 71 234 567"
+          placeholder={t("phonePlaceholder")}
           autoComplete="tel"
           required
         />
 
         <SelectField
           field="service"
-          label="Preferred Service"
-          placeholder="Select a therapy service"
-          options={SERVICE_OPTIONS}
+          label={t("service")}
+          placeholder={t("servicePlaceholder")}
+          options={SERVICE_VALUES.map((value) => ({ value, label: tTherapies(value) }))}
           value={values.service}
           onChange={(value) => update("service", value)}
           error={fieldErrors.service}
@@ -262,15 +270,15 @@ export default function BookingForm() {
 
         <SelectField
           field="timeSlot"
-          label="Preferred Time Slot"
-          placeholder="e.g. Morning, Afternoon"
-          options={TIME_SLOT_OPTIONS}
+          label={t("timeSlot")}
+          placeholder={t("timeSlotPlaceholder")}
+          options={TIME_SLOT_VALUES.map((value) => ({ value, label: t(`timeSlots.${value}`) }))}
           value={values.timeSlot}
           onChange={(value) => update("timeSlot", value)}
           error={fieldErrors.timeSlot}
         />
 
-        <Field field="notes" label="Tell us about your needs or goals" error={fieldErrors.notes}>
+        <Field field="notes" label={t("notes")} error={fieldErrors.notes}>
           <textarea
             id="notes"
             name="notes"
@@ -278,7 +286,7 @@ export default function BookingForm() {
             value={values.notes}
             onChange={(event) => update("notes", event.target.value)}
             maxLength={NOTES_MAX_LENGTH}
-            placeholder="Briefly tell us what you're looking for…"
+            placeholder={t("notesPlaceholder")}
             aria-invalid={fieldErrors.notes ? true : undefined}
             aria-describedby={fieldErrors.notes ? "notes-error" : undefined}
             className={`h-[120px] w-full resize-y rounded-control border bg-white px-4 py-3 text-[15px] leading-[1.5] text-navy placeholder:text-navy/55 md:h-[140px] md:py-[14px] ${borderFor(fieldErrors.notes)}`}
@@ -297,7 +305,7 @@ export default function BookingForm() {
               aria-describedby={fieldErrors.consent ? "consent-error" : undefined}
               className="mt-[2px] size-5 shrink-0 accent-pink"
             />
-            I agree that Caresse may store this information to contact me about my request.
+            {t("consent")}
           </label>
           <FieldError id="consent-error" message={fieldErrors.consent} />
         </div>
@@ -308,7 +316,7 @@ export default function BookingForm() {
           aria-busy={isPending}
           className="mt-1 h-12 w-full rounded-full bg-pink text-[15px] font-bold text-white transition-opacity disabled:opacity-70 md:h-14 md:text-base"
         >
-          {isPending ? "Sending…" : "Submit Appointment Request"}
+          {isPending ? t("sending") : t("submit")}
         </button>
       </form>
     </div>

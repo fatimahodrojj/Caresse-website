@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 
 type Character = {
   src: string;
@@ -37,9 +38,10 @@ const characters: Character[] = [
  * padding.
  */
 export default function Hero() {
+  const t = useTranslations("Hero");
   return (
     <section className="bg-hero p-3 md:px-8 md:py-10 xl:px-20 xl:pb-[120px] xl:pt-[180px]">
-      <h1 className="sr-only">Caresse – Multitherapeutic Services</h1>
+      <h1 className="sr-only">{t("heading")}</h1>
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 md:gap-4 xl:gap-0">
         <div className="flex items-center justify-center gap-2 md:gap-4 xl:h-[459px] xl:w-[1038px] xl:gap-0">
           {characters.map((character) => (
@@ -59,7 +61,7 @@ export default function Hero() {
           ))}
         </div>
         <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] tracking-[2px] text-navy opacity-95 md:text-[44px] md:tracking-[3px] xl:text-[52px] xl:tracking-[3px]">
-          A Touch From The Soul
+          {t("tagline")}
         </p>
       </div>
     </section>

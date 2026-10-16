@@ -1,6 +1,6 @@
 export type Service = {
-  title: string;
-  description: string;
+  /** Translation key under Services.items in messages/*.json. */
+  id: "autism" | "speechLanguage" | "neuroDevelopmental" | "feeding" | "familySupport" | "coTherapy";
   /** Path under public/ to the service character illustration. */
   image: string;
   /** Colour of the small dot in the card's top-right corner. */
@@ -8,8 +8,8 @@ export type Service = {
 };
 
 export type TeamMember = {
-  name: string;
-  role: string;
+  /** Translation key under Team.members in messages/*.json (name and role). */
+  id: "rawan" | "ali" | "mariam";
   /** Path under public/ to the team photo. */
   photo: string;
   /**
