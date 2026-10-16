@@ -62,12 +62,12 @@ export async function submitBookingRequest(
     // The request is saved, so the person sees success even if the email
     // fails; the clinic can still find it in the database.
     const email = await sendClinicEmail({ ...result.data, ...saved });
-    if (email === "failed") console.error("booking.email_failed", { requestId: saved.id });
-    if (email === "skipped") console.warn("booking.email_skipped", { requestId: saved.id });
+    if (email === "failed") console.error(`booking.email_failed requestId=${saved.id}`);
+    if (email === "skipped") console.warn(`booking.email_skipped requestId=${saved.id}`);
 
     return { status: "success" };
   } catch (error) {
-    console.error("booking.save_failed", { code: errorCode(error) });
+    console.error(`booking.save_failed code=${errorCode(error)}`);
     return {
       status: "error",
       fieldErrors: {},

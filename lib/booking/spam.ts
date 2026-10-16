@@ -1,14 +1,10 @@
 import { createHash } from "node:crypto";
 import type { PrismaClient } from "@/lib/generated/prisma/client";
+import { HONEYPOT_FIELD, STARTED_AT_FIELD } from "@/lib/booking/spam-fields";
 
 // Spam protection for the booking form, invisible to real people:
 // a honeypot field, a minimum fill time and rate limits stored in Postgres
 // (Vercel functions don't share memory, so an in-memory limit wouldn't hold).
-
-/** Hidden field that people never see; bots tend to fill it in. */
-export const HONEYPOT_FIELD = "website";
-/** Hidden field holding when the form was shown (ms since epoch, set in the browser). */
-export const STARTED_AT_FIELD = "startedAt";
 
 const MIN_FILL_TIME_MS = 3_000;
 const IP_LIMIT = { max: 5, windowMs: 60 * 60 * 1000 }; // 5 per hour
