@@ -2,12 +2,12 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { homeHref, navLinks } from "@/data/navigation";
+import LanguageSwitch from "@/components/LanguageSwitch";
 import MobileMenu from "@/components/MobileMenu";
 
-// Hidden until the shop has products and the Arabic site exists. The
-// components below are ready; flip these to render them.
+// Hidden until the shop has products. The component below is ready; flip
+// this to render it.
 const SHOW_CART = false;
-const SHOW_LANGUAGE_SWITCH = false;
 
 /**
  * One navbar for the whole site (Figma had a duplicate inside the hero).
@@ -32,7 +32,7 @@ export default function Navbar({ currentHref = homeHref }: { currentHref?: strin
             height={391}
             priority
             sizes="(min-width: 1280px) 199px, (min-width: 768px) 122px, 105px"
-            className="h-[38px] w-auto md:h-[44px] xl:h-[72px]"
+            className="h-7 w-auto min-[360px]:h-8 min-[390px]:h-[38px] md:h-[44px] xl:h-[72px]"
           />
         </Link>
 
@@ -59,16 +59,17 @@ export default function Navbar({ currentHref = homeHref }: { currentHref?: strin
           </ul>
         </nav>
 
-        {/* Figma order: mobile = Arabic, Book, cart, menu; desktop = cart, Book, Arabic. */}
-        <div className="flex items-center gap-[6px] xl:gap-[14px]">
+        {/* Figma order: mobile = language, Book, cart, menu; desktop = cart, Book, language.
+            Below 390px the logo and Book button shrink so the row fits on one line. */}
+        <div className="flex items-center gap-1 min-[360px]:gap-[6px] xl:gap-[14px]">
           {SHOW_CART && <CartButton />}
           <Link
             href="/book"
-            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-3 text-sm font-bold text-white min-[360px]:px-4 xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
+            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-[10px] text-xs font-bold text-white min-[360px]:px-3 min-[360px]:text-[13px] min-[390px]:px-4 min-[390px]:text-sm xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
           >
             {t("bookSession")}
           </Link>
-          {SHOW_LANGUAGE_SWITCH && <LanguageButton />}
+          <LanguageSwitch />
           <MobileMenu currentHref={currentHref} />
         </div>
       </div>
@@ -91,21 +92,6 @@ function CartButton() {
         height={20}
         className="size-4 xl:size-5"
       />
-    </button>
-  );
-}
-
-function LanguageButton() {
-  const t = useTranslations("Navbar");
-  return (
-    <button
-      type="button"
-      lang="ar"
-      dir="rtl"
-      aria-label={t("switchLanguageLabel")}
-      className="order-1 whitespace-nowrap rounded-full bg-pink px-[10px] xl:order-3 py-[6px] text-[10px] font-bold text-white xl:px-6 xl:py-3 xl:text-[15px]"
-    >
-      {t("switchLanguage")}
     </button>
   );
 }

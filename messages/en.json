@@ -16,8 +16,7 @@
     "cart": "Cart",
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
-    "switchLanguage": "العربية",
-    "switchLanguageLabel": "Switch to Arabic"
+    "switchLanguage": "العربية"
   },
   "Nav": {
     "home": "Home",

@@ -16,8 +16,7 @@
     "cart": "السلة",
     "openMenu": "فتح القائمة",
     "closeMenu": "إغلاق القائمة",
-    "switchLanguage": "English",
-    "switchLanguageLabel": "التبديل إلى الإنجليزية"
+    "switchLanguage": "English"
   },
   "Nav": {
     "home": "الرئيسية",
