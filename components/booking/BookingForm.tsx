@@ -10,7 +10,7 @@ import {
   type FormEvent,
   type ReactNode,
 } from "react";
-import { submitBookingRequest, type BookingFormState } from "@/app/book/actions";
+import { submitBookingRequest, type BookingFormState } from "@/lib/booking/actions";
 import {
   APPOINTMENT_FOR_OPTIONS,
   NOTES_MAX_LENGTH,

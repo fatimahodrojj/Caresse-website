@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BookingForm, { Characters } from "@/components/booking/BookingForm";
+import { setRequestLocale } from "next-intl/server";
 
 export const metadata: Metadata = {
   title: "Book a Session — Caresse",
@@ -10,7 +11,10 @@ export const metadata: Metadata = {
 };
 
 /** Book a Session (Figma 33:5 desktop, 113:709 mobile). */
-export default function BookPage() {
+export default async function BookPage({ params }: PageProps<"/[locale]/book">) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+
   return (
     <>
       <Navbar currentHref={null} />
