@@ -161,7 +161,7 @@ export default function BookingForm() {
         )}
 
         {/* Spam protection: hidden from people and screen readers. */}
-        <div aria-hidden="true" className="absolute -left-[9999px] h-px w-px overflow-hidden">
+        <div aria-hidden="true" className="absolute -start-[9999px] h-px w-px overflow-hidden">
           <label>
             {t("honeypotLabel")}
             <input type="text" name={HONEYPOT_FIELD} tabIndex={-1} autoComplete="off" />
@@ -414,7 +414,7 @@ function SelectField({
           aria-required
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${field}-error` : undefined}
-          className={`${inputClass} ${borderFor(error)} cursor-pointer appearance-none pr-12 ${value ? "" : "text-navy/55"}`}
+          className={`${inputClass} ${borderFor(error)} cursor-pointer appearance-none pe-12 ${value ? "" : "text-navy/55"}`}
         >
           <option value="" disabled>
             {placeholder}
@@ -430,7 +430,7 @@ function SelectField({
           alt=""
           width={20}
           height={20}
-          className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2"
+          className="pointer-events-none absolute end-4 top-1/2 -translate-y-1/2"
         />
       </div>
     </Field>
@@ -451,11 +451,11 @@ export function Characters({ size }: { size: "small" | "large" }) {
   const sizes =
     size === "large"
       ? [
-          "mr-[-18px] size-[90px] md:mr-[-30px] md:size-[120px]",
-          "mr-[-18px] size-[110px] md:mr-[-30px] md:size-[140px]",
+          "me-[-18px] size-[90px] md:me-[-30px] md:size-[120px]",
+          "me-[-18px] size-[110px] md:me-[-30px] md:size-[140px]",
           "size-[85px] md:size-[110px]",
         ]
-      : ["mr-[-14px] size-16 md:size-20", "mr-[-14px] size-[76px] md:size-24", "size-[60px] md:size-[76px]"];
+      : ["me-[-14px] size-16 md:size-20", "me-[-14px] size-[76px] md:size-24", "size-[60px] md:size-[76px]"];
   const images = [
     "/images/illustrations/book-character-blue.png",
     "/images/illustrations/book-character-pink.png",

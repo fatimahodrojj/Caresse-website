@@ -23,7 +23,7 @@ export default function Navbar({ currentHref = homeHref }: { currentHref?: strin
   const tNav = useTranslations("Nav");
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
-      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] md:px-8 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-2 px-3 min-[360px]:gap-[14px] md:px-8 xl:h-20 xl:justify-start xl:ps-0 xl:pe-[13px]">
         <Link href={homeHref} className="flex min-h-10 shrink-0 items-center">
           <Image
             src="/images/brand/logo.png"
@@ -36,7 +36,7 @@ export default function Navbar({ currentHref = homeHref }: { currentHref?: strin
           />
         </Link>
 
-        <nav aria-label={t("mainNav")} className="hidden xl:ml-auto xl:block">
+        <nav aria-label={t("mainNav")} className="hidden xl:ms-auto xl:block">
           <ul className="flex items-center gap-10 text-xl font-semibold">
             {navLinks.map((link) => {
               const isCurrent = link.href === currentHref;

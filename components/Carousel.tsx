@@ -126,7 +126,7 @@ function ArrowButton({
         alt=""
         width={20}
         height={20}
-        className="size-[18px] xl:size-5"
+        className="size-[18px] rtl:-scale-x-100 xl:size-5"
       />
     </button>
   );

@@ -45,7 +45,7 @@ export default function WhyChooseUs() {
             alt=""
             width={160}
             height={160}
-            className="mr-[-8px] size-[100px] rounded-full lg:mr-[-12px] lg:size-32 xl:mr-[-15px] xl:size-40"
+            className="me-[-8px] size-[100px] rounded-full lg:me-[-12px] lg:size-32 xl:me-[-15px] xl:size-40"
           />
           <Image
             src="/images/illustrations/why-character-jump-2.png"

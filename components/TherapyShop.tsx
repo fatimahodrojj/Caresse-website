@@ -75,7 +75,7 @@ function ProductList({ products }: { products: Product[] }) {
             alt=""
             width={16}
             height={16}
-            className="size-[14px] xl:size-4"
+            className="size-[14px] rtl:-scale-x-100 xl:size-4"
           />
         </Link>
         <Link
@@ -83,7 +83,13 @@ function ProductList({ products }: { products: Product[] }) {
           className="hidden items-center gap-[10px] rounded-full bg-navy px-6 py-[14px] text-[15px] font-bold text-white xl:flex"
         >
           {t("visitFullShop")}
-          <Image src="/images/icons/arrow-right-white.svg" alt="" width={18} height={18} />
+          <Image
+            src="/images/icons/arrow-right-white.svg"
+            alt=""
+            width={18}
+            height={18}
+            className="rtl:-scale-x-100"
+          />
         </Link>
       </div>
     </>

@@ -59,7 +59,7 @@ function ModeCard({ mode }: { mode: Mode }) {
           className="size-20 rounded-full md:size-32 xl:size-[180px]"
         />
       </div>
-      <div className="flex flex-col gap-[2px] text-center min-[375px]:text-left md:gap-2 xl:gap-4">
+      <div className="flex flex-col gap-[2px] text-center min-[375px]:text-start md:gap-2 xl:gap-4">
         <h3 className="text-base font-bold leading-[1.3] md:text-lg xl:text-xl">{t(`${mode.key}.title`)}</h3>
         <p className="text-xs leading-[1.5] opacity-80 md:text-sm xl:text-sm xl:leading-[1.6]">
           {t(`${mode.key}.description`)}

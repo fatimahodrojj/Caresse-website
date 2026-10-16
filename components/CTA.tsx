@@ -38,7 +38,7 @@ export default function CTA() {
             alt=""
             width={154}
             height={160}
-            className="mr-[-20px] h-[124px] w-[120px] rounded-[60px] lg:mr-[-30px] lg:h-40 lg:w-[154px] lg:rounded-[80px] xl:mr-[-30px] xl:h-40 xl:w-[154px] xl:rounded-[80px]"
+            className="me-[-20px] h-[124px] w-[120px] rounded-[60px] lg:me-[-30px] lg:h-40 lg:w-[154px] lg:rounded-[80px] xl:me-[-30px] xl:h-40 xl:w-[154px] xl:rounded-[80px]"
           />
           <Image
             src="/images/illustrations/cta-character-blue.png"

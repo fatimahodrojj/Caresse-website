@@ -15,13 +15,13 @@ const characters: Character[] = [
   {
     src: "/images/illustrations/hero-character-blue.png",
     className:
-      "size-[min(96px,26vw)] rounded-full md:size-40 xl:mr-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
+      "size-[min(96px,26vw)] rounded-full md:size-40 xl:me-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
     sizes: "(min-width: 1280px) 289px, (min-width: 768px) 160px, 96px",
   },
   {
     src: "/images/illustrations/hero-character-pink.png",
     className:
-      "size-[min(112px,30vw)] rounded-full md:size-48 xl:mr-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
+      "size-[min(112px,30vw)] rounded-full md:size-48 xl:me-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
     sizes: "(min-width: 1280px) 391px, (min-width: 768px) 192px, 112px",
   },
   {

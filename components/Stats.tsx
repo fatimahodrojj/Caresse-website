@@ -22,7 +22,7 @@ export default function Stats() {
           {stats.map((stat) => (
             <div key={stat.label} className="flex flex-1 flex-col-reverse justify-end gap-[6px] xl:gap-2">
               <dt className="text-xs font-semibold text-white md:text-sm xl:text-base">{t(stat.label)}</dt>
-              <dd className="font-heading text-4xl text-gold md:text-5xl md:leading-normal xl:text-[64px] xl:leading-normal">
+              <dd dir="ltr" className="font-heading text-4xl text-gold md:text-5xl md:leading-normal xl:text-[64px] xl:leading-normal">
                 {stat.value}
               </dd>
             </div>
