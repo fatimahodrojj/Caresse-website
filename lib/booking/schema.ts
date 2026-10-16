@@ -56,12 +56,11 @@ const bookingFields = z.object({
   phone: phoneField,
   service: z.enum(
     [
-      "AUTISM",
-      "SPEECH_LANGUAGE",
-      "NEURO_DEVELOPMENTAL",
-      "FEEDING",
-      "FAMILY_SUPPORT",
-      "CO_THERAPY",
+      "SPEECH_THERAPY",
+      "ABA_THERAPY",
+      "OCCUPATIONAL_THERAPY",
+      "PSYCHOMOTOR_SUPPORT",
+      "NOT_SURE",
     ] satisfies ServiceValue[],
     { error: "Please select a therapy service." },
   ),

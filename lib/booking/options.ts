@@ -7,14 +7,14 @@ export const APPOINTMENT_FOR_OPTIONS = [
   { value: "SELF", label: "For myself" },
 ] as const;
 
-// Service labels match the "Our Services" cards (data/services.ts).
+// Therapies (not conditions), matching the footer's Services list, plus an
+// option for people who don't know which therapy they need.
 export const SERVICE_OPTIONS = [
-  { value: "AUTISM", label: "Autism" },
-  { value: "SPEECH_LANGUAGE", label: "Speech & Language Disorders" },
-  { value: "NEURO_DEVELOPMENTAL", label: "Neuro Developmental Disorder" },
-  { value: "FEEDING", label: "Feeding Disorders" },
-  { value: "FAMILY_SUPPORT", label: "Family Support" },
-  { value: "CO_THERAPY", label: "Co-Therapy" },
+  { value: "SPEECH_THERAPY", label: "Speech Therapy" },
+  { value: "ABA_THERAPY", label: "ABA Therapy" },
+  { value: "OCCUPATIONAL_THERAPY", label: "Occupational Therapy" },
+  { value: "PSYCHOMOTOR_SUPPORT", label: "Psychomotor Support" },
+  { value: "NOT_SURE", label: "Not sure, help me choose" },
 ] as const;
 
 export const TIME_SLOT_OPTIONS = [

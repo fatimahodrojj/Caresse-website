@@ -14,13 +14,13 @@ enum AppointmentFor {
   SELF
 }
 
+/// The therapy the person is asking about (not a condition).
 enum Service {
-  AUTISM
-  SPEECH_LANGUAGE
-  NEURO_DEVELOPMENTAL
-  FEEDING
-  FAMILY_SUPPORT
-  CO_THERAPY
+  SPEECH_THERAPY
+  ABA_THERAPY
+  OCCUPATIONAL_THERAPY
+  PSYCHOMOTOR_SUPPORT
+  NOT_SURE
 }
 
 enum TimeSlot {
