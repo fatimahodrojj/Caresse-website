@@ -1,0 +1,73 @@
+// Database schema. Connection settings live in prisma.config.ts and .env.
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum AppointmentFor {
+  CHILD
+  SELF
+}
+
+enum Service {
+  AUTISM
+  SPEECH_LANGUAGE
+  NEURO_DEVELOPMENTAL
+  FEEDING
+  FAMILY_SUPPORT
+  CO_THERAPY
+}
+
+enum TimeSlot {
+  MORNING
+  AFTERNOON
+}
+
+enum RequestStatus {
+  NEW
+  CONTACTED
+  APPROVED
+  DECLINED
+}
+
+/// A request from the /book form. Requests only: no exact time is booked.
+/// notes and the child's details may contain health information: never log
+/// them (see CLAUDE.md, Privacy).
+model AppointmentRequest {
+  id             String         @id @default(cuid())
+  appointmentFor AppointmentFor
+  /// Parent's name when appointmentFor = CHILD, patient's name when SELF.
+  firstName      String
+  lastName       String
+  /// Normalised: digits with an optional leading "+".
+  phone          String
+  /// Only set when appointmentFor = CHILD.
+  childFirstName String?
+  /// Whole years, 0-17. Only set when appointmentFor = CHILD.
+  childAge       Int?
+  service        Service
+  timeSlot       TimeSlot
+  notes          String?        @db.Text
+  status         RequestStatus  @default(NEW)
+  /// When the person ticked the consent box (set on the server).
+  consentAt      DateTime
+  createdAt      DateTime       @default(now())
+
+  @@index([status, createdAt])
+  @@index([phone, createdAt])
+}
+
+/// Rate limiting only: a salted hash of the IP address, never the IP itself.
+/// Rows older than 24 hours are deleted on each submission.
+model SubmissionAttempt {
+  id        String   @id @default(cuid())
+  ipHash    String
+  createdAt DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+}

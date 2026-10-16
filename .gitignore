@@ -18,3 +18,6 @@ npm-debug.log*
 
 # os
 .DS_Store
+
+# generated Prisma client (rebuilt by `prisma generate`)
+/lib/generated/
