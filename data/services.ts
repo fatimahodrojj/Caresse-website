@@ -1,46 +1,48 @@
 import { Service } from "@/lib/types";
 
+// Text from docs/homepage-content.md (Our Services). Dot colours follow
+// Figma (docs/design-system.md, Core palette).
 export const services: Service[] = [
   {
-    slug: "speech-language-therapy",
-    title: "Speech & Language Therapy",
+    title: "Autism",
     description:
-      "Articulation, stuttering, expressive/receptive language delays — built around real conversations, not drills.",
-    accent: "sky",
+      "Personalized therapy plans tailored to each case based on the child's unique condition, strengths, and developmental needs.",
+    image: "/images/illustrations/service-autism.png",
+    dot: "purple",
   },
   {
-    slug: "aba-therapy",
-    title: "ABA Therapy",
+    title: "Speech & Language Disorders",
     description:
-      "Applied Behavior Analysis programs tailored to autism spectrum needs — measurable goals, gentle methods.",
-    accent: "pink",
+      "Comprehensive assessment and targeted intervention for speech delays, articulation difficulties, and language development challenges.",
+    image: "/images/illustrations/service-speech-language.png",
+    dot: "pink",
   },
   {
-    slug: "occupational-therapy",
-    title: "Occupational Therapy",
+    title: "Neuro Developmental Disorder",
     description:
-      "Fine motor skills, sensory integration, and everyday independence — for school, home, and play.",
-    accent: "gold",
+      "Specialized rehabilitation and support for cerebral palsy and other neurological conditions affecting motor and cognitive development.",
+    image: "/images/illustrations/service-neuro-developmental.png",
+    dot: "purple",
   },
   {
-    slug: "psychomotor-therapy",
-    title: "Psychomotor Therapy",
+    title: "Feeding Disorders",
     description:
-      "Movement-based sessions that connect body and mind — building coordination and self-regulation.",
-    accent: "sky",
+      "Expert evaluation and therapy for children experiencing feeding difficulties, oral motor challenges, and food aversions.",
+    image: "/images/illustrations/service-feeding.png",
+    dot: "purple",
   },
   {
-    slug: "psychological-support",
-    title: "Psychological Support",
+    title: "Family Support",
     description:
-      "Individual and family counseling for anxiety, adjustment, and developmental challenges alike.",
-    accent: "pink",
+      "Empowering parents and caregivers with guidance, strategies, and resources to create a nurturing and supportive home environment.",
+    image: "/images/illustrations/service-family-support.png",
+    dot: "pink",
   },
   {
-    slug: "reading-learning-support",
-    title: "Reading & Learning Support",
+    title: "Co-Therapy",
     description:
-      "Literacy building for kids with dyslexia or reading delays — turning frustration into confidence.",
-    accent: "gold",
+      "Collaborative, multidisciplinary therapy sessions combining specialists to deliver integrated and holistic treatment plans.",
+    image: "/images/illustrations/service-co-therapy.png",
+    dot: "purple",
   },
 ];

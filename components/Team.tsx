@@ -1,55 +1,80 @@
+import Image from "next/image";
+import Link from "next/link";
+import Carousel from "@/components/Carousel";
 import { team } from "@/data/team";
-import { BrandAccent } from "@/lib/types";
+import type { TeamMember } from "@/lib/types";
 
-const accentBg: Record<BrandAccent, string> = {
-  gold: "bg-gold-soft",
-  sky: "bg-sky-soft",
-  pink: "bg-pink-soft",
-};
-
+/**
+ * Meet Our Team. Mobile: one card at a time. Desktop (xl): three cards.
+ */
 export default function Team() {
   return (
-    <section id="team" className="bg-sky-soft py-24">
-      <div className="max-w-[1180px] mx-auto px-8">
-        <div className="text-center max-w-xl mx-auto mb-14">
-          <span className="inline-block bg-white px-4 py-2 rounded-full font-extrabold text-xs text-pink shadow-sm mb-4">
-            Meet the team
-          </span>
-          <h2 className="font-display text-3xl md:text-4xl mb-3">
-            Specialists who show up with warmth
-          </h2>
-          <p className="text-navy-soft text-lg leading-relaxed">
-            Every therapist at Caresse is licensed, background-checked, and
-            trained across multiple disciplines.
+    <section id="team" className="bg-rose px-4 py-5 font-sans xl:px-[120px] xl:py-20">
+      <div data-reveal className="mx-auto flex max-w-[1200px] flex-col gap-3 xl:gap-10">
+        <div className="flex flex-col gap-[10px] text-center xl:gap-3">
+          <h2 className="font-heading text-[32px] xl:text-5xl">Meet Our Team</h2>
+          <p className="text-sm opacity-80 xl:text-lg">
+            A dedicated, specialized group of professionals passionate about supporting the healthy
+            growth of our families.
           </p>
         </div>
-
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+        <Carousel
+          label="Meet Our Team"
+          itemClassName="basis-full md:basis-[calc((100%-12px)/2)] xl:basis-auto"
+          listClassName="xl:grid xl:grid-cols-3 xl:gap-4 xl:overflow-visible"
+          arrowClassName="size-11"
+          hideArrowsFrom="xl"
+        >
           {team.map((member) => (
-            <div
-              key={member.name}
-              className="bg-white rounded-xl2 overflow-hidden shadow-md"
-            >
-              <div
-                className={`h-40 flex items-center justify-center ${
-                  accentBg[member.accent]
-                }`}
-              >
-                {/* Photo or blob-mascot placeholder */}
-                <span className="w-14 h-14 rounded-full bg-navy/10" />
-              </div>
-              <div className="p-5">
-                <h4 className="font-display text-base mb-0.5">
-                  {member.name}
-                </h4>
-                <span className="text-xs font-bold text-pink">
-                  {member.role}
-                </span>
-              </div>
-            </div>
+            <TeamCard key={member.name} member={member} />
           ))}
-        </div>
+        </Carousel>
+        <Link
+          href="/#services"
+          className="text-center text-lg font-bold tracking-[0.5px] text-sky xl:text-[22px]"
+        >
+          Know More About Our Therapy →
+        </Link>
       </div>
     </section>
+  );
+}
+
+function TeamCard({ member }: { member: TeamMember }) {
+  return (
+    <article className="flex w-full flex-col items-center gap-2 rounded-card bg-white p-3 text-center xl:gap-3 xl:p-5">
+      <div className="relative size-[120px] shrink-0 overflow-hidden rounded-media xl:aspect-square xl:size-auto xl:w-full">
+        <Image
+          src={member.photo}
+          alt={member.name}
+          fill
+          sizes="(min-width: 1280px) 350px, 120px"
+          className="object-cover"
+          style={
+            member.photoCrop && {
+              objectPosition: member.photoCrop.position,
+              transform: `scale(${member.photoCrop.zoom})`,
+              transformOrigin: member.photoCrop.origin,
+            }
+          }
+        />
+      </div>
+      <div className="flex flex-col gap-1">
+        <h3 className="font-heading text-xl xl:text-[22px]">{member.name}</h3>
+        <p className="text-[13px] font-semibold leading-[1.5] text-sky">{member.role}</p>
+      </div>
+      {member.character ? (
+        <Image
+          src={member.character}
+          alt=""
+          width={50}
+          height={50}
+          className="mt-auto size-11 rounded-full xl:size-[50px]"
+        />
+      ) : (
+        // Keeps the card layout while the illustration is missing.
+        <span aria-hidden="true" className="mt-auto size-11 xl:size-[50px]" />
+      )}
+    </article>
   );
 }

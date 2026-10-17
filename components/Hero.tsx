@@ -7,25 +7,26 @@ type Character = {
   sizes: string;
 };
 
-// Mobile (Figma 113:7): 96 / 112 / 96px circles, 8px apart.
+// Mobile (Figma 113:7): 96 / 112 / 96px circles, 8px apart; they shrink
+// with the screen below ~370px so all three fit on small phones.
 // Desktop (Figma 7:4): 289×260 / 391×386 / 285×240, overlapping by 60px.
 const characters: Character[] = [
   {
     src: "/images/illustrations/hero-character-blue.png",
     className:
-      "size-24 rounded-full xl:mr-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
+      "size-[min(96px,26vw)] rounded-full xl:mr-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
     sizes: "(min-width: 1280px) 289px, 96px",
   },
   {
     src: "/images/illustrations/hero-character-pink.png",
     className:
-      "size-28 rounded-full xl:mr-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
+      "size-[min(112px,30vw)] rounded-full xl:mr-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
     sizes: "(min-width: 1280px) 391px, 112px",
   },
   {
     src: "/images/illustrations/hero-character-gold.png",
     className:
-      "size-24 rounded-full xl:h-[240px] xl:w-[285px] xl:rounded-[120px]",
+      "size-[min(96px,26vw)] rounded-full xl:h-[240px] xl:w-[285px] xl:rounded-[120px]",
     sizes: "(min-width: 1280px) 285px, 96px",
   },
 ];
@@ -57,7 +58,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
-        <p className="text-shadow-tagline w-full text-center font-script text-[36px] leading-[1.1] tracking-[2px] text-navy opacity-95 xl:text-[52px] xl:tracking-[3px]">
+        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] tracking-[2px] text-navy opacity-95 xl:text-[52px] xl:tracking-[3px]">
           A Touch From The Soul
         </p>
       </div>

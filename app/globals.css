@@ -4,14 +4,24 @@
 
 html {
   scroll-behavior: smooth;
+  /* Section links (/#team etc.) stop below the 72px sticky mobile header.
+     The desktop navbar is not sticky, so no offset is needed there. */
+  scroll-padding-top: 72px;
 }
 
-/* Visible focus ring for keyboard navigation — accessibility floor,
-   not optional polish. */
+@media (min-width: theme("screens.xl")) {
+  html {
+    scroll-padding-top: 0;
+  }
+}
+
+/* Visible focus ring for keyboard navigation. Navy outline with a white
+   halo so it stands out on both light and navy sections. */
 a:focus-visible,
 button:focus-visible {
-  outline: 3px solid theme("colors.lavender");
-  outline-offset: 3px;
+  outline: 3px solid theme("colors.navy");
+  outline-offset: 2px;
+  box-shadow: 0 0 0 5px #ffffff;
   border-radius: 8px;
 }
 
@@ -21,24 +31,32 @@ button:focus-visible {
   text-shadow: 0 8px 18px rgba(42, 59, 77, 0.08);
 }
 
+/* Hide the scrollbar on carousels (they have arrow buttons and can be
+   swiped), but keep them scrollable. */
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* Scroll reveal (components/ScrollReveal.tsx): sections fade in and move up
+   20px the first time they enter the viewport. Sections are only hidden
+   after the script has run (.reveal-ready), and never with reduced motion. */
+@media (prefers-reduced-motion: no-preference) {
+  .reveal-ready [data-reveal] {
+    transition:
+      opacity 500ms ease-out,
+      transform 500ms ease-out;
+  }
+  .reveal-ready [data-reveal]:not(.is-revealed) {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
   }
-  .animate-bob {
-    animation: none !important;
-  }
-}
-
-@keyframes bob {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-14px);
-  }
-}
-.animate-bob {
-  animation: bob 5s ease-in-out infinite;
 }

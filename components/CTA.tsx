@@ -1,23 +1,55 @@
+import Image from "next/image";
+import Link from "next/link";
+
+/**
+ * "Ready to Take the First Step?" call to action on the CTA gradient.
+ * Mobile: stacked, buttons side by side at half width, characters below.
+ * Desktop (xl): text left, characters right.
+ */
 export default function CTA() {
   return (
-    <section
-      id="book"
-      className="bg-gradient-to-r from-sky to-pink py-20 text-center text-white"
-    >
-      <div className="max-w-[1180px] mx-auto px-8">
-        <h2 className="font-display text-3xl md:text-4xl mb-3">
-          Let&apos;s find the right therapist for you.
-        </h2>
-        <p className="text-lg opacity-95 max-w-md mx-auto mb-8">
-          Book a free 15-minute consultation — no pressure, just a
-          conversation about what your family needs.
-        </p>
-        <a
-          href="#contact"
-          className="inline-block font-display text-sm px-8 py-3.5 rounded-full bg-white text-pink shadow-lg hover:text-sky hover:-translate-y-0.5 transition-all"
-        >
-          Book a Free Consultation
-        </a>
+    <section className="bg-cta px-4 py-5 font-sans text-white xl:px-20 xl:py-[120px]">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:gap-20">
+        <div className="flex flex-col gap-4 xl:flex-1 xl:gap-8">
+          <h2 className="font-heading text-[32px] xl:text-[64px]">Ready to Take the First Step?</h2>
+          <p className="text-sm leading-[1.6] opacity-90 xl:text-lg">
+            Book a free initial consultation session and let us create a supportive, personalized
+            therapeutic plan for your family.
+          </p>
+          <div className="flex gap-3 xl:gap-4">
+            <Link
+              href="/book"
+              className="flex h-12 flex-1 items-center justify-center rounded-full bg-gold px-[18px] text-[15px] font-bold text-navy xl:h-auto xl:flex-none xl:px-9 xl:py-4 xl:text-lg"
+            >
+              Book Now
+            </Link>
+            <a
+              href="tel:+96171056803"
+              className="flex h-12 flex-1 items-center justify-center rounded-full border-2 border-white px-[18px] text-[15px] font-bold xl:h-auto xl:flex-none xl:px-9 xl:py-4 xl:text-lg"
+            >
+              Call Us
+            </a>
+          </div>
+        </div>
+        <div className="flex items-center justify-center xl:w-[400px] xl:shrink-0">
+          <Image
+            src="/images/illustrations/cta-character-gold.png"
+            alt=""
+            width={154}
+            height={160}
+            className="mr-[-20px] h-[124px] w-[120px] rounded-[60px] xl:mr-[-30px] xl:h-40 xl:w-[154px] xl:rounded-[80px]"
+          />
+          <Image
+            src="/images/illustrations/cta-character-blue.png"
+            alt=""
+            width={149}
+            height={140}
+            // The image's white disc is a 280px circle flush with its right
+            // edge; the corners carry Figma's pink gradient. A square box,
+            // right-aligned and clipped to a circle, shows only the disc.
+            className="size-[110px] rounded-full object-cover object-right xl:size-[140px]"
+          />
+        </div>
       </div>
     </section>
   );
