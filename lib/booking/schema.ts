@@ -2,10 +2,12 @@ import { z } from "zod";
 import {
   APPOINTMENT_FOR_VALUES,
   CHILD_AGE_MAX,
+  LANGUAGE_VALUES,
   NOTES_MAX_LENGTH,
   SERVICE_VALUES,
   TIME_SLOT_VALUES,
   type AppointmentForValue,
+  type LanguageValue,
   type ServiceValue,
   type TimeSlotValue,
 } from "@/lib/booking/options";
@@ -86,10 +88,13 @@ const bookingFields = z.object({
     .max(NOTES_MAX_LENGTH, "notesTooLong" satisfies BookingErrorCode)
     .optional(),
   consent: z.literal("on", { error: "consentRequired" satisfies BookingErrorCode }),
+  // Hidden field set by the page. Only EN or AR are ever stored; anything
+  // else (a tampered request) is stored as EN rather than rejected.
+  language: z.enum(LANGUAGE_VALUES).catch("EN"),
 });
 
-/** Field names the form can show an error under. */
-export type BookingField = keyof z.input<typeof bookingFields>;
+/** Field names the form can show an error under (language is hidden and never fails). */
+export type BookingField = Exclude<keyof z.input<typeof bookingFields>, "language">;
 
 export type BookingFieldErrors = Partial<Record<BookingField, BookingErrorCode>>;
 
@@ -123,6 +128,7 @@ export type BookingInput = {
   service: ServiceValue;
   timeSlot: TimeSlotValue;
   notes: string | null;
+  language: LanguageValue;
 };
 
 export type BookingValidation =
@@ -163,6 +169,7 @@ export function validateBooking(raw: Record<string, unknown>): BookingValidation
       service: data.service,
       timeSlot: data.timeSlot,
       notes: data.notes ? data.notes : null,
+      language: data.language,
     },
   };
 }

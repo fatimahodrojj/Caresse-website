@@ -8,8 +8,9 @@ import type { BookingInput } from "@/lib/booking/schema";
 // TODO(admin-panel): this email contains the full request, including notes
 // and the child's details (health information), because there is no admin
 // panel yet. Once the admin panel exists, switch to a short email (who it's
-// for, name, phone, service, time slot and a link to the request) and keep
-// the details only in the database. See docs/booking-setup.md.
+// for, name, phone, form language, service, time slot and a link to the
+// request) and keep the details only in the database. See
+// docs/booking-setup.md.
 
 export type ClinicEmailResult = "sent" | "skipped" | "failed";
 
@@ -41,6 +42,7 @@ async function emailRows(
     [t("for"), tForm(`appointmentFor.${request.appointmentFor}`)],
     [forChild ? t("parentName") : t("name"), `${request.firstName} ${request.lastName}`],
     [t("phone"), request.phone],
+    [t("formLanguage"), t(`languages.${request.language}`)],
   ];
   if (forChild) {
     rows.push([t("childFirstName"), request.childFirstName ?? ""]);

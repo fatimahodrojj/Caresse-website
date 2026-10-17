@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import {
   startTransition,
   useActionState,
@@ -14,6 +14,7 @@ import {
 import { submitBookingRequest, type BookingFormState } from "@/lib/booking/actions";
 import {
   APPOINTMENT_FOR_VALUES,
+  FORM_LANGUAGE,
   NOTES_MAX_LENGTH,
   SERVICE_VALUES,
   TIME_SLOT_VALUES,
@@ -69,6 +70,7 @@ function borderFor(error: string | undefined) {
 export default function BookingForm() {
   const t = useTranslations("BookingForm");
   const tTherapies = useTranslations("Therapies");
+  const locale = useLocale();
   const [state, formAction, isPending] = useActionState<BookingFormState, FormData>(
     submitBookingRequest,
     { status: "idle" },
@@ -168,6 +170,8 @@ export default function BookingForm() {
           </label>
         </div>
         <input ref={startedAtRef} type="hidden" name={STARTED_AT_FIELD} />
+        {/* Saved with the request so the clinic knows which language was used. */}
+        <input type="hidden" name="language" value={FORM_LANGUAGE[locale]} />
 
         <fieldset
           className="group flex flex-col gap-[6px] md:gap-2"

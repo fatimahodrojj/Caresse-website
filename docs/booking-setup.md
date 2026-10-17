@@ -72,4 +72,4 @@ If `RESEND_API_KEY`, `BOOKING_EMAIL_TO` or `BOOKING_EMAIL_FROM` is missing, the 
 
 ### TODO when the admin panel exists
 
-The clinic email currently contains the **full request**, including notes and the child's details, because there is no admin panel yet. Once the admin panel exists, switch to a **short email**: who it's for, name, phone, service, time slot and a link to the request. The details then stay only in the database. The code is marked `TODO(admin-panel)` in `lib/booking/email.ts`.
+The clinic email currently contains the **full request**, including notes and the child's details, because there is no admin panel yet. Once the admin panel exists, switch to a **short email**: who it's for, name, phone, form language, service, time slot and a link to the request. The details then stay only in the database. The code is marked `TODO(admin-panel)` in `lib/booking/email.ts`.

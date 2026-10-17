@@ -28,6 +28,12 @@ enum TimeSlot {
   AFTERNOON
 }
 
+/// Language of the form the request was sent from (English or Arabic site).
+enum Language {
+  EN
+  AR
+}
+
 enum RequestStatus {
   NEW
   CONTACTED
@@ -53,6 +59,8 @@ model AppointmentRequest {
   service        Service
   timeSlot       TimeSlot
   notes          String?        @db.Text
+  /// The site language the form was filled in; the clinic can reply in it.
+  language       Language       @default(EN)
   status         RequestStatus  @default(NEW)
   /// When the person ticked the consent box (set on the server).
   consentAt      DateTime

@@ -235,6 +235,11 @@
     "parentName": "Parent's name",
     "name": "Name",
     "phone": "Phone",
+    "formLanguage": "Form language",
+    "languages": {
+      "EN": "English",
+      "AR": "Arabic"
+    },
     "childFirstName": "Child's first name",
     "childAge": "Child's age",
     "service": "Service",
