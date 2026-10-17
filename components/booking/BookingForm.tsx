@@ -22,10 +22,6 @@ import {
 import { HONEYPOT_FIELD, STARTED_AT_FIELD } from "@/lib/booking/spam-fields";
 import type { BookingErrorCode, BookingField } from "@/lib/booking/schema";
 
-// Clinic phone for error messages, wrapped in Unicode isolates (LRI…PDI) so it
-// reads left-to-right inside Arabic sentences.
-const CLINIC_PHONE = "\u2066+961 71056803\u2069";
-
 type Values = Record<Exclude<BookingField, "consent">, string> & { consent: boolean };
 
 const EMPTY_VALUES: Values = {
@@ -67,7 +63,12 @@ function borderFor(error: string | undefined) {
  * state. Values are kept in state so nothing typed is lost when the server
  * returns errors.
  */
-export default function BookingForm() {
+/**
+ * clinicPhone (from Settings) appears in the "call us at" error messages,
+ * wrapped in Unicode isolates (LRI/PDI) so it reads left-to-right inside
+ * Arabic sentences.
+ */
+export default function BookingForm({ clinicPhone }: { clinicPhone: string }) {
   const t = useTranslations("BookingForm");
   const tTherapies = useTranslations("Therapies");
   const locale = useLocale();
@@ -158,7 +159,7 @@ export default function BookingForm() {
             role="alert"
             className="rounded-control bg-danger/10 px-4 py-3 text-sm font-semibold text-danger outline-none"
           >
-            {t(`formErrors.${state.formError}`, { phone: CLINIC_PHONE })}
+            {t(`formErrors.${state.formError}`, { phone: `\u2066${clinicPhone}\u2069` })}
           </p>
         )}
 
