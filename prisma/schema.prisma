@@ -45,26 +45,28 @@ enum RequestStatus {
 /// notes and the child's details may contain health information: never log
 /// them (see CLAUDE.md, Privacy).
 model AppointmentRequest {
-  id             String         @id @default(cuid())
-  appointmentFor AppointmentFor
+  id              String         @id @default(cuid())
+  appointmentFor  AppointmentFor
   /// Parent's name when appointmentFor = CHILD, patient's name when SELF.
-  firstName      String
-  lastName       String
+  firstName       String
+  lastName        String
   /// Normalised: digits with an optional leading "+".
-  phone          String
+  phone           String
   /// Only set when appointmentFor = CHILD.
-  childFirstName String?
+  childFirstName  String?
   /// Whole years, 0-17. Only set when appointmentFor = CHILD.
-  childAge       Int?
-  service        Service
-  timeSlot       TimeSlot
-  notes          String?        @db.Text
+  childAge        Int?
+  service         Service
+  timeSlot        TimeSlot
+  notes           String?        @db.Text
   /// The site language the form was filled in; the clinic can reply in it.
-  language       Language       @default(EN)
-  status         RequestStatus  @default(NEW)
+  language        Language       @default(EN)
+  status          RequestStatus  @default(NEW)
+  /// When the clinic last changed the status in the admin panel.
+  statusChangedAt DateTime?
   /// When the person ticked the consent box (set on the server).
-  consentAt      DateTime
-  createdAt      DateTime       @default(now())
+  consentAt       DateTime
+  createdAt       DateTime       @default(now())
 
   @@index([status, createdAt])
   @@index([phone, createdAt])
@@ -113,4 +115,18 @@ model LoginAttempt {
 
   @@index([ipHash, createdAt])
   @@index([emailHash, createdAt])
+}
+
+/// Clinic details shown on the site, and admin settings. A single row (id 1).
+model ClinicSettings {
+  id              Int      @id @default(1)
+  phone           String
+  email           String
+  addressEn       String
+  addressAr       String
+  instagramUrl    String
+  /// Handled requests (contacted, approved, declined) older than this are
+  /// deleted automatically.
+  retentionMonths Int      @default(12)
+  updatedAt       DateTime @updatedAt
 }

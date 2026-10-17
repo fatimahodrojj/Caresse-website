@@ -275,23 +275,9 @@
   "ClinicEmail": {
     "intro": "A new appointment request was submitted on caresseclinic.com.",
     "subject": "New appointment request: {service}",
-    "for": "For",
-    "parentName": "Parent's name",
     "name": "Name",
     "phone": "Phone",
-    "formLanguage": "Form language",
-    "languages": {
-      "EN": "English",
-      "AR": "Arabic"
-    },
-    "childFirstName": "Child's first name",
-    "childAge": "Child's age",
     "service": "Service",
-    "preferredTime": "Preferred time",
-    "notes": "Needs or goals",
-    "notesNone": "(none)",
-    "received": "Received",
-    "beirutTime": "{time} (Beirut time)",
-    "requestId": "Request ID"
+    "open": "Open the request in the admin panel"
   }
 }

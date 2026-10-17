@@ -1,8 +1,9 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import Icon from "@/components/admin/Icon";
-import type { ActionState } from "@/lib/admin/action-state";
+import { FLASH_MESSAGES, type FlashKey } from "@/lib/admin/flash";
 
 type Toast = { id: number; kind: "success" | "error"; message: string };
 
@@ -16,7 +17,7 @@ export function ToastProvider({ children }: { children: React.ReactNode }) {
   const show = useCallback((kind: Toast["kind"], message: string) => {
     const id = ++nextId.current;
     setToasts((current) => [...current, { id, kind, message }]);
-    setTimeout(() => setToasts((current) => current.filter((toast) => toast.id !== id)), 4000);
+    setTimeout(() => setToasts((current) => current.filter((toast) => toast.id !== id)), 4500);
   }, []);
 
   return (
@@ -48,21 +49,19 @@ export function useToast() {
   return useContext(ToastContext);
 }
 
-/**
- * Shows a toast whenever an action returns a new result, and calls
- * onSuccess (e.g. to navigate) after a success.
- */
-export function useActionToast(state: ActionState, onSuccess?: (state: ActionState & { status: "success" }) => void) {
+/** Shows the toast for ?flash=<key> after a redirect, then removes the parameter. */
+export function FlashToast() {
   const toast = useToast();
-  const last = useRef(state);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const flash = searchParams.get("flash");
   useEffect(() => {
-    if (state === last.current) return;
-    last.current = state;
-    if (state.status === "success") {
-      toast("success", state.message);
-      onSuccess?.(state);
-    } else if (state.status === "error") {
-      toast("error", state.message);
-    }
-  }, [state, toast, onSuccess]);
+    if (!flash) return;
+    if (flash in FLASH_MESSAGES) toast("success", FLASH_MESSAGES[flash as FlashKey]);
+    const rest = new URLSearchParams(searchParams);
+    rest.delete("flash");
+    router.replace(rest.size ? `${pathname}?${rest}` : pathname, { scroll: false });
+  }, [flash, pathname, router, searchParams, toast]);
+  return null;
 }
