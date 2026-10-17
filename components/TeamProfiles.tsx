@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { useTranslations } from "next-intl";
-import { team } from "@/data/team";
-import type { TeamMember } from "@/lib/types";
+import type { TeamMember } from "@/lib/therapists";
 
 // Full class names per accent colour (Tailwind only sees complete names).
 const accentClasses: Record<
@@ -26,10 +25,10 @@ const iconColor: Record<TeamMember["accent"], string> = { sky: "blue", pink: "pi
  * which hid two of the three therapists). Mobile: photo on top. Tablet and
  * desktop: round photo beside the text, alternating sides.
  */
-export default function TeamProfiles() {
+export default function TeamProfiles({ members }: { members: TeamMember[] }) {
   return (
     <div className="flex flex-col gap-4 md:gap-8 xl:gap-14">
-      {team.map((member, index) => (
+      {members.map((member, index) => (
         <Profile key={member.id} member={member} photoAtEnd={index % 2 === 1} />
       ))}
     </div>
@@ -38,10 +37,8 @@ export default function TeamProfiles() {
 
 function Profile({ member, photoAtEnd }: { member: TeamMember; photoAtEnd: boolean }) {
   const t = useTranslations("TeamPage");
-  const tMember = useTranslations("Team.members");
   const accent = accentClasses[member.accent];
-  const name = tMember(`${member.id}.name`);
-  const expertise = t.raw(`members.${member.id}.expertise`) as string[];
+  const name = member.name;
   const headingId = `profile-${member.id}`;
 
   return (
@@ -56,7 +53,7 @@ function Profile({ member, photoAtEnd }: { member: TeamMember; photoAtEnd: boole
         className={`relative h-[260px] w-full shrink-0 overflow-hidden rounded-card border-4 ${accent.ring} md:size-[220px] md:rounded-full lg:size-[300px] xl:size-[420px]`}
       >
         <Image
-          src={member.photo}
+          src={member.photoUrl}
           alt={name}
           fill
           sizes="(min-width: 1280px) 420px, (min-width: 1024px) 300px, (min-width: 768px) 220px, 100vw"
@@ -70,37 +67,45 @@ function Profile({ member, photoAtEnd }: { member: TeamMember; photoAtEnd: boole
           <h2 id={headingId} className="font-heading text-[32px] leading-[1.05] xl:text-[44px]">
             {name}
           </h2>
-          <p className={`text-sm font-bold xl:text-lg ${accent.text}`}>{tMember(`${member.id}.role`)}</p>
+          <p className={`text-sm font-bold xl:text-lg ${accent.text}`}>{member.role}</p>
         </div>
 
-        <ul className="flex flex-col gap-[10px] xl:gap-3">
-          <MetaRow icon={`/images/icons/graduation-cap-${iconColor[member.accent]}.svg`} iconBg={accent.iconBg}>
-            {t(`members.${member.id}.credential`)}
-          </MetaRow>
-          <MetaRow icon={`/images/icons/clock-${iconColor[member.accent]}.svg`} iconBg={accent.iconBg}>
-            {t(`members.${member.id}.experience`)}
-          </MetaRow>
-        </ul>
-
-        <div className="flex flex-col gap-[10px] xl:gap-3">
-          <h3 className="text-xs font-bold opacity-55 ltr:uppercase ltr:tracking-[0.24px]">{t("expertiseTitle")}</h3>
-          <ul className="flex flex-wrap gap-2 xl:gap-[10px]">
-            {expertise.map((area) => (
-              <li
-                key={area}
-                className={`rounded-full border px-[14px] py-2 text-[13px] font-bold xl:px-4 xl:py-[10px] xl:text-sm ${accent.tag}`}
-              >
-                {area}
-              </li>
-            ))}
+        {(member.credential || member.experience) && (
+          <ul className="flex flex-col gap-[10px] xl:gap-3">
+            {member.credential && (
+              <MetaRow icon={`/images/icons/graduation-cap-${iconColor[member.accent]}.svg`} iconBg={accent.iconBg}>
+                {member.credential}
+              </MetaRow>
+            )}
+            {member.experience && (
+              <MetaRow icon={`/images/icons/clock-${iconColor[member.accent]}.svg`} iconBg={accent.iconBg}>
+                {member.experience}
+              </MetaRow>
+            )}
           </ul>
-        </div>
+        )}
+
+        {member.expertise.length > 0 && (
+          <div className="flex flex-col gap-[10px] xl:gap-3">
+            <h3 className="text-xs font-bold opacity-55 ltr:uppercase ltr:tracking-[0.24px]">{t("expertiseTitle")}</h3>
+            <ul className="flex flex-wrap gap-2 xl:gap-[10px]">
+              {member.expertise.map((area) => (
+                <li
+                  key={area}
+                  className={`rounded-full border px-[14px] py-2 text-[13px] font-bold xl:px-4 xl:py-[10px] xl:text-sm ${accent.tag}`}
+                >
+                  {area}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
 
         <div className="flex flex-col gap-2 xl:gap-[10px]">
           <h3 className="text-xs font-bold opacity-55 ltr:uppercase ltr:tracking-[0.24px]">
-            {t("about", { name: t(`members.${member.id}.firstName`) })}
+            {t("about", { name: member.firstName })}
           </h3>
-          <p className="text-sm leading-[1.8] text-navy/80 xl:text-base">{t(`members.${member.id}.bio`)}</p>
+          <p className="text-sm leading-[1.8] text-navy/80 xl:text-base">{member.bio}</p>
         </div>
       </div>
     </article>

@@ -12,6 +12,7 @@ import ScrollReveal from "@/components/ScrollReveal";
 import type { Metadata } from "next";
 import type { Product } from "@/lib/types";
 import { pageMetadata } from "@/lib/seo";
+import { getTeam } from "@/lib/therapists";
 import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
@@ -29,6 +30,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  const team = await getTeam(locale);
 
   return (
     <>
@@ -40,7 +42,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
         <WhyChooseUs />
         <HowWeReachYou />
         <TherapyShop products={products} />
-        <Team />
+        <Team members={team} />
         <CTA />
       </main>
       <Footer />

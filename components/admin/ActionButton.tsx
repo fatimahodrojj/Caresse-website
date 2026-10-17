@@ -21,6 +21,7 @@ export default function ActionButton({
   variant = "secondary",
   confirm,
   className = "",
+  ariaLabel,
 }: {
   action: ServerAction;
   fields: Record<string, string>;
@@ -30,6 +31,8 @@ export default function ActionButton({
   variant?: keyof typeof buttonClass;
   confirm?: { title: string; body: string; confirmLabel: string; danger?: boolean };
   className?: string;
+  /** For icon-only buttons. */
+  ariaLabel?: string;
 }) {
   const router = useRouter();
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -45,7 +48,7 @@ export default function ActionButton({
     return (
       <form action={formAction} className={className}>
         {hidden}
-        <SubmitButton variant={variant} icon={icon} pendingLabel={pendingLabel} className="w-full">
+        <SubmitButton variant={variant} icon={icon} pendingLabel={pendingLabel} className="w-full" ariaLabel={ariaLabel}>
           {label}
         </SubmitButton>
       </form>

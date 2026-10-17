@@ -130,3 +130,44 @@ model ClinicSettings {
   retentionMonths Int      @default(12)
   updatedAt       DateTime @updatedAt
 }
+
+/// Profile colour on the site (photo ring, role, icons, tags).
+enum Accent {
+  SKY
+  PINK
+  PURPLE
+}
+
+/// A team member shown on the homepage (Meet Our Team) and on /team.
+model Therapist {
+  id                   String   @id @default(cuid())
+  sortOrder            Int
+  visible              Boolean  @default(true)
+  nameEn               String
+  nameAr               String
+  roleEn               String
+  roleAr               String
+  credentialEn         String   @default("")
+  credentialAr         String   @default("")
+  experienceEn         String   @default("")
+  experienceAr         String   @default("")
+  expertiseEn          String[]
+  expertiseAr          String[]
+  bioEn                String   @db.Text
+  bioAr                String   @db.Text
+  photoUrl             String
+  /// Optional crop for photos that need it (CSS object-position, zoom).
+  /// Reset when a new photo is uploaded.
+  photoPosition        String?
+  photoZoom            Float    @default(1)
+  /// Crop for the wide photo on /team on phones (CSS object-position).
+  profilePhotoPosition String?
+  /// Small character illustration under the homepage card (a path under
+  /// public/images/illustrations), or none.
+  character            String?
+  accent               Accent   @default(SKY)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([sortOrder])
+}

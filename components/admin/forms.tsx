@@ -13,6 +13,7 @@ export function SubmitButton({
   icon,
   className = "",
   pending: pendingProp,
+  ariaLabel,
 }: {
   children: React.ReactNode;
   pendingLabel?: string;
@@ -21,12 +22,19 @@ export function SubmitButton({
   className?: string;
   /** For forms submitted with useAdminForm (useFormStatus only sees form actions). */
   pending?: boolean;
+  ariaLabel?: string;
 }) {
   const status = useFormStatus();
   const pending = pendingProp ?? status.pending;
   return (
-    <button type="submit" disabled={pending} aria-busy={pending} className={`${buttonClass[variant]} ${className}`}>
-      {icon && !pending && <Icon name={icon} className="size-4" />}
+    <button
+      type="submit"
+      disabled={pending}
+      aria-busy={pending}
+      aria-label={ariaLabel}
+      className={`${buttonClass[variant]} ${className}`}
+    >
+      {icon && !pending && <Icon name={icon} className={variant === "icon" ? "size-5" : "size-4"} />}
       {pending ? pendingLabel : children}
     </button>
   );
