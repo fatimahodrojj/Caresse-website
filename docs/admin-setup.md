@@ -20,7 +20,7 @@ Do these in the Vercel project for caresseclinic.com.
 1. Vercel → the project → **Storage** → **Create Database** → **Blob**.
 2. Name it `caresse-uploads`. If Vercel asks for a region, choose **Frankfurt (fra1)**, next to the database.
 3. Connect it to the project for **Production, Preview and Development**.
-4. Vercel adds `BLOB_READ_WRITE_TOKEN` to the project's environment variables automatically. Nothing to copy.
+4. Vercel adds the store's environment variables to the project automatically; there's nothing to copy. Newer stores add `BLOB_STORE_ID` (the site then signs in to Blob automatically on Vercel); older stores add `BLOB_READ_WRITE_TOKEN`. The site works with either one.
 5. Redeploy (Deployments → the latest one → ⋯ → **Redeploy**) so the site picks up the new variable.
 
 Photos are limited to JPG, PNG or WebP, up to 5 MB. The server checks the file, turns it upright, removes hidden metadata (such as GPS location), resizes it and saves it as WebP.
@@ -63,4 +63,6 @@ The site needs a Postgres database. Two options:
 - **A Neon branch** (simplest): see docs/booking-setup.md.
 - **A local Postgres:** run it with a WebSocket proxy in front, and set `NEON_LOCAL_WS_PROXY=localhost:<proxy port>` together with a local `DATABASE_URL`. This is Neon's documented local setup; never set this variable on Vercel.
 
-Without `BLOB_READ_WRITE_TOKEN`, photo uploads show "Photo uploads are not set up yet"; everything else works.
+Without `BLOB_STORE_ID` or `BLOB_READ_WRITE_TOKEN`, photo uploads show "Photo uploads are not set up yet"; everything else works. (`BLOB_STORE_ID` only works on Vercel; locally, use a read-write token.)
+
+If an upload fails (for example a storage problem), the admin shows "The photo could not be uploaded" and nothing is saved, so you can simply try again.

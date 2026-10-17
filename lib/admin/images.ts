@@ -10,6 +10,15 @@ import sharp from "sharp";
 export const MAX_UPLOAD_BYTES = 5 * 1024 * 1024;
 const ALLOWED_FORMATS = new Set(["jpeg", "png", "webp"]);
 
+/**
+ * Vercel Blob credentials: BLOB_STORE_ID (newer stores; on Vercel the
+ * library signs in automatically with the project's OIDC token) or
+ * BLOB_READ_WRITE_TOKEN (older stores).
+ */
+function blobConfigured(): boolean {
+  return Boolean(process.env.BLOB_STORE_ID || process.env.BLOB_READ_WRITE_TOKEN);
+}
+
 export type UploadResult = { status: "ok"; url: string } | { status: "error"; message: string };
 
 /** The uploaded file in a form field, or null when no file was chosen. */
@@ -32,21 +41,31 @@ export async function uploadImage(file: File, folder: "therapists" | "products",
     return { status: "error", message: "Please choose a JPG, PNG or WebP image." };
   }
 
-  const output = await sharp(input)
-    .rotate()
-    .resize({ width: maxSize, height: maxSize, fit: "inside", withoutEnlargement: true })
-    .webp({ quality: 82 })
-    .toBuffer();
+  let output: Buffer;
+  try {
+    output = await sharp(input)
+      .rotate()
+      .resize({ width: maxSize, height: maxSize, fit: "inside", withoutEnlargement: true })
+      .webp({ quality: 82 })
+      .toBuffer();
+  } catch (error) {
+    console.error(`admin.image_resize_failed code=${error instanceof Error ? error.name : "unknown"}`);
+    return { status: "error", message: "This image could not be read. Please choose another JPG, PNG or WebP photo." };
+  }
 
-  if (!process.env.BLOB_READ_WRITE_TOKEN) {
+  if (!blobConfigured()) {
     return { status: "error", message: "Photo uploads are not set up yet (Vercel Blob). See docs/admin-setup.md." };
   }
   try {
     const blob = await put(`${folder}/${randomUUID()}.webp`, output, { access: "public", contentType: "image/webp" });
     return { status: "ok", url: blob.url };
   } catch (error) {
+    // Logs the error type only, never the file or its contents.
     console.error(`admin.upload_failed code=${error instanceof Error ? error.name : "unknown"}`);
-    return { status: "error", message: "The photo could not be uploaded. Please try again." };
+    return {
+      status: "error",
+      message: "The photo could not be uploaded. Nothing was changed. Please try again; if it keeps failing, check the Blob storage in Vercel.",
+    };
   }
 }
 
