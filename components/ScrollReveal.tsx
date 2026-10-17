@@ -38,7 +38,12 @@ export default function ScrollReveal() {
     }
     document.documentElement.classList.add("reveal-ready");
 
-    return () => observer.disconnect();
+    return () => {
+      observer.disconnect();
+      // Leaving the page (e.g. Home → /book in the browser): pages without
+      // ScrollReveal must not keep their [data-reveal] content hidden.
+      document.documentElement.classList.remove("reveal-ready");
+    };
   }, []);
 
   return null;
