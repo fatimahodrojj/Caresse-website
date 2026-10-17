@@ -171,3 +171,21 @@ model Therapist {
 
   @@index([sortOrder])
 }
+
+/// A product in "Our Therapy Shop" on the homepage. No cart or checkout yet.
+model Product {
+  id            String   @id @default(cuid())
+  sortOrder     Int
+  visible       Boolean  @default(true)
+  nameEn        String
+  nameAr        String
+  descriptionEn String   @db.Text
+  descriptionAr String   @db.Text
+  /// Price in US cents (e.g. 2550 = $25.50).
+  priceCents    Int
+  imageUrl      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([sortOrder])
+}

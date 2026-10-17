@@ -9,6 +9,7 @@ import { failure, fieldErrorsOf, formValues, success, type ActionState } from "@
 import { withFlash } from "@/lib/admin/flash";
 import { deleteImage, fileFrom, uploadImage } from "@/lib/admin/images";
 import { revalidateTeamPages } from "@/lib/admin/revalidate";
+import { moveInOrder } from "@/lib/admin/reorder";
 import { CHARACTER_OPTIONS } from "@/lib/characters";
 
 const text = (label: string, max: number) =>
@@ -113,13 +114,8 @@ export async function moveTherapist(_previous: ActionState, formData: FormData):
   if (!parsed.success) return failure("Something went wrong. Please reload the page.");
   const db = getDb();
   const all = await db.therapist.findMany({ orderBy: { sortOrder: "asc" }, select: { id: true } });
-  const index = all.findIndex((row) => row.id === parsed.data.id);
-  const target = parsed.data.direction === "up" ? index - 1 : index + 1;
-  if (index < 0 || target < 0 || target >= all.length) return failure("This therapist cannot move further.");
-  // Renumber everything in the new order (keeps the numbers tidy).
-  const order = all.map((row) => row.id);
-  const [moving] = order.splice(index, 1);
-  if (moving) order.splice(target, 0, moving);
+  const order = moveInOrder(all.map((row) => row.id), parsed.data.id, parsed.data.direction);
+  if (!order) return failure("This therapist cannot move further.");
   await db.$transaction(order.map((rowId, position) => db.therapist.update({ where: { id: rowId }, data: { sortOrder: position + 1 } })));
   revalidateTeamPages();
   revalidatePath("/admin/therapists");
