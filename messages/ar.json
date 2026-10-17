@@ -154,16 +154,12 @@
     "services": "الخدمات",
     "about": "من نحن",
     "ourTeam": "فريقنا",
-    "servicesTitle": "الخدمات",
     "contactTitle": "معلومات التواصل",
     "address": "طريق المطار، مركز زعرور، الطابق الثالث",
     "copyright": "© 2026 عيادة Caresse. جميع الحقوق محفوظة.",
+    "credit": "تصميم وتطوير: <link>Codey</link>",
     "goodbye": "إلى اللقاء من Caresse!",
-    "social": {
-      "instagram": "إنستغرام",
-      "facebook": "فيسبوك",
-      "youtube": "يوتيوب"
-    }
+    "instagramLabel": "Caresse على إنستغرام (يُفتح في نافذة جديدة)"
   },
   "Book": {
     "title": "ابدأوا رحلتكم معنا",
@@ -221,7 +217,7 @@
       "lastNameTooLong": "يرجى ألّا يتجاوز اسم العائلة 50 حرفاً.",
       "lastNameLettersOnly": "يرجى استخدام الأحرف فقط في اسم العائلة.",
       "phoneRequired": "يرجى إدخال رقم هاتفكم.",
-      "phoneInvalid": "يرجى إدخال رقم هاتف صحيح، مثل \u2066+961 71 234 567\u2069.",
+      "phoneInvalid": "يرجى إدخال رقم هاتف صحيح، مثل ⁦+961 71 234 567⁩.",
       "serviceRequired": "يرجى اختيار نوع العلاج.",
       "timeSlotRequired": "يرجى اختيار الوقت المفضّل.",
       "notesTooLong": "يرجى ألّا يتجاوز النص 1000 حرف.",

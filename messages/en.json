@@ -154,16 +154,12 @@
     "services": "Services",
     "about": "About Us",
     "ourTeam": "Our Team",
-    "servicesTitle": "Services",
     "contactTitle": "Contact Info",
     "address": "Airport Road, Zaarour Center, Third floor",
     "copyright": "© 2026 Caresse Clinic. All rights reserved.",
+    "credit": "Website by <link>Codey</link>",
     "goodbye": "Goodbye from Caresse!",
-    "social": {
-      "instagram": "Instagram",
-      "facebook": "Facebook",
-      "youtube": "YouTube"
-    }
+    "instagramLabel": "Caresse on Instagram (opens in a new tab)"
   },
   "Book": {
     "title": "Start Your Journey with Us",
