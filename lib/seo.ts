@@ -17,7 +17,7 @@ export const ARABIC_INDEXED = true;
 export const indexedLocales: readonly Locale[] = ARABIC_INDEXED ? routing.locales : ["en"];
 
 /** Pages with their own metadata (key = Metadata.<key> in messages/*.json). */
-export const PAGES = { home: "/", book: "/book" } as const;
+export const PAGES = { home: "/", book: "/book", team: "/team" } as const;
 
 const OPEN_GRAPH_LOCALE: Record<Locale, string> = { en: "en_US", ar: "ar_LB" };
 

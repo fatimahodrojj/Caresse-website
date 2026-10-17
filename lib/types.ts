@@ -26,6 +26,10 @@ export type TeamMember = {
   };
   /** Path under public/ to the member's character, or null if not available yet. */
   character: string | null;
+  /** Colour of the member's profile on /team (photo ring, role, icons, tags). */
+  accent: "sky" | "pink" | "purple";
+  /** CSS object-position for the wide photo on small screens of /team. */
+  profilePhotoPosition?: string;
 };
 
 /** A shop product. Products are managed in the admin panel and stored in the database. */
