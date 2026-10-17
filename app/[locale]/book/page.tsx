@@ -6,14 +6,10 @@ import { notFound } from "next/navigation";
 import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
+import { pageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/book">): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({
-    locale: hasLocale(routing.locales, locale) ? locale : routing.defaultLocale,
-    namespace: "Metadata.book",
-  });
-  return { title: t("title"), description: t("description") };
+  return pageMetadata((await params).locale, "book");
 }
 
 /** Book a Session (Figma 33:5 desktop, 113:709 mobile). */

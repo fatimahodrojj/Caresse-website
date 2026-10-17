@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Aref_Ruqaa, Baloo_Bhaijaan_2, Boogaloo, Dancing_Script, Readex_Pro, Sora } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { setRequestLocale } from "next-intl/server";
 import { localeDirection, routing, type Locale } from "@/i18n/routing";
+import { ARABIC_INDEXED, SITE_URL } from "@/lib/seo";
 import "../globals.css";
 
 // Design-system fonts (docs/design-system.md). next/font self-hosts them at
@@ -60,13 +61,14 @@ const fontVariables: Record<Locale, string> = {
   ar: [boogaloo, readexPro, balooBhaijaan, arefRuqaa].map((font) => font.variable).join(" "),
 };
 
+// Shared by every page; titles, descriptions and links are set per page
+// (lib/seo.ts). Arabic pages are noindex until the clinic approves them.
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
-  const t = await getTranslations({
-    locale: hasLocale(routing.locales, locale) ? locale : routing.defaultLocale,
-    namespace: "Metadata.home",
-  });
-  return { title: t("title"), description: t("description") };
+  return {
+    metadataBase: new URL(SITE_URL),
+    robots: locale === "ar" && !ARABIC_INDEXED ? { index: false, follow: true } : undefined,
+  };
 }
 
 // Both languages are rendered at build time.
