@@ -16,7 +16,11 @@ const PUBLIC_ADMIN_PATHS = new Set(["/admin/login", "/admin/setup"]);
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   if (pathname === "/admin" || pathname.startsWith("/admin/")) {
-    if (!PUBLIC_ADMIN_PATHS.has(pathname) && !request.cookies.has(ADMIN_SESSION_COOKIE)) {
+    // Server action calls (e.g. a button pressed after the session ended) are
+    // not redirected here: a redirect would break the action's response. The
+    // action itself checks the session and sends the person to sign in.
+    const isServerAction = request.method === "POST" && request.headers.has("next-action");
+    if (!isServerAction && !PUBLIC_ADMIN_PATHS.has(pathname) && !request.cookies.has(ADMIN_SESSION_COOKIE)) {
       const url = request.nextUrl.clone();
       url.pathname = "/admin/login";
       url.search = pathname === "/admin" ? "" : `?next=${encodeURIComponent(pathname)}`;

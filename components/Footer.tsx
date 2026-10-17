@@ -84,7 +84,7 @@ export default async function Footer() {
               <li>
                 {/* Break only after the "@" on narrow screens. */}
                 <a href={`mailto:${settings.email}`} dir="ltr">
-                  {emailUser}@
+                  {`${emailUser}@`}
                   <wbr />
                   {emailDomain}
                 </a>

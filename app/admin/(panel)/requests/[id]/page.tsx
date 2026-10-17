@@ -29,7 +29,7 @@ export default async function RequestPage({ params }: PageProps<"/admin/requests
   const name = `${request.firstName} ${request.lastName}`;
   return (
     <>
-      <PageHeader title={name} back={{ href: "/admin", label: "All requests" }} />
+      <PageHeader title={<bdi>{name}</bdi>} back={{ href: "/admin", label: "All requests" }} />
 
       <div className="flex flex-wrap items-center gap-2">
         <ForChip forChild={forChild} />
@@ -50,8 +50,14 @@ export default async function RequestPage({ params }: PageProps<"/admin/requests
       <Card>
         <dl>
           <Row label="For">{forChild ? "Their child" : "Themselves"}</Row>
-          <Row label={forChild ? "Parent's name" : "Name"}>{name}</Row>
-          {forChild && <Row label="Child's first name">{request.childFirstName}</Row>}
+          <Row label={forChild ? "Parent's name" : "Name"}>
+            <bdi>{name}</bdi>
+          </Row>
+          {forChild && (
+            <Row label="Child's first name">
+              <bdi>{request.childFirstName}</bdi>
+            </Row>
+          )}
           {forChild && <Row label="Child's age">{request.childAge} {request.childAge === 1 ? "year" : "years"}</Row>}
           <Row label="Service">{serviceLabel(request.service)}</Row>
           <Row label="Preferred time">{timeSlotLabel(request.timeSlot)}</Row>
@@ -99,7 +105,7 @@ export default async function RequestPage({ params }: PageProps<"/admin/requests
               pendingLabel="Declining…"
               confirm={{
                 title: "Decline this request?",
-                body: `${name}'s request will be marked as declined. You can still change the status later.`,
+                body: `\u2068${name}\u2069's request will be marked as declined. You can still change the status later.`,
                 confirmLabel: "Decline request",
                 danger: true,
               }}
@@ -123,7 +129,7 @@ export default async function RequestPage({ params }: PageProps<"/admin/requests
           className="sm:w-fit"
           confirm={{
             title: "Delete permanently?",
-            body: `${name}'s request, including the notes and any child details, will be deleted. This cannot be undone.`,
+            body: `\u2068${name}\u2069's request, including the notes and any child details, will be deleted. This cannot be undone.`,
             confirmLabel: "Delete permanently",
             danger: true,
           }}

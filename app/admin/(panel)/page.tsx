@@ -120,8 +120,8 @@ export default async function RequestsPage({ searchParams }: PageProps<"/admin">
         </button>
       </form>
 
-      <nav aria-label="Filter by status" className="-mx-4 overflow-x-auto px-4 md:mx-0 md:px-0">
-        <ul className="flex w-max gap-2">
+      <nav aria-label="Filter by status">
+        <ul className="flex flex-wrap gap-2">
           {STATUS_FILTERS.map((key) => {
             const active = key === filter;
             return (
@@ -171,12 +171,15 @@ export default async function RequestsPage({ searchParams }: PageProps<"/admin">
                   <h2 className="text-lg font-bold">
                     {/* The whole card opens the request. */}
                     <Link href={`/admin/requests/${request.id}`} className="after:absolute after:inset-0 after:rounded-card">
-                      {request.firstName} {request.lastName}
+                      {/* bdi: Arabic names keep their own direction in English text. */}
+                      <bdi>
+                        {request.firstName} {request.lastName}
+                      </bdi>
                     </Link>
                   </h2>
                   {forChild && (
                     <p className="text-sm">
-                      Child: <span className="font-semibold">{request.childFirstName}</span>, {request.childAge}{" "}
+                      Child: <bdi className="font-semibold">{request.childFirstName}</bdi>, {request.childAge}{" "}
                       {request.childAge === 1 ? "year" : "years"}
                     </p>
                   )}
@@ -185,7 +188,12 @@ export default async function RequestsPage({ searchParams }: PageProps<"/admin">
                   <div className="flex gap-2">
                     <dt className="opacity-60">Phone</dt>
                     <dd>
-                      <a href={telHref(request.phone)} dir="ltr" className="relative z-10 font-semibold text-sky underline-offset-2 hover:underline">
+                      <a
+                        href={telHref(request.phone)}
+                        dir="ltr"
+                        // 44px tall tap area without making the row taller.
+                        className="relative z-10 -my-3 inline-flex min-h-11 items-center font-semibold text-sky underline-offset-2 hover:underline"
+                      >
                         {request.phone}
                       </a>
                     </dd>
