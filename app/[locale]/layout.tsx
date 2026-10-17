@@ -62,7 +62,7 @@ const fontVariables: Record<Locale, string> = {
 };
 
 // Shared by every page; titles, descriptions and links are set per page
-// (lib/seo.ts). Arabic pages are noindex until the clinic approves them.
+// (lib/seo.ts). Arabic pages are noindex while ARABIC_INDEXED is false.
 export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Promise<Metadata> {
   const { locale } = await params;
   return {

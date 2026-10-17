@@ -1,23 +1,18 @@
 # Arabic translation review
 
-For the Caresse team. Please check the Arabic below before the Arabic site goes live.
+**Status: approved by the clinic on 2026-10-20, all translations as they are, with no corrections.** The Arabic site is live and indexed by search engines.
 
-- **How to reply:** give the row number and the new wording, e.g. “B12: …”. A tick (✓) or “OK” for a whole section is enough when it's fine.
-- **Most important:** the therapy names (section T) and the booking form (section B).
-- **Style used:** Modern Standard Arabic, speaking to families in the plural (أنتم: احجزوا، اختاروا). This is polite and works for mothers and fathers alike. Error messages use «يرجى…».
+- **Style:** Modern Standard Arabic, speaking to families in the plural (أنتم: احجزوا، اختاروا). Error messages use «يرجى…».
 - **Numbers** use western digits (0–9) everywhere, as on the English site.
-- Until you approve, the Arabic pages are hidden from Google (noindex).
+- **Changing a text later:** edit messages/ar.json (and messages/en.json for English), then update this sheet.
 
-## Questions for the clinic
+## Clinic decisions
 
-1. **Tagline under the characters.** Which one do you prefer?
-   - **A. «لمسة من الروح»** (“A touch from the soul”, the closest to the English). Used for now.
-   - **B. «لمسة من القلب»** (“A touch from the heart”). Warmer and more everyday.
-   - **Lettering:** the tagline uses a Ruqaa handwriting font (Aref Ruqaa), like the handwritten English one. If it looks too decorative, it can use the same rounded font as the headings (Baloo Bhaijaan 2).
-2. **Therapy names (T1–T5).** Are these the names you use with families in Lebanon? Alternatives are in the notes.
-3. **The name “Caresse”** stays in Latin letters inside Arabic sentences (e.g. «لماذا تختار العائلات Caresse»). Or would you rather write it «كاريس»?
-4. **Team names and job titles (section M).** Please confirm the Arabic spelling of each name, and the job titles.
-5. **Address (F10).** Please confirm the wording.
+1. **Tagline (H16):** «لمسة من الروح», in the Aref Ruqaa handwriting font. (The other option, «لمسة من القلب», was not chosen.)
+2. **Therapy names (T1–T5):** approved as written.
+3. **The name “Caresse”** stays in Latin letters inside Arabic sentences.
+4. **Team names and job titles (section M):** approved as written.
+5. **Address (F10):** approved as written.
 
 ## T. Therapy names
 
@@ -25,10 +20,10 @@ Where: Booking form dropdown, footer, clinic email.
 
 | # | English | Arabic | Notes |
 | --- | --- | --- | --- |
-| T1 | Speech Therapy | علاج النطق | Alternative: «علاج النطق واللغة». |
+| T1 | Speech Therapy | علاج النطق |  |
 | T2 | ABA Therapy | تحليل السلوك التطبيقي (ABA) | ABA kept in Latin letters, as families know it. |
-| T3 | Occupational Therapy | العلاج الانشغالي | Alternative: «العلاج الوظيفي». |
-| T4 | Psychomotor Support | الدعم النفسي الحركي | Alternative: «العلاج النفسي الحركي» (psychomotricité). |
+| T3 | Occupational Therapy | العلاج الانشغالي |  |
+| T4 | Psychomotor Support | الدعم النفسي الحركي |  |
 | T5 | Not sure, help me choose | لا أعرف، ساعدوني في الاختيار |  |
 
 ## B. Booking page and form
@@ -102,7 +97,7 @@ Where: Home page, “Our Services”.
 | S5 | Comprehensive assessment and targeted intervention for speech delays, articulation difficulties, and language development challenges. | تقييم شامل وتدخّل موجَّه لحالات تأخّر الكلام وصعوبات اللفظ وتحدّيات النموّ اللغوي. |  |
 | S6 | Neuro Developmental Disorder | الاضطرابات النمائية العصبية |  |
 | S7 | Specialized rehabilitation and support for cerebral palsy and other neurological conditions affecting motor and cognitive development. | تأهيل ودعم متخصّصان للشلل الدماغي وغيره من الحالات العصبية التي تؤثّر في النموّ الحركي والإدراكي. |  |
-| S8 | Feeding Disorders | اضطرابات التغذية | Means feeding difficulties, not eating disorders. Alternative: «صعوبات التغذية». |
+| S8 | Feeding Disorders | اضطرابات التغذية | Means feeding difficulties, not eating disorders. |
 | S9 | Expert evaluation and therapy for children experiencing feeding difficulties, oral motor challenges, and food aversions. | تقييم وعلاج متخصّصان للأطفال الذين يواجهون صعوبات في التغذية، أو في المهارات الفموية الحركية، أو نفوراً من بعض الأطعمة. |  |
 | S10 | Family Support | دعم الأسرة |  |
 | S11 | Empowering parents and caregivers with guidance, strategies, and resources to create a nurturing and supportive home environment. | تمكين الأهل ومقدّمي الرعاية بالإرشاد والاستراتيجيات والموارد لتهيئة بيئة منزلية حاضنة وداعمة. |  |
@@ -118,12 +113,12 @@ Where: Home page, “Meet Our Team”.
 | M1 | Meet Our Team | تعرّفوا على فريقنا |  |
 | M2 | A dedicated, specialized group of professionals passionate about supporting the healthy growth of our families. | مجموعة متخصّصة ومتفانية من المهنيين الشغوفين بدعم النموّ السليم لعائلاتنا. |  |
 | M3 | Know More About Our Therapy → | تعرّفوا أكثر على علاجاتنا ← |  |
-| M4 | Rawan Cherry | روان شرّي | Please confirm the spelling. |
-| M5 | Founder \| Speech-Language Therapist \| Feeding Therapist \| Family Coach | المؤسِّسة \| معالجة نطق ولغة \| معالجة تغذية \| مدرّبة أسرية | Feminine forms. Please confirm. |
-| M6 | Ali Atie | علي عطيّة | Please confirm the spelling. |
+| M4 | Rawan Cherry | روان شرّي | Approved. |
+| M5 | Founder \| Speech-Language Therapist \| Feeding Therapist \| Family Coach | المؤسِّسة \| معالجة نطق ولغة \| معالجة تغذية \| مدرّبة أسرية | Feminine forms. Approved. |
+| M6 | Ali Atie | علي عطيّة | Approved. |
 | M7 | Applied Behavior Analysis Technician (ABAT) | فنّي تحليل السلوك التطبيقي (ABAT) |  |
-| M8 | Mariam Al-Itawi | مريم العيتاوي | Please confirm the spelling. |
-| M9 | Occupational Therapist | معالجة انشغالية | Feminine form. Please confirm. |
+| M8 | Mariam Al-Itawi | مريم العيتاوي | Approved. |
+| M9 | Occupational Therapist | معالجة انشغالية | Feminine form. Approved. |
 
 ## H. Header, menu and hero
 
@@ -146,9 +141,7 @@ Where: Top of every page.
 | H13 | Previous | السابق | Read by screen readers only. |
 | H14 | Next | التالي | Read by screen readers only. |
 | H15 | Caresse – Multitherapeutic Services | Caresse – خدمات علاجية متعددة الاختصاصات | Read by screen readers and search engines (the logo is an image). |
-| H16 | A Touch From The Soul | لمسة من الروح | Option A. See question 1. |
-
-Tagline option B for H16 (not on the site yet): «لمسة من القلب».
+| H16 | A Touch From The Soul | لمسة من الروح | Chosen by the clinic. Font: Aref Ruqaa. |
 
 ## W. Why families choose us, numbers, how we reach you
 
@@ -209,7 +202,7 @@ Where: Bottom of every page.
 | F7 | Our Team | فريقنا |  |
 | F8 | Services | الخدمات |  |
 | F9 | Contact Info | معلومات التواصل |  |
-| F10 | Airport Road, Zaarour Center, Third floor | طريق المطار، مركز زعرور، الطابق الثالث | Please confirm the exact wording. |
+| F10 | Airport Road, Zaarour Center, Third floor | طريق المطار، مركز زعرور، الطابق الثالث | Approved. |
 | F11 | © 2026 Caresse Clinic. All rights reserved. | © 2026 عيادة Caresse. جميع الحقوق محفوظة. |  |
 | F12 | Goodbye from Caresse! | إلى اللقاء من Caresse! |  |
 | F13 | Instagram | إنستغرام |  |

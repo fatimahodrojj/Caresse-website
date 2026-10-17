@@ -7,11 +7,11 @@ import { routing, type Locale } from "@/i18n/routing";
 export const SITE_URL = "https://caresseclinic.com";
 
 /**
- * Arabic pages stay out of search results (noindex, and not in the sitemap)
- * until the clinic has approved the translations (docs/arabic-review.md).
- * Set to true once approved.
+ * Whether Arabic pages may appear in search results (in the sitemap, no
+ * noindex). The clinic approved the translations on 2026-10-20
+ * (docs/arabic-review.md). Set to false to hide Arabic from search again.
  */
-export const ARABIC_INDEXED = false;
+export const ARABIC_INDEXED = true;
 
 /** Locales that search engines may index. */
 export const indexedLocales: readonly Locale[] = ARABIC_INDEXED ? routing.locales : ["en"];
