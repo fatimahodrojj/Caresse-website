@@ -6,7 +6,7 @@ clinic, and what to set up so it works locally and on Vercel
 
 - **Database:** Neon Postgres (free plan), created through Vercel, Frankfurt region.
 - **Email:** Resend (free plan), sending from `bookings@caresseclinic.com` to `caresseclinic@gmail.com`.
-- **Code:** `app/book/` (page and server action), `components/booking/BookingForm.tsx`, `lib/booking/` (validation, spam protection, email), `lib/db.ts`, `prisma/`.
+- **Code:** `app/[locale]/book/page.tsx`, `components/booking/BookingForm.tsx`, `lib/booking/` (server action, validation, spam protection, email), `lib/db.ts`, `prisma/`. Requests are handled in the admin panel (docs/admin-setup.md).
 
 ## 1. Create the database (Neon via Vercel)
 
@@ -62,14 +62,11 @@ If `RESEND_API_KEY`, `BOOKING_EMAIL_TO` or `BOOKING_EMAIL_FROM` is missing, the 
    - **Per device:** 5 requests per hour per IP. The IP is stored only as a salted hash and deleted after 24 hours.
    - **Per phone number:** 3 requests per day.
 4. **Save** to `AppointmentRequest`, with status `NEW` and the consent time.
-5. **Email the clinic.** If sending fails, the person still sees success (the request is saved) and the log shows `booking.email_failed requestId=…`.
+5. **Email the clinic** a short notice: name, phone, service and a link to the request in the admin panel. If sending fails, the person still sees success (the request is saved) and the log shows `booking.email_failed requestId=…`.
+6. **Clean up:** handled requests older than the retention period in the admin Settings are deleted (see docs/admin-setup.md).
 
 ## Privacy
 
-- Notes and the child's details can contain health information. They are stored only in `AppointmentRequest` and sent only in the clinic email (see `CLAUDE.md`, Privacy).
+- Notes and the child's details can contain health information. They are stored only in `AppointmentRequest` and shown only in the admin panel; the clinic email does not contain them (see `CLAUDE.md`, Privacy).
 - Logs contain only request IDs and error codes, never submitted values.
-- Delete old requests when they are no longer needed.
-
-### TODO when the admin panel exists
-
-The clinic email currently contains the **full request**, including notes and the child's details, because there is no admin panel yet. Once the admin panel exists, switch to a **short email**: who it's for, name, phone, form language, service, time slot and a link to the request. The details then stay only in the database. The code is marked `TODO(admin-panel)` in `lib/booking/email.ts`.
+- Handled requests are deleted automatically after the retention period (admin → Settings, 12 months by default), and a single request can be deleted permanently from the admin panel.
