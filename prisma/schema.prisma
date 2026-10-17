@@ -79,3 +79,38 @@ model SubmissionAttempt {
 
   @@index([ipHash, createdAt])
 }
+
+/// An admin panel account. Only the argon2id hash of the password is stored.
+model AdminUser {
+  id                String         @id @default(cuid())
+  email             String         @unique
+  passwordHash      String
+  createdAt         DateTime       @default(now())
+  passwordChangedAt DateTime       @default(now())
+  sessions          AdminSession[]
+}
+
+/// A signed-in admin. The id is the SHA-256 of the random token in the
+/// cookie, so a database leak does not reveal usable session tokens.
+model AdminSession {
+  id        String    @id
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// Failed admin sign-in attempts, for rate limiting. Salted hashes only
+/// (never the IP or the email itself). Rows older than 24 hours are deleted.
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  ipHash    String
+  emailHash String
+  createdAt DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+  @@index([emailHash, createdAt])
+}
