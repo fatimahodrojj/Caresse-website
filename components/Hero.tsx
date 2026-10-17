@@ -32,6 +32,12 @@ const characters: Character[] = [
   },
 ];
 
+// Entrance on page load: the characters pop in one after another (blue,
+// pink, gold), then the tagline fades in; done after about 1s. CSS only
+// (tailwind.config.ts), skipped with reduced motion. The images still load
+// straight away (priority), the animation only changes how they appear.
+const POP_STAGGER_MS = 150;
+
 /**
  * Hero: three characters and the tagline on the hero gradient.
  * On desktop the transparent navbar sits on top, hence the 180px top
@@ -44,10 +50,11 @@ export default function Hero() {
       <h1 className="sr-only">{t("heading")}</h1>
       <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 md:gap-4 xl:gap-0">
         <div className="flex items-center justify-center gap-2 md:gap-4 xl:h-[459px] xl:w-[1038px] xl:gap-0">
-          {characters.map((character) => (
+          {characters.map((character, index) => (
             <div
               key={character.src}
-              className={`relative shrink-0 overflow-hidden ${character.className}`}
+              className={`relative shrink-0 overflow-hidden motion-safe:animate-hero-pop ${character.className}`}
+              style={{ animationDelay: `${index * POP_STAGGER_MS}ms` }}
             >
               <Image
                 src={character.src}
@@ -60,7 +67,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
-        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] text-navy opacity-95 ltr:tracking-[2px] md:text-[44px] ltr:md:tracking-[3px] xl:text-[52px]">
+        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] text-navy opacity-95 motion-safe:animate-hero-fade ltr:tracking-[2px] md:text-[44px] ltr:md:tracking-[3px] xl:text-[52px]">
           {t("tagline")}
         </p>
       </div>
