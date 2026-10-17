@@ -1,0 +1,233 @@
+# Arabic translation review
+
+For the Caresse team. Please check the Arabic below before the Arabic site goes live.
+
+- **How to reply:** give the row number and the new wording, e.g. “B12: …”. A tick (✓) or “OK” for a whole section is enough when it's fine.
+- **Most important:** the therapy names (section T) and the booking form (section B).
+- **Style used:** Modern Standard Arabic, speaking to families in the plural (أنتم: احجزوا، اختاروا). This is polite and works for mothers and fathers alike. Error messages use «يرجى…».
+- **Numbers** use western digits (0–9) everywhere, as on the English site.
+- Until you approve, the Arabic pages are hidden from Google (noindex).
+
+## Questions for the clinic
+
+1. **Tagline under the characters.** Which one do you prefer?
+   - **A. «لمسة من الروح»** (“A touch from the soul”, the closest to the English). Used for now.
+   - **B. «لمسة من القلب»** (“A touch from the heart”). Warmer and more everyday.
+   - **Lettering:** the tagline uses a Ruqaa handwriting font (Aref Ruqaa), like the handwritten English one. If it looks too decorative, it can use the same rounded font as the headings (Baloo Bhaijaan 2).
+2. **Therapy names (T1–T5).** Are these the names you use with families in Lebanon? Alternatives are in the notes.
+3. **The name “Caresse”** stays in Latin letters inside Arabic sentences (e.g. «لماذا تختار العائلات Caresse»). Or would you rather write it «كاريس»?
+4. **Team names and job titles (section M).** Please confirm the Arabic spelling of each name, and the job titles.
+5. **Address (F10).** Please confirm the wording.
+
+## T. Therapy names
+
+Where: Booking form dropdown, footer, clinic email.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| T1 | Speech Therapy | علاج النطق | Alternative: «علاج النطق واللغة». |
+| T2 | ABA Therapy | تحليل السلوك التطبيقي (ABA) | ABA kept in Latin letters, as families know it. |
+| T3 | Occupational Therapy | العلاج الانشغالي | Alternative: «العلاج الوظيفي». |
+| T4 | Psychomotor Support | الدعم النفسي الحركي | Alternative: «العلاج النفسي الحركي» (psychomotricité). |
+| T5 | Not sure, help me choose | لا أعرف، ساعدوني في الاختيار |  |
+
+## B. Booking page and form
+
+Where: /ar/book.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| B1 | Start Your Journey with Us | ابدأوا رحلتكم معنا |  |
+| B2 | Fill out the form below to request your consultation session. Our friendly clinical intake coordinator will review your needs and connect you with the perfect specialist for your family. | املأوا النموذج أدناه لطلب جلستكم الاستشارية. سيطّلع منسّق الاستقبال في عيادتنا على احتياجاتكم ويوجّهكم إلى الأخصائي الأنسب لعائلتكم. |  |
+| B3 | Request an Appointment | طلب موعد |  |
+| B4 | Please provide complete details so we can assist you better. | يرجى تقديم معلومات كاملة لنتمكّن من مساعدتكم بشكل أفضل. |  |
+| B5 | Website | الموقع الإلكتروني | Hidden from visitors (spam trap). |
+| B6 | Who is this appointment for? | لمن هذا الموعد؟ |  |
+| B7 | For my child | لطفلي |  |
+| B8 | For myself | لنفسي |  |
+| B9 | Child's first name | الاسم الأول للطفل |  |
+| B10 | Child's age | عمر الطفل |  |
+| B11 | 0–17 | من 0 إلى 17 | Written out (“from 0 to 17”): a dash between numbers flips in Arabic. |
+| B12 | First Name | الاسم الأول |  |
+| B13 | e.g. Sarah | مثلاً: سارة |  |
+| B14 | Last Name | اسم العائلة |  |
+| B15 | e.g. Mitchell | مثلاً: حدّاد | Example surname changed to a common Lebanese one. |
+| B16 | Phone Number | رقم الهاتف |  |
+| B17 | +961 71 234 567 | +961 71 234 567 | Same as English; the phone field stays left-to-right. |
+| B18 | Preferred Service | الخدمة المطلوبة |  |
+| B19 | Select a therapy service | اختاروا نوع العلاج |  |
+| B20 | Preferred Time Slot | الوقت المفضّل |  |
+| B21 | e.g. Morning, Afternoon | مثلاً: صباحاً، بعد الظهر |  |
+| B22 | Morning | صباحاً |  |
+| B23 | Afternoon | بعد الظهر |  |
+| B24 | Tell us about your needs or goals | أخبرونا عن احتياجاتكم أو أهدافكم |  |
+| B25 | Briefly tell us what you're looking for… | أخبرونا باختصار عمّا تبحثون عنه… |  |
+| B26 | I agree that Caresse may store this information to contact me about my request. | أوافق على أن تحتفظ Caresse بهذه المعلومات للتواصل معي بشأن طلبي. |  |
+| B27 | Submit Appointment Request | إرسال طلب الموعد |  |
+| B28 | Sending… | جارٍ الإرسال… |  |
+| B29 | Thank you! | شكراً لكم! |  |
+| B30 | We've received your request. Our team will contact you soon. | لقد استلمنا طلبكم. سيتواصل معكم فريقنا قريباً. |  |
+| B31 | Please check the highlighted fields. | يرجى مراجعة الحقول المحدَّدة. |  |
+| B32 | You've sent several requests recently. Please wait a little, or call us at {phone}. | لقد أرسلتم عدّة طلبات مؤخراً. يرجى الانتظار قليلاً، أو الاتصال بنا على {phone}. | {phone} becomes the clinic number. |
+| B33 | Something went wrong and your request was not sent. Please try again, or call us at {phone}. | حدث خطأ ولم يُرسَل طلبكم. يرجى المحاولة مجدداً، أو الاتصال بنا على {phone}. | {phone} becomes the clinic number. |
+| B34 | Please choose who this appointment is for. | يرجى اختيار لمن هذا الموعد. |  |
+| B35 | Please enter your child's first name. | يرجى إدخال الاسم الأول لطفلكم. |  |
+| B36 | Please keep your child's first name to 50 characters or fewer. | يرجى ألّا يتجاوز الاسم الأول لطفلكم 50 حرفاً. |  |
+| B37 | Please use letters only for your child's first name. | يرجى استخدام الأحرف فقط في الاسم الأول لطفلكم. |  |
+| B38 | Please enter your child's age. | يرجى إدخال عمر طفلكم. |  |
+| B39 | Please enter an age from 0 to 17 in whole years. | يرجى إدخال العمر بالسنوات الكاملة، من 0 إلى 17. |  |
+| B40 | Please enter your first name. | يرجى إدخال اسمكم الأول. |  |
+| B41 | Please keep your first name to 50 characters or fewer. | يرجى ألّا يتجاوز اسمكم الأول 50 حرفاً. |  |
+| B42 | Please use letters only for your first name. | يرجى استخدام الأحرف فقط في اسمكم الأول. |  |
+| B43 | Please enter your last name. | يرجى إدخال اسم العائلة. |  |
+| B44 | Please keep your last name to 50 characters or fewer. | يرجى ألّا يتجاوز اسم العائلة 50 حرفاً. |  |
+| B45 | Please use letters only for your last name. | يرجى استخدام الأحرف فقط في اسم العائلة. |  |
+| B46 | Please enter your phone number. | يرجى إدخال رقم هاتفكم. |  |
+| B47 | Please enter a valid phone number, e.g. +961 71 234 567. | يرجى إدخال رقم هاتف صحيح، مثل +961 71 234 567. |  |
+| B48 | Please select a therapy service. | يرجى اختيار نوع العلاج. |  |
+| B49 | Please select a preferred time slot. | يرجى اختيار الوقت المفضّل. |  |
+| B50 | Please keep this under 1,000 characters. | يرجى ألّا يتجاوز النص 1000 حرف. |  |
+| B51 | Please tick this box so we can contact you about your request. | يرجى تحديد هذا المربّع لنتمكّن من التواصل معكم بشأن طلبكم. |  |
+
+## S. Services (conditions we support)
+
+Where: Home page, “Our Services”.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| S1 | Our Services | خدماتنا |  |
+| S2 | Autism | التوحّد |  |
+| S3 | Personalized therapy plans tailored to each case based on the child's unique condition, strengths, and developmental needs. | خطط علاجية مخصّصة لكل حالة، وفقاً لوضع الطفل الفريد ونقاط قوّته واحتياجاته النمائية. |  |
+| S4 | Speech & Language Disorders | اضطرابات النطق واللغة |  |
+| S5 | Comprehensive assessment and targeted intervention for speech delays, articulation difficulties, and language development challenges. | تقييم شامل وتدخّل موجَّه لحالات تأخّر الكلام وصعوبات اللفظ وتحدّيات النموّ اللغوي. |  |
+| S6 | Neuro Developmental Disorder | الاضطرابات النمائية العصبية |  |
+| S7 | Specialized rehabilitation and support for cerebral palsy and other neurological conditions affecting motor and cognitive development. | تأهيل ودعم متخصّصان للشلل الدماغي وغيره من الحالات العصبية التي تؤثّر في النموّ الحركي والإدراكي. |  |
+| S8 | Feeding Disorders | اضطرابات التغذية | Means feeding difficulties, not eating disorders. Alternative: «صعوبات التغذية». |
+| S9 | Expert evaluation and therapy for children experiencing feeding difficulties, oral motor challenges, and food aversions. | تقييم وعلاج متخصّصان للأطفال الذين يواجهون صعوبات في التغذية، أو في المهارات الفموية الحركية، أو نفوراً من بعض الأطعمة. |  |
+| S10 | Family Support | دعم الأسرة |  |
+| S11 | Empowering parents and caregivers with guidance, strategies, and resources to create a nurturing and supportive home environment. | تمكين الأهل ومقدّمي الرعاية بالإرشاد والاستراتيجيات والموارد لتهيئة بيئة منزلية حاضنة وداعمة. |  |
+| S12 | Co-Therapy | العلاج المشترك |  |
+| S13 | Collaborative, multidisciplinary therapy sessions combining specialists to deliver integrated and holistic treatment plans. | جلسات علاجية تعاونية متعددة الاختصاصات تجمع عدّة أخصائيين لتقديم خطط علاج متكاملة وشاملة. |  |
+
+## M. Team
+
+Where: Home page, “Meet Our Team”.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| M1 | Meet Our Team | تعرّفوا على فريقنا |  |
+| M2 | A dedicated, specialized group of professionals passionate about supporting the healthy growth of our families. | مجموعة متخصّصة ومتفانية من المهنيين الشغوفين بدعم النموّ السليم لعائلاتنا. |  |
+| M3 | Know More About Our Therapy → | تعرّفوا أكثر على علاجاتنا ← |  |
+| M4 | Rawan Cherry | روان شرّي | Please confirm the spelling. |
+| M5 | Founder \| Speech-Language Therapist \| Feeding Therapist \| Family Coach | المؤسِّسة \| معالجة نطق ولغة \| معالجة تغذية \| مدرّبة أسرية | Feminine forms. Please confirm. |
+| M6 | Ali Atie | علي عطيّة | Please confirm the spelling. |
+| M7 | Applied Behavior Analysis Technician (ABAT) | فنّي تحليل السلوك التطبيقي (ABAT) |  |
+| M8 | Mariam Al-Itawi | مريم العيتاوي | Please confirm the spelling. |
+| M9 | Occupational Therapist | معالجة انشغالية | Feminine form. Please confirm. |
+
+## H. Header, menu and hero
+
+Where: Top of every page.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| H1 | Caresse – Multitherapeutic Services | Caresse – خدمات علاجية متعددة الاختصاصات | Read by screen readers only. |
+| H2 | Main | القائمة الرئيسية | Read by screen readers only. |
+| H3 | Book a Session | احجزوا جلسة |  |
+| H4 | Cart | السلة | Hidden for now (shop not open). |
+| H5 | Open menu | فتح القائمة | Read by screen readers only. |
+| H6 | Close menu | إغلاق القائمة | Read by screen readers only. |
+| H7 | العربية | English |  |
+| H8 | Home | الرئيسية |  |
+| H9 | Services | الخدمات |  |
+| H10 | About Us | من نحن |  |
+| H11 | Team | الفريق |  |
+| H12 | Contact | تواصلوا معنا | Literally “Contact us”. |
+| H13 | Previous | السابق | Read by screen readers only. |
+| H14 | Next | التالي | Read by screen readers only. |
+| H15 | Caresse – Multitherapeutic Services | Caresse – خدمات علاجية متعددة الاختصاصات | Read by screen readers and search engines (the logo is an image). |
+| H16 | A Touch From The Soul | لمسة من الروح | Option A. See question 1. |
+
+Tagline option B for H16 (not on the site yet): «لمسة من القلب».
+
+## W. Why families choose us, numbers, how we reach you
+
+Where: Home page.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| W1 | Cases Helped | حالة ساعدناها |  |
+| W2 | Progress Rate | نسبة التقدّم |  |
+| W3 | Therapy Services | خدمات علاجية |  |
+| W4 | Why Families Choose Caresse | لماذا تختار العائلات Caresse |  |
+| W5 | Personalized Treatment Plans | خطط علاج مخصّصة |  |
+| W6 | Every person's journey is unique. We tailor our clinical therapy programs directly to individual needs, goals, and speeds. | رحلة كل شخص فريدة. نصمّم برامجنا العلاجية وفقاً لاحتياجات كل فرد وأهدافه ووتيرته. |  |
+| W7 | Certified & Caring Therapists | معالجون معتمدون ومهتمّون |  |
+| W8 | Our licensed multidisciplinary team operates with a deep commitment to gentle, effective, evidence-based practices. | يعمل فريقنا المرخَّص متعدد الاختصاصات بالتزام عميق بممارسات لطيفة وفعّالة ومبنيّة على الأدلّة العلمية. |  |
+| W9 | Child-Friendly Environment | بيئة صديقة للطفل |  |
+| W10 | Our state-of-the-art sensory rooms and treatment spaces are designed to feel bright, playful, and completely safe. | صُمّمت غرفنا الحسّية الحديثة ومساحات العلاج لدينا لتكون مشرقة ومرحة وآمنة تماماً. |  |
+| W11 | Family-Centered Approach | نهج يتمحور حول الأسرة |  |
+| W12 | We work closely alongside parents and school teams, ensuring progress is supported outside the clinic walls too. | نعمل جنباً إلى جنب مع الأهل والفريق المدرسي، لضمان استمرار دعم التقدّم خارج جدران العيادة أيضاً. |  |
+| W13 | How We Reach You | كيف نصل إليكم |  |
+| W14 | Choose the way that works best for you - from the comfort of home to our welcoming clinic, or from anywhere via secure online sessions. | اختاروا الطريقة الأنسب لكم: في راحة منزلكم، أو في عيادتنا المرحِّبة، أو من أي مكان من خلال جلسات آمنة عبر الإنترنت. |  |
+| W15 | Home Visits | زيارات منزلية |  |
+| W16 | We come to you. Our therapists provide personalized sessions in the comfort of your home. | نأتي إليكم. يقدّم معالجونا جلسات مخصّصة في راحة منزلكم. |  |
+| W17 | At the Clinic | في العيادة |  |
+| W18 | Visit us at our center for a fully equipped, welcoming therapy environment. | زوروا مركزنا لتلقّي العلاج في بيئة مرحِّبة ومجهّزة بالكامل. |  |
+| W19 | Online Sessions | جلسات عبر الإنترنت |  |
+| W20 | Connect with our specialists remotely through secure, convenient virtual sessions. | تواصلوا مع أخصائيينا عن بُعد من خلال جلسات افتراضية آمنة ومريحة. |  |
+
+## P. Shop and call to action
+
+Where: Home page.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| P1 | Our Therapy Shop | متجرنا العلاجي |  |
+| P2 | Explore the materials and tools our therapists use - now available for home practice | اكتشفوا المواد والأدوات التي يستخدمها معالجونا، والمتوفّرة الآن للتمرين في المنزل |  |
+| P3 | New materials coming soon! | مواد جديدة قريباً! |  |
+| P4 | See All Our Materials | شاهدوا جميع موادنا |  |
+| P5 | Visit Full Shop | زوروا المتجر الكامل |  |
+| P6 | Add to Cart | إضافة إلى السلة | Hidden for now (shop not open). |
+| P7 | Ready to Take the First Step? | مستعدّون لاتخاذ الخطوة الأولى؟ |  |
+| P8 | Book a free initial consultation session and let us create a supportive, personalized therapeutic plan for your family. | احجزوا جلسة استشارية أولى مجانية، ودعونا نضع خطة علاجية داعمة ومخصّصة لعائلتكم. |  |
+| P9 | Book Now | احجزوا الآن |  |
+| P10 | Call Us | اتصلوا بنا |  |
+
+## F. Footer
+
+Where: Bottom of every page.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| F1 | Caresse | Caresse | Read by screen readers only. |
+| F2 | Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence. | خدمات علاجية متعددة الاختصاصات تمكّن الأطفال والمراهقين والبالغين من التعبير والنموّ والازدهار بثقة. |  |
+| F3 | Quick Links | روابط سريعة |  |
+| F4 | Home | الرئيسية |  |
+| F5 | Services | الخدمات |  |
+| F6 | About Us | من نحن |  |
+| F7 | Our Team | فريقنا |  |
+| F8 | Services | الخدمات |  |
+| F9 | Contact Info | معلومات التواصل |  |
+| F10 | Airport Road, Zaarour Center, Third floor | طريق المطار، مركز زعرور، الطابق الثالث | Please confirm the exact wording. |
+| F11 | © 2026 Caresse Clinic. All rights reserved. | © 2026 عيادة Caresse. جميع الحقوق محفوظة. |  |
+| F12 | Goodbye from Caresse! | إلى اللقاء من Caresse! |  |
+| F13 | Instagram | إنستغرام |  |
+| F14 | Facebook | فيسبوك |  |
+| F15 | YouTube | يوتيوب |  |
+
+## G. Google and link previews
+
+Where: Search results, WhatsApp/Facebook previews.
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| G1 | Caresse — Multitherapeutic Services | Caresse — خدمات علاجية متعددة الاختصاصات |  |
+| G2 | Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence. | خدمات علاجية متعددة الاختصاصات تمكّن الأطفال والمراهقين والبالغين من التعبير والنموّ والازدهار بثقة. |  |
+| G3 | Book a Session — Caresse | احجزوا جلسة — Caresse |  |
+| G4 | Request a consultation session with Caresse's multitherapeutic team. We'll contact you to find the right specialist for your family. | اطلبوا جلسة استشارية مع فريق Caresse متعدد الاختصاصات. سنتواصل معكم لإيجاد الأخصائي المناسب لعائلتكم. |  |
+
+## Not translated
+
+- The clinic email stays in English for the clinic team. It now shows the **form language** (English or Arabic) so you know which language to reply in.
+- The phone number, the email address and the “Caresse” logo stay as they are.
