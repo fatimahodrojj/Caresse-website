@@ -1,62 +1,101 @@
-const links = [
-  { href: "#services", label: "Services" },
-  { href: "#about", label: "About" },
-  { href: "#team", label: "Our Team" },
-  { href: "#testimonials", label: "Stories" },
-  { href: "#contact", label: "Contact" },
-];
+import Image from "next/image";
+import Link from "next/link";
+import { navLinks } from "@/data/navigation";
+import MobileMenu from "@/components/MobileMenu";
+
+// Hidden until the shop has products and the Arabic site exists. The
+// components below are ready; flip these to render them.
+const SHOW_CART = false;
+const SHOW_LANGUAGE_SWITCH = false;
 
 /**
- * Transparent/floating navbar per feedback: no solid bar behind it,
- * it sits directly on top of the hero's colored background.
- * `absolute` (not `sticky`) is deliberate — a transparent bar that
- * stays fixed while scrolling over non-hero content would lose
- * contrast. If sticky-on-scroll is wanted later, swap this for a
- * scroll-listener that fades in a solid background past the hero.
+ * One navbar for the whole site (Figma had a duplicate inside the hero).
+ * Mobile: white header, sticky at the top.
+ * Desktop (xl, 1280px+): transparent, sits over the hero, not sticky.
  */
 export default function Navbar() {
   return (
-    <nav className="absolute top-0 left-0 right-0 z-50">
-      <div className="max-w-[1180px] mx-auto px-8 h-24 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <LogoMark />
-          <span className="font-display text-2xl text-white drop-shadow-sm">
-            Caresse
-          </span>
-        </div>
+    <header className="sticky top-0 z-50 border-b border-line bg-white font-sans text-navy xl:absolute xl:inset-x-0 xl:border-0 xl:bg-transparent">
+      <div className="mx-auto flex h-[72px] max-w-[1440px] items-center justify-between gap-[14px] px-3 xl:h-20 xl:justify-start xl:pl-0 xl:pr-[13px]">
+        <Link href="/" className="shrink-0">
+          <Image
+            src="/images/brand/logo.png"
+            alt="Caresse – Multitherapeutic Services"
+            width={1080}
+            height={391}
+            priority
+            sizes="(min-width: 1280px) 199px, 105px"
+            className="h-[38px] w-auto xl:h-[72px]"
+          />
+        </Link>
 
-        <div className="hidden md:flex gap-9 font-display text-white text-sm">
-          {links.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="relative py-1 hover:text-pink-soft transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
+        <nav aria-label="Main" className="hidden xl:ml-auto xl:block">
+          <ul className="flex items-center gap-10 text-xl font-semibold">
+            {navLinks.map((link) => {
+              const isCurrent = link.href === "/";
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    aria-current={isCurrent ? "page" : undefined}
+                    className={
+                      isCurrent
+                        ? "transition-opacity"
+                        : "opacity-80 transition-opacity hover:opacity-100"
+                    }
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
 
-        <a
-          href="#book"
-          className="inline-flex items-center gap-2 font-display text-sm px-6 py-3 rounded-full bg-pink text-white shadow-lg hover:-translate-y-0.5 hover:shadow-xl transition-all"
-        >
-          Book a Session
-        </a>
+        {/* Figma order: mobile = Arabic, Book, cart, menu; desktop = cart, Book, Arabic. */}
+        <div className="flex items-center gap-[6px] xl:gap-[14px]">
+          {SHOW_CART && <CartButton />}
+          <Link
+            href="/book"
+            className="order-2 inline-flex min-h-10 items-center justify-center whitespace-nowrap rounded-full bg-pink px-4 text-sm font-bold text-white xl:min-h-0 xl:w-[141px] xl:px-6 xl:py-3 xl:text-[15px]"
+          >
+            Book a Session
+          </Link>
+          {SHOW_LANGUAGE_SWITCH && <LanguageButton />}
+          <MobileMenu />
+        </div>
       </div>
-    </nav>
+    </header>
   );
 }
 
-function LogoMark() {
+function CartButton() {
   return (
-    <svg width="42" height="32" viewBox="0 0 120 90" fill="none" aria-hidden="true">
-      <circle cx="24" cy="12" r="9" fill="#EA6E9C" />
-      <circle cx="68" cy="12" r="9" fill="#EA6E9C" />
-      <path d="M4 62 C4 30 44 30 44 62" stroke="#F0C349" strokeWidth="16" strokeLinecap="round" />
-      <path d="M40 62 C40 30 80 30 80 62" stroke="#4A9FE0" strokeWidth="16" strokeLinecap="round" />
-      <circle cx="41" cy="46" r="8" fill="#EA6E9C" />
-      <path d="M25 68 C25 58 41 58 41 68" stroke="#F0C349" strokeWidth="8" strokeLinecap="round" />
-    </svg>
+    <button
+      type="button"
+      aria-label="Cart"
+      className="order-3 flex size-[34px] items-center xl:order-1 justify-center rounded-full bg-mist xl:size-11"
+    >
+      <Image
+        src="/images/icons/shopping-cart.svg"
+        alt=""
+        width={20}
+        height={20}
+        className="size-4 xl:size-5"
+      />
+    </button>
+  );
+}
+
+function LanguageButton() {
+  return (
+    <button
+      type="button"
+      lang="ar"
+      dir="rtl"
+      className="order-1 whitespace-nowrap rounded-full bg-pink px-[10px] xl:order-3 py-[6px] text-[10px] font-bold text-white xl:px-6 xl:py-3 xl:text-[15px]"
+    >
+      العربية
+    </button>
   );
 }

@@ -26,8 +26,8 @@ they aren't reflected here.
 
 | Hex | Where it's used |
 | --- | --- |
-| `#334059` | Hero tagline text only. ⚠ Close to, but not the same as, navy `#2A3B4D` |
-| `#1A59A6` | "Know More About Our Therapy →" link only. ⚠ A second, darker blue next to `#4A9FE0` |
+| ~~`#334059`~~ | Hero tagline text in Figma. **Unified:** the site uses navy `#2A3B4D` instead (decision 2026-10-14) |
+| ~~`#1A59A6`~~ | "Know More About Our Therapy →" link in Figma. **Unified:** the site uses blue `#4A9FE0` instead (decision 2026-10-14) |
 | `#737373` | The grey number next to each product price |
 | `#E8EFF8` | Cart and hamburger icon-button backgrounds; also the Therapy Shop section background |
 | `#E5E7EB` | 1px borders on "How We Reach You" cards and their image areas; mobile header bottom border |
@@ -79,13 +79,13 @@ These are the four accent colours at 13% opacity.
 | **Dancing Script** | Script tagline ("A Touch From The Soul") only | Bold (700) |
 | **Boogaloo** | Display: section headings, card titles, product and team names, stats numbers, CTA title, footer wordmark | Regular (400), the only weight it has |
 | **Sora** | Body and UI: paragraphs, nav links, buttons, labels, footer links | Regular (400), SemiBold (600), Bold (700) |
-| **Inter** | ⚠ Used only for "Know More About Our Therapy →" | Bold (700) |
+| ~~**Inter**~~ | Used only for "Know More About Our Therapy →" in Figma. **Unified:** the site uses Sora instead and does not load Inter (decision 2026-10-14) | n/a |
 
 ### Type scale (desktop / mobile, in px)
 
 | Element | Font | Size | Line height | Other |
 | --- | --- | --- | --- | --- |
-| Hero tagline | Dancing Script Bold | 52 / 36 | 1.1 | Letter-spacing 3px / 2px; 95% opacity; text-shadow `0 8px 18px rgba(42,59,77,0.08)`; colour `#334059` |
+| Hero tagline | Dancing Script Bold | 52 / 36 | 1.1 | Letter-spacing 3px / 2px; 95% opacity; text-shadow `0 8px 18px rgba(42,59,77,0.08)`; colour navy `#2A3B4D` (Figma: `#334059`, unified) |
 | Section heading | Boogaloo | 56 / 32 | normal | Our Services, Why Families Choose Caresse, Our Therapy Shop |
 | Section heading, team | Boogaloo | ⚠ 48 / 32 | normal | Meet Our Team |
 | Section heading, delivery | ⚠ Sora Bold | 40 / 24 | 1.2 | How We Reach You (different font from all other headings) |
@@ -109,7 +109,7 @@ These are the four accent colours at 13% opacity.
 | Stats label | Sora SemiBold | 16 / 12 | normal | White |
 | Team role | Sora SemiBold | 13 | 1.5 | Blue `#4A9FE0` |
 | "See All Our Materials" | Sora SemiBold | 16 / 14 | normal | |
-| "Know More About Our Therapy →" | ⚠ Inter Bold | 22 / 18 | normal | Letter-spacing 0.5px; `#1A59A6` |
+| "Know More About Our Therapy →" | Sora Bold (Figma: Inter Bold, unified) | 22 / 18 | normal | Letter-spacing 0.5px; blue `#4A9FE0` (Figma: `#1A59A6`, unified) |
 | Footer column heading | Sora Bold | 16 / 14 | normal | Gold |
 | Footer link and contact | Sora Regular | 14 / 13 | normal / 1.2 | White, 80% opacity |
 | Footer tagline | Sora Regular | 14 / 12 | 1.5 / 1.35 | White, 70% opacity |
@@ -164,21 +164,21 @@ Team cards have no shadow.
 | Icon: hamburger (mobile) | `#E8EFF8` | 18px menu icon | 36px square | 22px |
 | Carousel arrow | White, border `rgba(42,59,77,0.1)` | 20px chevron (mobile 18px) | 56px circle (mobile 44px, 40px in Services) | Half the size |
 | Text link: "See All Our Materials" | None | Navy, Sora SemiBold 16, then a 16px arrow (8px gap) | none | n/a |
-| Text link: "Know More About Our Therapy →" | None | `#1A59A6`, Inter Bold 22 | none | n/a |
+| Text link: "Know More About Our Therapy →" | None | Blue `#4A9FE0`, Sora Bold 22 (Figma: `#1A59A6`, Inter; unified) | none | n/a |
 
 ## Inconsistencies and open questions
 
 ### Colors and type
-1. **Two navies:** the hero tagline uses `#334059`; everything else uses `#2A3B4D`.
-2. **Two link blues:** "Know More About Our Therapy →" is `#1A59A6`; the other blue is `#4A9FE0`.
+1. ~~**Two navies:** the hero tagline uses `#334059`; everything else uses `#2A3B4D`.~~ **Resolved:** the tagline uses `#2A3B4D`.
+2. ~~**Two link blues:** "Know More About Our Therapy →" is `#1A59A6`; the other blue is `#4A9FE0`.~~ **Resolved:** the link uses `#4A9FE0`.
 3. **Near-identical creams:** section backgrounds `#FFF8EC` (Services) and `#FFF8F0` (How We Reach You), plus three delivery image-area tints (`#FFF8F5`, `#FFF8F8`, `#FAF8FF`).
-4. **One-off font:** Inter is used only for the "Know More" link; everything else is Sora, Boogaloo or Dancing Script.
+4. ~~**One-off font:** Inter is used only for the "Know More" link; everything else is Sora, Boogaloo or Dancing Script.~~ **Resolved:** the link uses Sora; Inter is not loaded.
 5. **Heading styles differ:** "How We Reach You" is Sora Bold 40; the other headings are Boogaloo (56, but "Meet Our Team" is 48).
 6. **Two card shadows:** a navy-based `0.04` shadow vs a black-based `0.07` shadow.
 7. **Service-card dots** alternate purple/pink in an irregular pattern (purple, pink, purple / purple, pink, purple) with no clear meaning.
 
 ### Layout and structure
-8. **Two desktop navbars:** a standalone navbar (`98:296`) and a second copy inside the hero (`12:4`), overlapping at the top of the page, offset by 1px.
+8. ~~**Two desktop navbars:** a standalone navbar (`98:296`) and a second copy inside the hero (`12:4`), overlapping at the top of the page, offset by 1px.~~ **Resolved:** the site has one navbar (`components/Navbar.tsx`).
 9. **"Visit Full Shop" is below the footer** (`78:16`), detached from the Therapy Shop section, which has its own "See All Our Materials" link.
 10. **Duplicate footer column:** desktop shows "Contact Info" twice, with identical content.
 11. **Footer overflows:** the desktop footer is 1443px wide in a 1440px frame. The rendered desktop frame is 1466px wide and the mobile frame 424px instead of 390px, so something overflows both.
