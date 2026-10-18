@@ -60,8 +60,12 @@ export async function uploadImage(file: File, folder: "therapists" | "products",
     const blob = await put(`${folder}/${randomUUID()}.webp`, output, { access: "public", contentType: "image/webp" });
     return { status: "ok", url: blob.url };
   } catch (error) {
-    // Logs the error type only, never the file or its contents.
-    console.error(`admin.upload_failed code=${error instanceof Error ? error.name : "unknown"}`);
+    // Logs the error type, plus Vercel Blob's own message (it describes the
+    // storage setup, e.g. missing credentials or a private store, and never
+    // contains the file or personal data).
+    const name = error instanceof Error ? error.name : "unknown";
+    const detail = error instanceof Error && error.message.startsWith("Vercel Blob:") ? ` detail="${error.message.slice(0, 300)}"` : "";
+    console.error(`admin.upload_failed code=${name}${detail}`);
     return {
       status: "error",
       message: "The photo could not be uploaded. Nothing was changed. Please try again; if it keeps failing, check the Blob storage in Vercel.",
