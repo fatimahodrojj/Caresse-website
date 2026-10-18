@@ -158,6 +158,9 @@
     "goodbye": "Goodbye from Caresse!",
     "instagramLabel": "Caresse on Instagram (opens in a new tab)"
   },
+  "WhatsApp": {
+    "label": "Chat with Caresse on WhatsApp"
+  },
   "Book": {
     "title": "Start Your Journey with Us",
     "intro": "Fill out the form below to request your consultation session. Our friendly clinical intake coordinator will review your needs and connect you with the perfect specialist for your family."

@@ -31,6 +31,8 @@ const config: Config = {
         // Not in Figma: accessible error colour for form messages
         // (6.6:1 on white). See docs/design-system.md.
         danger: "#B3261E",
+        // WhatsApp brand green, for the floating chat button only.
+        whatsapp: "#25D366",
         tint: {
           peach: "#FFF8F5",
           blush: "#FFF8F8",

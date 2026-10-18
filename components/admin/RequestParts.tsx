@@ -1,8 +1,8 @@
 import Icon from "@/components/admin/Icon";
 import { buttonClass } from "@/components/admin/ui";
 import type { RequestStatus } from "@/lib/generated/prisma/client";
-import { STATUS_CHIP, STATUS_LABELS, whatsappHref } from "@/lib/admin/requests";
-import { telHref } from "@/lib/settings";
+import { STATUS_CHIP, STATUS_LABELS } from "@/lib/admin/requests";
+import { telHref, whatsappHref } from "@/lib/settings";
 
 export function StatusChip({ status }: { status: RequestStatus }) {
   const style = STATUS_CHIP[status];
