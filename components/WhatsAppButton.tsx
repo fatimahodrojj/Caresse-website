@@ -1,26 +1,11 @@
-"use client";
-
-import { useEffect, useState } from "react";
-
-// Shown once the visitor has scrolled this far down the page.
-const SHOW_AFTER_PX = 240;
-
 /**
- * Floating WhatsApp button (every public page). Pops in after a short
- * scroll, in the bottom corner on the inline end side (right in English, left
- * in Arabic). Opens a chat with the clinic in WhatsApp. With reduced motion
- * it only fades.
+ * Floating WhatsApp button (every public page), always visible in the
+ * bottom corner on the inline end side (right in English, left in Arabic).
+ * Pops in once when the page opens, just after the hero animation (CSS
+ * only; with reduced motion it simply appears). Opens a chat with the clinic
+ * in WhatsApp.
  */
 export default function WhatsAppButton({ href, label }: { href: string; label: string }) {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const update = () => setVisible(window.scrollY > SHOW_AFTER_PX);
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    return () => window.removeEventListener("scroll", update);
-  }, []);
-
   return (
     <a
       href={href}
@@ -28,11 +13,7 @@ export default function WhatsAppButton({ href, label }: { href: string; label: s
       rel="noopener noreferrer"
       aria-label={label}
       title={label}
-      aria-hidden={visible ? undefined : true}
-      tabIndex={visible ? undefined : -1}
-      className={`fixed bottom-4 end-4 z-40 flex size-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-[0_8px_20px_rgba(42,59,77,0.25)] transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.34,1.56,0.64,1)] hover:scale-105 motion-reduce:transition-opacity md:bottom-6 md:end-6 md:size-16 ${
-        visible ? "scale-100 opacity-100" : "pointer-events-none translate-y-4 scale-50 opacity-0 motion-reduce:translate-y-0 motion-reduce:scale-100"
-      }`}
+      className="fixed bottom-4 end-4 z-40 flex size-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-[0_8px_20px_rgba(42,59,77,0.25)] transition-transform hover:scale-105 motion-safe:animate-hero-pop motion-safe:[animation-delay:900ms] md:bottom-6 md:end-6 md:size-16"
     >
       {/* WhatsApp logo */}
       <svg viewBox="0 0 24 24" aria-hidden="true" className="size-8 md:size-9" fill="currentColor">
