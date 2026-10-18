@@ -4,7 +4,8 @@ import { getTranslations } from "next-intl/server";
 import { getPathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 
-export const SITE_URL = "https://caresseclinic.com";
+// The main address; caresseclinic.com redirects here (set in Vercel → Domains).
+export const SITE_URL = "https://www.caresseclinic.com";
 
 /**
  * Whether Arabic pages may appear in search results (in the sitemap, no
