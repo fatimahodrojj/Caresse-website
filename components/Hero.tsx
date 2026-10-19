@@ -14,20 +14,20 @@ const characters: Character[] = [
   {
     src: "/images/illustrations/hero-character-blue.png",
     className:
-      "size-[min(96px,26vw)] rounded-full xl:mr-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
-    sizes: "(min-width: 1280px) 289px, 96px",
+      "size-[min(96px,26vw)] rounded-full md:size-40 xl:mr-[-60px] xl:h-[260px] xl:w-[289px] xl:rounded-[130px]",
+    sizes: "(min-width: 1280px) 289px, (min-width: 768px) 160px, 96px",
   },
   {
     src: "/images/illustrations/hero-character-pink.png",
     className:
-      "size-[min(112px,30vw)] rounded-full xl:mr-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
-    sizes: "(min-width: 1280px) 391px, 112px",
+      "size-[min(112px,30vw)] rounded-full md:size-48 xl:mr-[-60px] xl:h-[386px] xl:w-[391px] xl:rounded-[150px]",
+    sizes: "(min-width: 1280px) 391px, (min-width: 768px) 192px, 112px",
   },
   {
     src: "/images/illustrations/hero-character-gold.png",
     className:
-      "size-[min(96px,26vw)] rounded-full xl:h-[240px] xl:w-[285px] xl:rounded-[120px]",
-    sizes: "(min-width: 1280px) 285px, 96px",
+      "size-[min(96px,26vw)] rounded-full md:size-40 xl:h-[240px] xl:w-[285px] xl:rounded-[120px]",
+    sizes: "(min-width: 1280px) 285px, (min-width: 768px) 160px, 96px",
   },
 ];
 
@@ -38,10 +38,10 @@ const characters: Character[] = [
  */
 export default function Hero() {
   return (
-    <section className="bg-hero p-3 xl:px-20 xl:pb-[120px] xl:pt-[180px]">
+    <section className="bg-hero p-3 md:px-8 md:py-10 xl:px-20 xl:pb-[120px] xl:pt-[180px]">
       <h1 className="sr-only">Caresse – Multitherapeutic Services</h1>
-      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 xl:gap-0">
-        <div className="flex items-center justify-center gap-2 xl:h-[459px] xl:w-[1038px] xl:gap-0">
+      <div className="mx-auto flex max-w-[1280px] flex-col items-center gap-2 md:gap-4 xl:gap-0">
+        <div className="flex items-center justify-center gap-2 md:gap-4 xl:h-[459px] xl:w-[1038px] xl:gap-0">
           {characters.map((character) => (
             <div
               key={character.src}
@@ -58,7 +58,7 @@ export default function Hero() {
             </div>
           ))}
         </div>
-        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] tracking-[2px] text-navy opacity-95 xl:text-[52px] xl:tracking-[3px]">
+        <p className="text-shadow-tagline w-full text-center text-balance font-script text-[min(36px,9.2vw)] leading-[1.1] tracking-[2px] text-navy opacity-95 md:text-[44px] md:tracking-[3px] xl:text-[52px] xl:tracking-[3px]">
           A Touch From The Soul
         </p>
       </div>

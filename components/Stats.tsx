@@ -14,13 +14,13 @@ const stats = [
  */
 export default function Stats() {
   return (
-    <section className="bg-navy p-4 font-sans xl:px-20 xl:py-16">
-      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 xl:flex-row xl:items-center xl:justify-between xl:gap-0">
-        <dl className="flex gap-3 text-center xl:flex-1 xl:gap-12">
+    <section className="bg-navy p-4 font-sans md:px-8 md:py-10 xl:px-20 xl:py-16">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-8 xl:flex-row xl:items-center xl:justify-between xl:gap-0">
+        <dl className="flex gap-3 text-center md:flex-1 md:gap-8 xl:flex-1 xl:gap-12">
           {stats.map((stat) => (
-            <div key={stat.label} className="flex flex-1 flex-col-reverse gap-[6px] xl:gap-2">
-              <dt className="text-xs font-semibold text-white xl:text-base">{stat.label}</dt>
-              <dd className="font-heading text-4xl text-gold xl:text-[64px] xl:leading-normal">
+            <div key={stat.label} className="flex flex-1 flex-col-reverse justify-end gap-[6px] xl:gap-2">
+              <dt className="text-xs font-semibold text-white md:text-sm xl:text-base">{stat.label}</dt>
+              <dd className="font-heading text-4xl text-gold md:text-5xl md:leading-normal xl:text-[64px] xl:leading-normal">
                 {stat.value}
               </dd>
             </div>
@@ -31,7 +31,7 @@ export default function Stats() {
           alt=""
           width={127}
           height={104}
-          className="h-[78px] w-24 rounded-[38px] object-cover xl:h-[104px] xl:w-[127px] xl:rounded-[50px]"
+          className="h-[78px] w-24 rounded-[38px] object-cover md:h-[104px] md:w-[127px] md:rounded-[50px] xl:h-[104px] xl:w-[127px] xl:rounded-[50px]"
         />
       </div>
     </section>

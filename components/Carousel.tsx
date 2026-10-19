@@ -17,7 +17,7 @@ type CarouselProps = {
   /** Arrow button size per breakpoint (Figma: 40, 44 or 56px). */
   arrowClassName: string;
   /** Hide the arrows from this breakpoint up (when the list becomes a grid). */
-  hideArrowsFrom?: "xl";
+  hideArrowsFrom?: "md" | "xl";
 };
 
 /**
@@ -65,7 +65,8 @@ export default function Carousel({
     });
   }
 
-  const arrowVisibility = hideArrowsFrom === "xl" ? "xl:hidden" : "";
+  const arrowVisibility =
+    hideArrowsFrom === "md" ? "md:hidden" : hideArrowsFrom === "xl" ? "xl:hidden" : "";
 
   return (
     <div

@@ -17,11 +17,11 @@ const priceFormat = new Intl.NumberFormat("en-US", {
  */
 export default function TherapyShop({ products }: { products: Product[] }) {
   return (
-    <section id="shop" className="bg-mist px-4 py-3 font-sans xl:px-20 xl:py-20">
-      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 xl:gap-12">
+    <section id="shop" className="bg-mist px-4 py-3 font-sans md:px-8 md:py-12 xl:px-20 xl:py-20">
+      <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 md:gap-8 xl:gap-12">
         <div className="flex flex-col gap-2 text-center">
-          <h2 className="font-heading text-[32px] xl:text-[56px]">Our Therapy Shop</h2>
-          <p className="text-sm leading-[1.6] opacity-80 xl:text-lg">
+          <h2 className="font-heading text-[32px] md:text-[44px] xl:text-[56px]">Our Therapy Shop</h2>
+          <p className="text-sm leading-[1.6] opacity-80 md:text-base xl:text-lg">
             Explore the materials and tools our therapists use - now available for home practice
           </p>
         </div>
@@ -52,7 +52,7 @@ function ProductList({ products }: { products: Product[] }) {
     <>
       <Carousel
         label="Our Therapy Shop"
-        itemClassName="basis-full md:basis-[calc((100%-12px)/2)] xl:basis-[calc((100%-45px)/4)]"
+        itemClassName="basis-full md:basis-[calc((100%-12px)/2)] lg:basis-[calc((100%-24px)/3)] xl:basis-[calc((100%-45px)/4)]"
         listClassName="py-1 xl:gap-[15px]"
         arrowClassName="size-11 xl:size-14"
       >
