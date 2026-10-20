@@ -48,6 +48,21 @@ const config: Config = {
         // "Caresse" wordmark: the brand font in every language.
         wordmark: ["var(--font-boogaloo)", "cursive"],
       },
+      // Hero entrance (components/Hero.tsx). Only the start state is given, so
+      // each element ends at its own styles (e.g. the tagline's opacity-95).
+      keyframes: {
+        "hero-pop": {
+          from: { opacity: "0", transform: "translateY(16px) scale(0.5)" },
+        },
+        "hero-fade": {
+          from: { opacity: "0" },
+        },
+      },
+      animation: {
+        // Overshooting curve = soft bounce.
+        "hero-pop": "hero-pop 500ms cubic-bezier(0.34, 1.56, 0.64, 1) both",
+        "hero-fade": "hero-fade 400ms ease-out 600ms both",
+      },
       borderRadius: {
         "card-lg": "28px",
         card: "24px",
