@@ -14,42 +14,28 @@ const wordmark = [
   { letter: "e", color: "text-gold" },
 ];
 
-// The design has the icons but no profile URLs yet, so they are not links.
-const socials = [
-  { key: "instagram", icon: "/images/icons/instagram.svg" },
-  { key: "facebook", icon: "/images/icons/facebook.svg" },
-  { key: "youtube", icon: "/images/icons/youtube.svg" },
-] as const;
+const INSTAGRAM_URL = "https://www.instagram.com/caresseclinic";
+const DEVELOPER_URL = "https://www.linkedin.com/company/codeyy/";
 
 const quickLinks = [
   { key: "home", href: homeHref },
   { key: "services", href: "/#services" },
   { key: "about", href: "/#about" },
-  { key: "ourTeam", href: "/#team" },
-] as const;
-
-// Therapy names come from messages/*.json (Therapies), shared with the
-// booking form.
-const serviceLinks = [
-  "SPEECH_THERAPY",
-  "ABA_THERAPY",
-  "OCCUPATIONAL_THERAPY",
-  "PSYCHOMOTOR_SUPPORT",
+  { key: "ourTeam", href: "/team" },
 ] as const;
 
 /**
- * Footer. One Contact Info column (Figma desktop repeats it).
- * Mobile: brand block, then three narrow columns. Desktop (xl): one row.
+ * Footer: brand block, Quick Links and Contact Info.
+ * Mobile: brand block, then two columns side by side. Tablet and desktop: one row.
  */
 export default function Footer() {
   const t = useTranslations("Footer");
-  const tTherapies = useTranslations("Therapies");
   return (
     <footer id="contact" className="bg-navy p-3 font-sans text-white md:px-8 md:py-8 xl:px-20 xl:pb-10 xl:pt-6">
       <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 md:gap-8 xl:gap-16">
         <div className="flex flex-col gap-2 md:flex-row md:justify-between md:gap-8 xl:flex-row xl:justify-between xl:gap-2">
           <div className="flex flex-col gap-[6px] md:w-[280px] md:shrink-0 md:gap-4 xl:w-[360px] xl:shrink xl:gap-6">
-            <p className="flex gap-[2px] font-wordmark text-2xl md:text-3xl xl:text-4xl" aria-label={t("wordmarkLabel")} dir="ltr">
+            <p className="flex gap-[2px] self-start font-wordmark text-2xl md:text-3xl xl:text-4xl" aria-label={t("wordmarkLabel")} dir="ltr">
               {wordmark.map((item, index) => (
                 <span key={index} aria-hidden="true" className={item.color}>
                   {item.letter}
@@ -59,40 +45,32 @@ export default function Footer() {
             <p className="text-xs leading-[1.35] opacity-70 md:text-sm md:leading-[1.5] xl:text-sm xl:leading-[1.5]">
               {t("tagline")}
             </p>
-            <ul className="flex gap-[6px] xl:gap-3">
-              {socials.map((social) => (
-                <li
-                  key={social.key}
-                  className="flex size-8 items-center justify-center rounded-full bg-white/10 xl:size-9"
-                >
-                  <Image
-                    src={social.icon}
-                    alt={t(`social.${social.key}`)}
-                    width={18}
-                    height={18}
-                    className="size-4 xl:size-[18px]"
-                  />
-                </li>
-              ))}
-            </ul>
+            <a
+              href={INSTAGRAM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={t("instagramLabel")}
+              className="flex size-8 items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20 xl:size-9"
+            >
+              <Image
+                src="/images/icons/instagram.svg"
+                alt=""
+                width={18}
+                height={18}
+                className="size-4 xl:size-[18px]"
+              />
+            </a>
           </div>
 
-          <div className="flex gap-3 md:flex-1 md:gap-6 xl:flex-none xl:gap-[67px]">
-            <FooterColumn title={t("quickLinks")} className="xl:w-[160px]">
+          <div className="flex gap-3 md:flex-1 md:justify-end md:gap-10 xl:flex-none xl:gap-[120px]">
+            <FooterColumn title={t("quickLinks")} className="md:flex-none xl:w-[160px]">
               {quickLinks.map((link) => (
                 <li key={link.key}>
                   <Link href={link.href}>{t(link.key)}</Link>
                 </li>
               ))}
             </FooterColumn>
-            <FooterColumn title={t("servicesTitle")} className="xl:w-[180px]">
-              {serviceLinks.map((therapy) => (
-                <li key={therapy}>
-                  <Link href="/#services">{tTherapies(therapy)}</Link>
-                </li>
-              ))}
-            </FooterColumn>
-            <FooterColumn title={t("contactTitle")} className="xl:w-[240px]">
+            <FooterColumn title={t("contactTitle")} className="md:w-[240px] md:flex-none xl:w-[240px]">
               <li>{t("address")}</li>
               <li>
                 <a href="tel:+96171056803" dir="ltr">+961 71056803</a>
@@ -111,8 +89,25 @@ export default function Footer() {
 
         <div className="flex flex-col gap-[6px] border-t border-white/10 pt-[6px] xl:gap-6 xl:pt-6">
           <div className="flex flex-col gap-[6px] md:flex-row md:items-center md:justify-between xl:flex-row xl:items-center xl:justify-between">
-            <p className="text-xs opacity-50 xl:text-[13px]">
-              {t("copyright")}
+            <p className="flex flex-col gap-[2px] text-xs md:flex-row md:flex-wrap md:items-center md:gap-x-2 xl:text-[13px]">
+              <span className="opacity-50">{t("copyright")}</span>
+              <span aria-hidden="true" className="hidden opacity-30 md:inline">·</span>
+              {/* Developer credit: small and muted. */}
+              <span className="text-[11px] opacity-50 xl:text-xs">
+                {t.rich("credit", {
+                  link: (chunks) => (
+                    <a
+                      href={DEVELOPER_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      dir="ltr"
+                      className="underline-offset-2 hover:underline"
+                    >
+                      {chunks}
+                    </a>
+                  ),
+                })}
+              </span>
             </p>
             <div className="flex items-center gap-2 xl:gap-3">
               <p className="text-xs font-semibold opacity-70 xl:text-sm">{t("goodbye")}</p>

@@ -2,6 +2,8 @@
 
 **Status: approved by the clinic on 2026-10-20, all translations as they are, with no corrections.** The Arabic site is live and indexed by search engines.
 
+The Our Team page (section R) and the footer updates (Instagram label, developer credit) were added later with the clinic's full approval of all content.
+
 - **Style:** Modern Standard Arabic, speaking to families in the plural (أنتم: احجزوا، اختاروا). Error messages use «يرجى…».
 - **Numbers** use western digits (0–9) everywhere, as on the English site.
 - **Changing a text later:** edit messages/ar.json (and messages/en.json for English), then update this sheet.
@@ -12,7 +14,7 @@
 2. **Therapy names (T1–T5):** approved as written.
 3. **The name “Caresse”** stays in Latin letters inside Arabic sentences.
 4. **Team names and job titles (section M):** approved as written.
-5. **Address (F10):** approved as written.
+5. **Address (F9):** approved as written.
 
 ## T. Therapy names
 
@@ -120,6 +122,34 @@ Where: Home page, “Meet Our Team”.
 | M8 | Mariam Al-Itawi | مريم العيتاوي | Approved. |
 | M9 | Occupational Therapist | معالجة انشغالية | Feminine form. Approved. |
 
+## R. Our Team page
+
+Where: /team (profiles of each therapist).
+
+| # | English | Arabic | Notes |
+| --- | --- | --- | --- |
+| R1 | Meet Caresse Family | تعرّفوا على عائلة Caresse |  |
+| R2 | A dedicated, specialized group of professionals passionate about supporting the healthy growth of our families. | مجموعة متخصّصة ومتفانية من المهنيين الشغوفين بدعم النموّ السليم لعائلاتنا. |  |
+| R3 | Areas of Expertise | مجالات الخبرة |  |
+| R4 | About {name} | نبذة عن {name} |  |
+| R5 | Book Your First Session | احجزوا جلستكم الأولى |  |
+| R6 | Start with a free consultation and let us create a supportive, personalized therapeutic plan for your family. | ابدأوا باستشارة مجانية، ودعونا نضع خطة علاجية داعمة ومخصّصة لعائلتكم. |  |
+| R7 | Rawan | روان |  |
+| R8 | Master's in Speech-Language Pathology (SLP), OPT Level 1 Certified | ماجستير في علاج النطق واللغة (SLP)، حاصلة على شهادة OPT المستوى الأول |  |
+| R9 | 6+ years in speech-language therapy & feeding therapy | أكثر من 6 سنوات في علاج النطق واللغة وعلاج التغذية |  |
+| R10 | Communication disorders · Feeding therapy · Family coaching · Pediatric SLP | اضطرابات التواصل · علاج التغذية · الإرشاد الأسري · علاج النطق واللغة للأطفال |  |
+| R11 | Rawan founded Caresse Clinic with a deep commitment to every child's right to communicate and thrive. With over 6 years of clinical experience and a Master's in Speech-Language Pathology, she specializes in language and communication difficulties, feeding and swallowing challenges, severe ASD, and developmental delays. Certified in OPT Level 1, she integrates a sensory-motor approach and provides individualized, family-centered intervention, guiding parents with practical strategies to support progress beyond the therapy setting. | أسّست روان عيادة Caresse انطلاقاً من التزام عميق بحقّ كل طفل في التواصل والازدهار. بخبرة سريرية تزيد على 6 سنوات وشهادة ماجستير في علاج النطق واللغة، تتخصّص في صعوبات اللغة والتواصل، وتحدّيات التغذية والبلع، واضطراب طيف التوحّد الشديد، وتأخّر النموّ. وهي حاصلة على شهادة OPT المستوى الأول، وتعتمد مقاربة حسّية حركية، وتقدّم تدخّلاً فردياً يتمحور حول الأسرة، فترشد الأهل باستراتيجيات عملية تدعم التقدّم خارج جلسات العلاج. |  |
+| R12 | Ali | علي |  |
+| R13 | Applied Behavior Analysis Technician (ABAT) | فنّي تحليل السلوك التطبيقي (ABAT) |  |
+| R14 | 3+ years in behavioral intervention | أكثر من 3 سنوات في التدخّل السلوكي |  |
+| R15 | Autism spectrum support · Behavior modification · Social skills training | دعم اضطراب طيف التوحّد · تعديل السلوك · التدريب على المهارات الاجتماعية |  |
+| R16 | Ali is dedicated to transforming challenging behaviors into meaningful progress through evidence-based, compassionate intervention. With over 3 years of experience supporting more than 200 individuals with ASD across Lebanon and Kuwait, his individualized behavioral interventions focus on developing functional skills, communication, independence, and adaptive behavior. He works closely with families to ensure consistency of strategies across environments, empowering parents to support their child's progress at home and in daily life. | يكرّس علي عمله لتحويل السلوكيات الصعبة إلى تقدّم ملموس، من خلال تدخّل مبنيّ على الأدلّة العلمية وقائم على التعاطف. بخبرة تزيد على 3 سنوات دعم خلالها أكثر من 200 شخص من ذوي اضطراب طيف التوحّد في لبنان والكويت، تركّز تدخّلاته السلوكية الفردية على تنمية المهارات الوظيفية والتواصل والاستقلالية والسلوك التكيّفي. ويعمل عن قرب مع العائلات لضمان اتّساق الاستراتيجيات في مختلف البيئات، ممّا يمكّن الأهل من دعم تقدّم طفلهم في المنزل وفي الحياة اليومية. |  |
+| R17 | Mariam | مريم |  |
+| R18 | Bachelor's in Occupational Therapy, Certified Sensory Integration Specialist | بكالوريوس في العلاج الانشغالي، أخصائية معتمدة في التكامل الحسّي |  |
+| R19 | 10+ years in pediatric occupational therapy | أكثر من 10 سنوات في العلاج الانشغالي للأطفال |  |
+| R20 | Fine & gross motor skills · Daily living activities · Sensory integration | المهارات الحركية الدقيقة والكبرى · أنشطة الحياة اليومية · التكامل الحسّي |  |
+| R21 | Mariam brings her occupational therapy expertise to children with ASD, ADHD, learning and developmental difficulties, sensory processing challenges, and delays in sensorimotor, fine, and gross motor skills. Her interventions focus on activities of daily living and independence, developing functional skills and promoting greater confidence and autonomy. She provides individualized, client-centered treatment plans and collaborates closely with parents with practical strategies to support progress within therapy and in daily life. | توظّف مريم خبرتها في العلاج الانشغالي لمساعدة الأطفال الذين يعانون اضطراب طيف التوحّد، واضطراب فرط الحركة وتشتّت الانتباه، وصعوبات التعلّم والنموّ، وتحدّيات المعالجة الحسّية، وتأخّر المهارات الحسّية الحركية والحركية الدقيقة والكبرى. تركّز تدخّلاتها على أنشطة الحياة اليومية والاستقلالية، فتنمّي المهارات الوظيفية وتعزّز الثقة والاستقلال. وتقدّم خطط علاج فردية تتمحور حول الطفل، وتتعاون عن قرب مع الأهل باستراتيجيات عملية تدعم التقدّم داخل الجلسات وفي الحياة اليومية. |  |
+
 ## H. Header, menu and hero
 
 Where: Top of every page.
@@ -200,14 +230,12 @@ Where: Bottom of every page.
 | F5 | Services | الخدمات |  |
 | F6 | About Us | من نحن |  |
 | F7 | Our Team | فريقنا |  |
-| F8 | Services | الخدمات |  |
-| F9 | Contact Info | معلومات التواصل |  |
-| F10 | Airport Road, Zaarour Center, Third floor | طريق المطار، مركز زعرور، الطابق الثالث | Approved. |
-| F11 | © 2026 Caresse Clinic. All rights reserved. | © 2026 عيادة Caresse. جميع الحقوق محفوظة. |  |
+| F8 | Contact Info | معلومات التواصل |  |
+| F9 | Airport Road, Zaarour Center, Third floor | طريق المطار، مركز زعرور، الطابق الثالث | Approved. |
+| F10 | © 2026 Caresse Clinic. All rights reserved. | © 2026 عيادة Caresse. جميع الحقوق محفوظة. |  |
+| F11 | Website by Codey | تصميم وتطوير: Codey |  |
 | F12 | Goodbye from Caresse! | إلى اللقاء من Caresse! |  |
-| F13 | Instagram | إنستغرام |  |
-| F14 | Facebook | فيسبوك |  |
-| F15 | YouTube | يوتيوب |  |
+| F13 | Caresse on Instagram (opens in a new tab) | Caresse على إنستغرام (يُفتح في نافذة جديدة) |  |
 
 ## G. Google and link previews
 
@@ -219,6 +247,8 @@ Where: Search results, WhatsApp/Facebook previews.
 | G2 | Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence. | خدمات علاجية متعددة الاختصاصات تمكّن الأطفال والمراهقين والبالغين من التعبير والنموّ والازدهار بثقة. |  |
 | G3 | Book a Session — Caresse | احجزوا جلسة — Caresse |  |
 | G4 | Request a consultation session with Caresse's multitherapeutic team. We'll contact you to find the right specialist for your family. | اطلبوا جلسة استشارية مع فريق Caresse متعدد الاختصاصات. سنتواصل معكم لإيجاد الأخصائي المناسب لعائلتكم. |  |
+| G5 | Our Team — Caresse | فريقنا — Caresse |  |
+| G6 | Meet Caresse's multitherapeutic team: speech-language, feeding, ABA and occupational therapists supporting children and families. | تعرّفوا على فريق Caresse متعدد الاختصاصات: أخصائيون في النطق واللغة والتغذية وتحليل السلوك التطبيقي والعلاج الانشغالي يدعمون الأطفال والعائلات. |  |
 
 ## Not translated
 

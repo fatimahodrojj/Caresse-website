@@ -31,7 +31,7 @@ export default function Team() {
           ))}
         </Carousel>
         <Link
-          href="/#services"
+          href="/team"
           className="flex min-h-10 items-center justify-center text-center text-lg font-bold text-sky ltr:tracking-[0.5px] md:text-xl xl:block xl:min-h-0 xl:text-[22px]"
         >
           {t("knowMore")}

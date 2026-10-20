@@ -1,11 +1,13 @@
 import { TeamMember } from "@/lib/types";
 
-// Names and roles are translated (messages/*.json, Team.members.<id>).
+// Names and roles are translated (messages/*.json, Team.members.<id>); the
+// /team profiles are under TeamPage.members.<id>.
 export const team: TeamMember[] = [
   {
     id: "rawan",
     photo: "/images/team/rawan-cherry.jpg",
     character: "/images/illustrations/team-character-rawan-cherry.png",
+    accent: "sky",
   },
   {
     id: "ali",
@@ -13,10 +15,13 @@ export const team: TeamMember[] = [
     // Tall full-body portrait: zoom in on head and shoulders to match Rawan.
     photoCrop: { position: "50% 19%", zoom: 1.15, origin: "50% 30%" },
     character: "/images/illustrations/team-character-ali-atie.png",
+    accent: "pink",
+    profilePhotoPosition: "50% 22%",
   },
   {
     id: "mariam",
     photo: "/images/team/mariam-al-itawi.jpg",
     character: "/images/illustrations/team-character-mariam-al-itawi.png",
+    accent: "purple",
   },
 ];

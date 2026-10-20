@@ -16,6 +16,6 @@ export const navLinks: NavLink[] = [
   { key: "home", href: homeHref },
   { key: "services", href: "/#services" },
   { key: "about", href: "/#about" },
-  { key: "team", href: "/#team" },
+  { key: "team", href: "/team" },
   { key: "contact", href: "/#contact" },
 ];
