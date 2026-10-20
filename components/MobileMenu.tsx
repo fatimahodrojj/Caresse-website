@@ -3,14 +3,14 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { homeHref, navLinks } from "@/data/navigation";
+import { navLinks } from "@/data/navigation";
 
 /**
  * Hamburger button + dropdown panel for screens below xl.
  * Figma only designs the closed state, so the open panel reuses the nav
  * labels and design tokens. Closes on toggle, link tap or Escape.
  */
-export default function MobileMenu() {
+export default function MobileMenu({ currentHref }: { currentHref: string | null }) {
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -52,7 +52,7 @@ export default function MobileMenu() {
       >
         <ul>
           {navLinks.map((link) => {
-            const isCurrent = link.href === homeHref;
+            const isCurrent = link.href === currentHref;
             return (
               <li key={link.href} className="border-t border-line first:border-t-0">
                 <Link

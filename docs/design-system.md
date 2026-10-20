@@ -34,6 +34,8 @@ they aren't reflected here.
 | `#FFF8F5` | Image area of the "Home Visits" card |
 | `#FFF8F8` | Image area of the "At the Clinic" card |
 | `#FAF8FF` | Image area of the "Online Sessions" card |
+| `#FDF8F3` | Booking form section background on `/book` (Figma 33:5) |
+| `#B3261E` | **Not in Figma.** Error text and error borders in forms. Added because pink on white is too low-contrast for small text; contrast 6.6:1 on white |
 
 ### Translucent colors
 
@@ -138,6 +140,7 @@ Character illustrations are clipped to circles or pills with a radius of half th
 | `drop-shadow(0 12px 12px rgba(42,59,77,0.04))` | Service cards, product cards |
 | `drop-shadow(0 10px 12px rgba(0,0,0,0.07))` | "How We Reach You" cards. ⚠ Black-based and stronger than the navy-based card shadow |
 | `drop-shadow(0 10px 10px rgba(42,59,77,0.04))` | Carousel arrow buttons |
+| `drop-shadow(0 10px 14px rgba(42,59,77,0.08))` | Booking form card on `/book` |
 | `text-shadow: 0 8px 18px rgba(42,59,77,0.08)` | Hero tagline |
 
 Team cards have no shadow.
