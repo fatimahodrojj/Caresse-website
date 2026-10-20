@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useTranslations } from "next-intl";
 import { Children, useCallback, useEffect, useRef, useState, type ReactNode } from "react";
 
 type CarouselProps = {
@@ -39,8 +40,11 @@ export default function Carousel({
   const update = useCallback(() => {
     const list = listRef.current;
     if (!list) return;
-    setCanPrev(list.scrollLeft > 1);
-    setCanNext(list.scrollLeft + list.clientWidth < list.scrollWidth - 1);
+    // Distance scrolled from the start. In right-to-left pages scrollLeft
+    // goes from 0 down to negative values.
+    const scrolled = Math.abs(list.scrollLeft);
+    setCanPrev(scrolled > 1);
+    setCanNext(scrolled + list.clientWidth < list.scrollWidth - 1);
   }, []);
 
   useEffect(() => {
@@ -59,8 +63,10 @@ export default function Carousel({
     const list = listRef.current;
     if (!list) return;
     const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // "Next" moves towards the end: right in English, left in Arabic.
+    const inlineDirection = getComputedStyle(list).direction === "rtl" ? -1 : 1;
     list.scrollBy({
-      left: direction * list.clientWidth,
+      left: direction * inlineDirection * list.clientWidth,
       behavior: reduceMotion ? "auto" : "smooth",
     });
   }
@@ -110,11 +116,12 @@ function ArrowButton({
   onClick: () => void;
   className: string;
 }) {
+  const t = useTranslations("Carousel");
   const icon = direction === "previous" ? "chevron-left" : "chevron-right";
   return (
     <button
       type="button"
-      aria-label={direction === "previous" ? "Previous" : "Next"}
+      aria-label={direction === "previous" ? t("previous") : t("next")}
       disabled={disabled}
       onClick={onClick}
       className={`flex shrink-0 items-center justify-center rounded-full border border-navy/10 bg-white drop-shadow-control transition-opacity disabled:opacity-40 ${className}`}
@@ -124,7 +131,7 @@ function ArrowButton({
         alt=""
         width={20}
         height={20}
-        className="size-[18px] xl:size-5"
+        className="size-[18px] rtl:-scale-x-100 xl:size-5"
       />
     </button>
   );

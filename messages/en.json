@@ -1,0 +1,253 @@
+{
+  "Metadata": {
+    "home": {
+      "title": "Caresse — Multitherapeutic Services",
+      "description": "Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence."
+    },
+    "book": {
+      "title": "Book a Session — Caresse",
+      "description": "Request a consultation session with Caresse's multitherapeutic team. We'll contact you to find the right specialist for your family."
+    }
+  },
+  "Navbar": {
+    "logoAlt": "Caresse – Multitherapeutic Services",
+    "mainNav": "Main",
+    "bookSession": "Book a Session",
+    "cart": "Cart",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "switchLanguage": "العربية"
+  },
+  "Nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "team": "Team",
+    "contact": "Contact"
+  },
+  "Carousel": {
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "Therapies": {
+    "SPEECH_THERAPY": "Speech Therapy",
+    "ABA_THERAPY": "ABA Therapy",
+    "OCCUPATIONAL_THERAPY": "Occupational Therapy",
+    "PSYCHOMOTOR_SUPPORT": "Psychomotor Support",
+    "NOT_SURE": "Not sure, help me choose"
+  },
+  "Hero": {
+    "heading": "Caresse – Multitherapeutic Services",
+    "tagline": "A Touch From The Soul"
+  },
+  "Services": {
+    "title": "Our Services",
+    "items": {
+      "autism": {
+        "title": "Autism",
+        "description": "Personalized therapy plans tailored to each case based on the child's unique condition, strengths, and developmental needs."
+      },
+      "speechLanguage": {
+        "title": "Speech & Language Disorders",
+        "description": "Comprehensive assessment and targeted intervention for speech delays, articulation difficulties, and language development challenges."
+      },
+      "neuroDevelopmental": {
+        "title": "Neuro Developmental Disorder",
+        "description": "Specialized rehabilitation and support for cerebral palsy and other neurological conditions affecting motor and cognitive development."
+      },
+      "feeding": {
+        "title": "Feeding Disorders",
+        "description": "Expert evaluation and therapy for children experiencing feeding difficulties, oral motor challenges, and food aversions."
+      },
+      "familySupport": {
+        "title": "Family Support",
+        "description": "Empowering parents and caregivers with guidance, strategies, and resources to create a nurturing and supportive home environment."
+      },
+      "coTherapy": {
+        "title": "Co-Therapy",
+        "description": "Collaborative, multidisciplinary therapy sessions combining specialists to deliver integrated and holistic treatment plans."
+      }
+    }
+  },
+  "Stats": {
+    "casesHelped": "Cases Helped",
+    "progressRate": "Progress Rate",
+    "therapyServices": "Therapy Services"
+  },
+  "Why": {
+    "title": "Why Families Choose Caresse",
+    "points": {
+      "personalized": {
+        "title": "Personalized Treatment Plans",
+        "description": "Every person's journey is unique. We tailor our clinical therapy programs directly to individual needs, goals, and speeds."
+      },
+      "certified": {
+        "title": "Certified & Caring Therapists",
+        "description": "Our licensed multidisciplinary team operates with a deep commitment to gentle, effective, evidence-based practices."
+      },
+      "childFriendly": {
+        "title": "Child-Friendly Environment",
+        "description": "Our state-of-the-art sensory rooms and treatment spaces are designed to feel bright, playful, and completely safe."
+      },
+      "familyCentered": {
+        "title": "Family-Centered Approach",
+        "description": "We work closely alongside parents and school teams, ensuring progress is supported outside the clinic walls too."
+      }
+    }
+  },
+  "Delivery": {
+    "title": "How We Reach You",
+    "subtitle": "Choose the way that works best for you - from the comfort of home to our welcoming clinic, or from anywhere via secure online sessions.",
+    "modes": {
+      "home": {
+        "title": "Home Visits",
+        "description": "We come to you. Our therapists provide personalized sessions in the comfort of your home."
+      },
+      "clinic": {
+        "title": "At the Clinic",
+        "description": "Visit us at our center for a fully equipped, welcoming therapy environment."
+      },
+      "online": {
+        "title": "Online Sessions",
+        "description": "Connect with our specialists remotely through secure, convenient virtual sessions."
+      }
+    }
+  },
+  "Shop": {
+    "title": "Our Therapy Shop",
+    "subtitle": "Explore the materials and tools our therapists use - now available for home practice",
+    "empty": "New materials coming soon!",
+    "seeAll": "See All Our Materials",
+    "visitFullShop": "Visit Full Shop",
+    "addToCart": "Add to Cart"
+  },
+  "Team": {
+    "title": "Meet Our Team",
+    "subtitle": "A dedicated, specialized group of professionals passionate about supporting the healthy growth of our families.",
+    "knowMore": "Know More About Our Therapy →",
+    "members": {
+      "rawan": {
+        "name": "Rawan Cherry",
+        "role": "Founder | Speech-Language Therapist | Feeding Therapist | Family Coach"
+      },
+      "ali": {
+        "name": "Ali Atie",
+        "role": "Applied Behavior Analysis Technician (ABAT)"
+      },
+      "mariam": {
+        "name": "Mariam Al-Itawi",
+        "role": "Occupational Therapist"
+      }
+    }
+  },
+  "Cta": {
+    "title": "Ready to Take the First Step?",
+    "body": "Book a free initial consultation session and let us create a supportive, personalized therapeutic plan for your family.",
+    "bookNow": "Book Now",
+    "callUs": "Call Us"
+  },
+  "Footer": {
+    "wordmarkLabel": "Caresse",
+    "tagline": "Multitherapeutic services empowering children, teens, and adults to express, develop, and thrive with confidence.",
+    "quickLinks": "Quick Links",
+    "home": "Home",
+    "services": "Services",
+    "about": "About Us",
+    "ourTeam": "Our Team",
+    "servicesTitle": "Services",
+    "contactTitle": "Contact Info",
+    "address": "Airport Road, Zaarour Center, Third floor",
+    "copyright": "© 2026 Caresse Clinic. All rights reserved.",
+    "goodbye": "Goodbye from Caresse!",
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "youtube": "YouTube"
+    }
+  },
+  "Book": {
+    "title": "Start Your Journey with Us",
+    "intro": "Fill out the form below to request your consultation session. Our friendly clinical intake coordinator will review your needs and connect you with the perfect specialist for your family."
+  },
+  "BookingForm": {
+    "cardTitle": "Request an Appointment",
+    "cardSubtitle": "Please provide complete details so we can assist you better.",
+    "honeypotLabel": "Website",
+    "appointmentForLegend": "Who is this appointment for?",
+    "appointmentFor": {
+      "CHILD": "For my child",
+      "SELF": "For myself"
+    },
+    "childFirstName": "Child's first name",
+    "childAge": "Child's age",
+    "childAgePlaceholder": "0–17",
+    "firstName": "First Name",
+    "firstNamePlaceholder": "e.g. Sarah",
+    "lastName": "Last Name",
+    "lastNamePlaceholder": "e.g. Mitchell",
+    "phone": "Phone Number",
+    "phonePlaceholder": "+961 71 234 567",
+    "service": "Preferred Service",
+    "servicePlaceholder": "Select a therapy service",
+    "timeSlot": "Preferred Time Slot",
+    "timeSlotPlaceholder": "e.g. Morning, Afternoon",
+    "timeSlots": {
+      "MORNING": "Morning",
+      "AFTERNOON": "Afternoon"
+    },
+    "notes": "Tell us about your needs or goals",
+    "notesPlaceholder": "Briefly tell us what you're looking for…",
+    "consent": "I agree that Caresse may store this information to contact me about my request.",
+    "submit": "Submit Appointment Request",
+    "sending": "Sending…",
+    "successTitle": "Thank you!",
+    "successMessage": "We've received your request. Our team will contact you soon.",
+    "formErrors": {
+      "checkFields": "Please check the highlighted fields.",
+      "rateLimited": "You've sent several requests recently. Please wait a little, or call us at {phone}.",
+      "generic": "Something went wrong and your request was not sent. Please try again, or call us at {phone}."
+    },
+    "errors": {
+      "appointmentForRequired": "Please choose who this appointment is for.",
+      "childFirstNameRequired": "Please enter your child's first name.",
+      "childFirstNameTooLong": "Please keep your child's first name to 50 characters or fewer.",
+      "childFirstNameLettersOnly": "Please use letters only for your child's first name.",
+      "childAgeRequired": "Please enter your child's age.",
+      "childAgeInvalid": "Please enter an age from 0 to 17 in whole years.",
+      "firstNameRequired": "Please enter your first name.",
+      "firstNameTooLong": "Please keep your first name to 50 characters or fewer.",
+      "firstNameLettersOnly": "Please use letters only for your first name.",
+      "lastNameRequired": "Please enter your last name.",
+      "lastNameTooLong": "Please keep your last name to 50 characters or fewer.",
+      "lastNameLettersOnly": "Please use letters only for your last name.",
+      "phoneRequired": "Please enter your phone number.",
+      "phoneInvalid": "Please enter a valid phone number, e.g. +961 71 234 567.",
+      "serviceRequired": "Please select a therapy service.",
+      "timeSlotRequired": "Please select a preferred time slot.",
+      "notesTooLong": "Please keep this under 1,000 characters.",
+      "consentRequired": "Please tick this box so we can contact you about your request."
+    }
+  },
+  "ClinicEmail": {
+    "intro": "A new appointment request was submitted on caresseclinic.com.",
+    "subject": "New appointment request: {service}",
+    "for": "For",
+    "parentName": "Parent's name",
+    "name": "Name",
+    "phone": "Phone",
+    "formLanguage": "Form language",
+    "languages": {
+      "EN": "English",
+      "AR": "Arabic"
+    },
+    "childFirstName": "Child's first name",
+    "childAge": "Child's age",
+    "service": "Service",
+    "preferredTime": "Preferred time",
+    "notes": "Needs or goals",
+    "notesNone": "(none)",
+    "received": "Received",
+    "beirutTime": "{time} (Beirut time)",
+    "requestId": "Request ID"
+  }
+}

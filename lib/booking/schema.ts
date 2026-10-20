@@ -1,26 +1,54 @@
 import { z } from "zod";
 import {
+  APPOINTMENT_FOR_VALUES,
   CHILD_AGE_MAX,
+  LANGUAGE_VALUES,
   NOTES_MAX_LENGTH,
+  SERVICE_VALUES,
+  TIME_SLOT_VALUES,
   type AppointmentForValue,
+  type LanguageValue,
   type ServiceValue,
   type TimeSlotValue,
 } from "@/lib/booking/options";
 
-// Server-side validation for the booking form. The server always runs this;
-// the browser only adds `required` attributes for convenience.
+// Server-side validation for the booking form. The server always runs this.
+// Errors are returned as codes (e.g. "phoneInvalid"); the form shows them in
+// the page's language from messages/*.json (BookingForm.errors.<code>).
+
+/** Error codes; each one has a message under BookingForm.errors. */
+export type BookingErrorCode =
+  | "appointmentForRequired"
+  | "childFirstNameRequired"
+  | "childFirstNameTooLong"
+  | "childFirstNameLettersOnly"
+  | "childAgeRequired"
+  | "childAgeInvalid"
+  | "firstNameRequired"
+  | "firstNameTooLong"
+  | "firstNameLettersOnly"
+  | "lastNameRequired"
+  | "lastNameTooLong"
+  | "lastNameLettersOnly"
+  | "phoneRequired"
+  | "phoneInvalid"
+  | "serviceRequired"
+  | "timeSlotRequired"
+  | "notesTooLong"
+  | "consentRequired";
 
 // Letters in any script (Arabic, accented Latin…), plus spaces, apostrophes,
 // dots and hyphens. Must start with a letter.
 const NAME_PATTERN = /^[\p{L}\p{M}][\p{L}\p{M}' .-]*$/u;
 
-function nameField(what: string) {
+function nameField(field: "firstName" | "lastName" | "childFirstName") {
+  const required: BookingErrorCode = `${field}Required`;
   return z
-    .string({ error: `Please enter ${what}.` })
+    .string({ error: required })
     .trim()
-    .min(1, `Please enter ${what}.`)
-    .max(50, `Please keep ${what} to 50 characters or fewer.`)
-    .regex(NAME_PATTERN, `Please use letters only for ${what}.`);
+    .min(1, required)
+    .max(50, `${field}TooLong` satisfies BookingErrorCode)
+    .regex(NAME_PATTERN, `${field}LettersOnly` satisfies BookingErrorCode);
 }
 
 /** Digits only, keeping a leading "+": "+961 71-234 567" → "+96171234567". */
@@ -29,73 +57,63 @@ export function normalizePhone(raw: string): string {
   return (trimmed.startsWith("+") ? "+" : "") + trimmed.replace(/\D/g, "");
 }
 
-const PHONE_ERROR = "Please enter a valid phone number, e.g. +961 71 234 567.";
-
 const phoneField = z
-  .string({ error: "Please enter your phone number." })
+  .string({ error: "phoneRequired" satisfies BookingErrorCode })
   .trim()
-  .min(1, "Please enter your phone number.")
-  .regex(/^\+?[\d\s\-().]+$/, PHONE_ERROR)
+  .min(1, "phoneRequired" satisfies BookingErrorCode)
+  .regex(/^\+?[\d\s\-().]+$/, "phoneInvalid" satisfies BookingErrorCode)
   .transform(normalizePhone)
   .refine((phone) => {
     const digits = phone.replace("+", "").length;
     return digits >= 7 && digits <= 15;
-  }, PHONE_ERROR);
+  }, "phoneInvalid" satisfies BookingErrorCode);
 
-const childFirstNameField = nameField("your child's first name");
+const childFirstNameField = nameField("childFirstName");
 
 const bookingFields = z.object({
-  appointmentFor: z.enum(["CHILD", "SELF"] satisfies AppointmentForValue[], {
-    error: "Please choose who this appointment is for.",
+  appointmentFor: z.enum(APPOINTMENT_FOR_VALUES, {
+    error: "appointmentForRequired" satisfies BookingErrorCode,
   }),
   // Checked below, only when the appointment is for a child.
   childFirstName: z.string().optional(),
   childAge: z.string().optional(),
-  firstName: nameField("your first name"),
-  lastName: nameField("your last name"),
+  firstName: nameField("firstName"),
+  lastName: nameField("lastName"),
   phone: phoneField,
-  service: z.enum(
-    [
-      "SPEECH_THERAPY",
-      "ABA_THERAPY",
-      "OCCUPATIONAL_THERAPY",
-      "PSYCHOMOTOR_SUPPORT",
-      "NOT_SURE",
-    ] satisfies ServiceValue[],
-    { error: "Please select a therapy service." },
-  ),
-  timeSlot: z.enum(["MORNING", "AFTERNOON"] satisfies TimeSlotValue[], {
-    error: "Please select a preferred time slot.",
-  }),
+  service: z.enum(SERVICE_VALUES, { error: "serviceRequired" satisfies BookingErrorCode }),
+  timeSlot: z.enum(TIME_SLOT_VALUES, { error: "timeSlotRequired" satisfies BookingErrorCode }),
   notes: z
     .string()
     .trim()
-    .max(NOTES_MAX_LENGTH, `Please keep this under ${NOTES_MAX_LENGTH.toLocaleString("en-US")} characters.`)
+    .max(NOTES_MAX_LENGTH, "notesTooLong" satisfies BookingErrorCode)
     .optional(),
-  consent: z.literal("on", {
-    error: "Please tick this box so we can contact you about your request.",
-  }),
+  consent: z.literal("on", { error: "consentRequired" satisfies BookingErrorCode }),
+  // Hidden field set by the page. Only EN or AR are ever stored; anything
+  // else (a tampered request) is stored as EN rather than rejected.
+  language: z.enum(LANGUAGE_VALUES).catch("EN"),
 });
 
-/** Field names the form can show an error under. */
-export type BookingField = keyof z.input<typeof bookingFields>;
+/** Field names the form can show an error under (language is hidden and never fails). */
+export type BookingField = Exclude<keyof z.input<typeof bookingFields>, "language">;
+
+export type BookingFieldErrors = Partial<Record<BookingField, BookingErrorCode>>;
 
 /** Errors for the child fields; only checked when the appointment is for a child. */
-function childFieldErrors(raw: Record<string, unknown>): Partial<Record<BookingField, string>> {
+function childFieldErrors(raw: Record<string, unknown>): BookingFieldErrors {
   if (raw.appointmentFor !== "CHILD") return {};
-  const errors: Partial<Record<BookingField, string>> = {};
+  const errors: BookingFieldErrors = {};
 
   const childName = childFirstNameField.safeParse(raw.childFirstName ?? "");
   if (!childName.success) {
     errors.childFirstName =
-      childName.error.issues[0]?.message ?? "Please enter your child's first name.";
+      (childName.error.issues[0]?.message as BookingErrorCode | undefined) ?? "childFirstNameRequired";
   }
 
   const age = typeof raw.childAge === "string" ? raw.childAge.trim() : "";
   if (age === "") {
-    errors.childAge = "Please enter your child's age.";
+    errors.childAge = "childAgeRequired";
   } else if (!/^\d{1,2}$/.test(age) || Number(age) > CHILD_AGE_MAX) {
-    errors.childAge = `Please enter an age from 0 to ${CHILD_AGE_MAX} in whole years.`;
+    errors.childAge = "childAgeInvalid";
   }
   return errors;
 }
@@ -110,11 +128,12 @@ export type BookingInput = {
   service: ServiceValue;
   timeSlot: TimeSlotValue;
   notes: string | null;
+  language: LanguageValue;
 };
 
 export type BookingValidation =
   | { success: true; data: BookingInput }
-  | { success: false; fieldErrors: Partial<Record<BookingField, string>> };
+  | { success: false; fieldErrors: BookingFieldErrors };
 
 /**
  * Validates the submitted form. All fields are checked in one pass (including
@@ -122,11 +141,11 @@ export type BookingValidation =
  */
 export function validateBooking(raw: Record<string, unknown>): BookingValidation {
   const parsed = bookingFields.safeParse(raw);
-  const fieldErrors: Partial<Record<BookingField, string>> = {};
+  const fieldErrors: BookingFieldErrors = {};
   if (!parsed.success) {
     for (const issue of parsed.error.issues) {
       const field = issue.path[0] as BookingField | undefined;
-      if (field && !fieldErrors[field]) fieldErrors[field] = issue.message;
+      if (field && !fieldErrors[field]) fieldErrors[field] = issue.message as BookingErrorCode;
     }
   }
   Object.assign(fieldErrors, childFieldErrors(raw));
@@ -150,19 +169,7 @@ export function validateBooking(raw: Record<string, unknown>): BookingValidation
       service: data.service,
       timeSlot: data.timeSlot,
       notes: data.notes ? data.notes : null,
+      language: data.language,
     },
   };
 }
-
-export const BOOKING_FIELDS = [
-  "appointmentFor",
-  "childFirstName",
-  "childAge",
-  "firstName",
-  "lastName",
-  "phone",
-  "service",
-  "timeSlot",
-  "notes",
-  "consent",
-] as const satisfies readonly BookingField[];

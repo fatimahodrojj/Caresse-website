@@ -3,19 +3,21 @@
 import { headers } from "next/headers";
 import { getDb } from "@/lib/db";
 import { sendClinicEmail } from "@/lib/booking/email";
-import { validateBooking, type BookingField } from "@/lib/booking/schema";
+import { validateBooking, type BookingFieldErrors } from "@/lib/booking/schema";
 import { checkRateLimit, clientIp, hashIp, looksLikeBot } from "@/lib/booking/spam";
 
+/** Form-level messages (BookingForm.formErrors.<code> in messages/*.json). */
+export type BookingFormErrorCode = "checkFields" | "rateLimited" | "generic";
+
+// Errors are codes, not sentences: the form shows them in the page's language.
 export type BookingFormState =
   | { status: "idle" }
   | { status: "success" }
   | {
       status: "error";
-      fieldErrors: Partial<Record<BookingField, string>>;
-      formError: string;
+      fieldErrors: BookingFieldErrors;
+      formError: BookingFormErrorCode;
     };
-
-const CLINIC_PHONE = "+961 71056803";
 
 /**
  * Handles the /book form. Privacy: never logs the submitted values
@@ -39,7 +41,7 @@ export async function submitBookingRequest(
     return {
       status: "error",
       fieldErrors: result.fieldErrors,
-      formError: "Please check the highlighted fields.",
+      formError: "checkFields",
     };
   }
 
@@ -50,7 +52,7 @@ export async function submitBookingRequest(
       return {
         status: "error",
         fieldErrors: {},
-        formError: `You've sent several requests recently. Please wait a little, or call us at ${CLINIC_PHONE}.`,
+        formError: "rateLimited",
       };
     }
 
@@ -71,7 +73,7 @@ export async function submitBookingRequest(
     return {
       status: "error",
       fieldErrors: {},
-      formError: `Something went wrong and your request was not sent. Please try again, or call us at ${CLINIC_PHONE}.`,
+      formError: "generic",
     };
   }
 }

@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
 import { useEffect, useRef, useState } from "react";
+import { Link } from "@/i18n/navigation";
 import { navLinks } from "@/data/navigation";
 
 /**
@@ -11,6 +12,8 @@ import { navLinks } from "@/data/navigation";
  * labels and design tokens. Closes on toggle, link tap or Escape.
  */
 export default function MobileMenu({ currentHref }: { currentHref: string | null }) {
+  const t = useTranslations("Navbar");
+  const tNav = useTranslations("Nav");
   const [open, setOpen] = useState(false);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -33,7 +36,7 @@ export default function MobileMenu({ currentHref }: { currentHref: string | null
         type="button"
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={open ? "Close menu" : "Open menu"}
+        aria-label={open ? t("closeMenu") : t("openMenu")}
         onClick={() => setOpen((value) => !value)}
         className="flex size-10 items-center justify-center rounded-full bg-mist"
       >
@@ -46,7 +49,7 @@ export default function MobileMenu({ currentHref }: { currentHref: string | null
 
       <nav
         id="mobile-menu"
-        aria-label="Main"
+        aria-label={t("mainNav")}
         hidden={!open}
         className="absolute inset-x-0 top-full border-b border-line bg-white"
       >
@@ -63,7 +66,7 @@ export default function MobileMenu({ currentHref }: { currentHref: string | null
                     isCurrent ? "" : "opacity-80"
                   }`}
                 >
-                  {link.label}
+                  {tNav(link.key)}
                 </Link>
               </li>
             );

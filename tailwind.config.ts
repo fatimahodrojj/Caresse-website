@@ -45,6 +45,8 @@ const config: Config = {
         sans: ["var(--font-sans)", "sans-serif"],
         heading: ["var(--font-heading)", "cursive"],
         script: ["var(--font-script)", "cursive"],
+        // "Caresse" wordmark: the brand font in every language.
+        wordmark: ["var(--font-boogaloo)", "cursive"],
       },
       borderRadius: {
         "card-lg": "28px",
