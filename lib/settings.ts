@@ -31,3 +31,15 @@ export function telHref(phone: string): string {
   const trimmed = phone.trim();
   return `tel:${trimmed.startsWith("+") ? "+" : ""}${trimmed.replace(/\D/g, "")}`;
 }
+
+/**
+ * wa.me link. WhatsApp needs the country code: "+961…" and "00961…" keep
+ * theirs; Lebanese local numbers ("03 123456", "71 234567") get 961.
+ */
+export function whatsappHref(phone: string): string {
+  let digits = phone.replace(/\D/g, "");
+  if (phone.trim().startsWith("+")) return `https://wa.me/${digits}`;
+  if (digits.startsWith("00")) return `https://wa.me/${digits.slice(2)}`;
+  if (digits.startsWith("0")) digits = digits.slice(1);
+  return `https://wa.me/${digits.length <= 8 ? `961${digits}` : digits}`;
+}

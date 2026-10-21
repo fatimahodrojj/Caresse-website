@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { localeDirection, routing } from "@/i18n/routing";
 import { ARABIC_INDEXED, SITE_URL } from "@/lib/seo";
 import { fontVariables } from "@/lib/fonts";
+import { getClinicSettings, whatsappHref } from "@/lib/settings";
 import "../globals.css";
 
 // Shared by every page; titles, descriptions and links are set per page
@@ -26,11 +28,14 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   const { locale } = await params;
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
+  // Floating WhatsApp chat button: the clinic phone from the admin Settings.
+  const [{ phone }, t] = await Promise.all([getClinicSettings(), getTranslations("WhatsApp")]);
 
   return (
     <html lang={locale} dir={localeDirection[locale]}>
       <body className={`${fontVariables[locale]} bg-cream font-sans text-navy`}>
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <WhatsAppButton href={whatsappHref(phone)} label={t("label")} />
       </body>
     </html>
   );
