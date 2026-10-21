@@ -2,14 +2,15 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import Carousel from "@/components/Carousel";
-import { team } from "@/data/team";
-import type { TeamMember } from "@/lib/types";
+import type { TeamMember } from "@/lib/therapists";
 
 /**
  * Meet Our Team. Mobile: one card at a time. Desktop (xl): three cards.
+ * Members come from the database (admin panel → Therapists).
  */
-export default function Team() {
+export default function Team({ members }: { members: TeamMember[] }) {
   const t = useTranslations("Team");
+  if (members.length === 0) return null;
   return (
     <section id="team" className="bg-rose px-4 py-5 font-sans md:px-8 md:py-12 xl:px-[120px] xl:py-20">
       <div data-reveal className="mx-auto flex max-w-[1200px] flex-col gap-3 md:gap-8 xl:gap-10">
@@ -26,7 +27,7 @@ export default function Team() {
           arrowClassName="size-11"
           hideArrowsFrom="md"
         >
-          {team.map((member) => (
+          {members.map((member) => (
             <TeamCard key={member.id} member={member} />
           ))}
         </Carousel>
@@ -42,29 +43,31 @@ export default function Team() {
 }
 
 function TeamCard({ member }: { member: TeamMember }) {
-  const t = useTranslations("Team.members");
-  const name = t(`${member.id}.name`);
+  const name = member.name;
   return (
     <article className="flex w-full flex-col items-center gap-2 rounded-card bg-white p-3 text-center md:gap-3 md:p-4 xl:gap-3 xl:p-5">
       <div className="relative size-[120px] shrink-0 overflow-hidden rounded-media md:aspect-square md:size-auto md:w-full xl:aspect-square xl:size-auto xl:w-full">
         <Image
-          src={member.photo}
+          src={member.photoUrl}
           alt={name}
           fill
           sizes="(min-width: 1280px) 350px, (min-width: 768px) 30vw, 120px"
           className="object-cover"
           style={
-            member.photoCrop && {
-              objectPosition: member.photoCrop.position,
-              transform: `scale(${member.photoCrop.zoom})`,
-              transformOrigin: member.photoCrop.origin,
-            }
+            member.photoPosition
+              ? {
+                  objectPosition: member.photoPosition,
+                  // Zoom in on head and shoulders (e.g. full-body photos).
+                  transform: member.photoZoom !== 1 ? `scale(${member.photoZoom})` : undefined,
+                  transformOrigin: "50% 30%",
+                }
+              : undefined
           }
         />
       </div>
       <div className="flex flex-col gap-1">
         <h3 className="font-heading text-xl xl:text-[22px]">{name}</h3>
-        <p className="text-[13px] font-semibold leading-[1.5] text-sky">{t(`${member.id}.role`)}</p>
+        <p className="text-[13px] font-semibold leading-[1.5] text-sky">{member.role}</p>
       </div>
       {member.character ? (
         <Image

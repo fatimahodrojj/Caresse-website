@@ -3,6 +3,7 @@
 import { headers } from "next/headers";
 import { getDb } from "@/lib/db";
 import { sendClinicEmail } from "@/lib/booking/email";
+import { cleanupOldRequests } from "@/lib/admin/cleanup";
 import { validateBooking, type BookingFieldErrors } from "@/lib/booking/schema";
 import { checkRateLimit, clientIp, hashIp, looksLikeBot } from "@/lib/booking/spam";
 
@@ -58,14 +59,20 @@ export async function submitBookingRequest(
 
     const saved = await db.appointmentRequest.create({
       data: { ...result.data, consentAt: new Date() },
-      select: { id: true, createdAt: true },
+      select: { id: true },
     });
 
     // The request is saved, so the person sees success even if the email
     // fails; the clinic can still find it in the database.
-    const email = await sendClinicEmail({ ...result.data, ...saved });
+    const email = await sendClinicEmail({ ...result.data, id: saved.id });
     if (email === "failed") console.error(`booking.email_failed requestId=${saved.id}`);
     if (email === "skipped") console.warn(`booking.email_skipped requestId=${saved.id}`);
+
+    // Delete handled requests past the retention period (Settings). A
+    // failure here must not affect the person's booking.
+    await cleanupOldRequests(db).catch((error: unknown) => {
+      console.error(`booking.cleanup_failed code=${errorCode(error)}`);
+    });
 
     return { status: "success" };
   } catch (error) {

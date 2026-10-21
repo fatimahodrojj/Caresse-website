@@ -4,6 +4,11 @@ import { Link } from "@/i18n/navigation";
 import Carousel from "@/components/Carousel";
 import type { Product } from "@/lib/types";
 
+// No shop page or cart yet: the "See all" links and "Add to Cart" are hidden
+// until they exist (like the cart icon in the navbar).
+const SHOP_PAGE_EXISTS = false;
+const CART_ENABLED = false;
+
 /** USD prices with Western digits in every language ("-u-nu-latn"). */
 function formatPrice(locale: string, price: number): string {
   return new Intl.NumberFormat(`${locale}-u-nu-latn`, {
@@ -67,31 +72,33 @@ function ProductList({ products }: { products: Product[] }) {
           <ProductCard key={product.id} product={product} />
         ))}
       </Carousel>
-      <div className="flex flex-col items-center gap-6">
-        <Link href="/shop" className="flex items-center gap-2 text-sm font-semibold xl:text-base">
-          {t("seeAll")}
-          <Image
-            src="/images/icons/arrow-right.svg"
-            alt=""
-            width={16}
-            height={16}
-            className="size-[14px] rtl:-scale-x-100 xl:size-4"
-          />
-        </Link>
-        <Link
-          href="/shop"
-          className="hidden items-center gap-[10px] rounded-full bg-navy px-6 py-[14px] text-[15px] font-bold text-white xl:flex"
-        >
-          {t("visitFullShop")}
-          <Image
-            src="/images/icons/arrow-right-white.svg"
-            alt=""
-            width={18}
-            height={18}
-            className="rtl:-scale-x-100"
-          />
-        </Link>
-      </div>
+      {SHOP_PAGE_EXISTS && (
+        <div className="flex flex-col items-center gap-6">
+          <Link href="/shop" className="flex items-center gap-2 text-sm font-semibold xl:text-base">
+            {t("seeAll")}
+            <Image
+              src="/images/icons/arrow-right.svg"
+              alt=""
+              width={16}
+              height={16}
+              className="size-[14px] rtl:-scale-x-100 xl:size-4"
+            />
+          </Link>
+          <Link
+            href="/shop"
+            className="hidden items-center gap-[10px] rounded-full bg-navy px-6 py-[14px] text-[15px] font-bold text-white xl:flex"
+          >
+            {t("visitFullShop")}
+            <Image
+              src="/images/icons/arrow-right-white.svg"
+              alt=""
+              width={18}
+              height={18}
+              className="rtl:-scale-x-100"
+            />
+          </Link>
+        </div>
+      )}
     </>
   );
 }
@@ -113,13 +120,14 @@ function ProductCard({ product }: { product: Product }) {
       <h3 className="font-heading text-xl xl:text-[22px]">{product.name}</h3>
       <p className="text-[13px] leading-[1.5] opacity-80 xl:text-sm">{product.description}</p>
       <p className="mt-auto text-base font-semibold xl:text-lg">{formatPrice(locale, product.price)}</p>
-      {/* No cart yet: wire this up when the cart exists. */}
-      <button
-        type="button"
-        className="h-10 w-full rounded-control bg-navy text-[13px] font-semibold text-white xl:h-11 xl:text-sm"
-      >
-        {t("addToCart")}
-      </button>
+      {CART_ENABLED && (
+        <button
+          type="button"
+          className="h-10 w-full rounded-control bg-navy text-[13px] font-semibold text-white xl:h-11 xl:text-sm"
+        >
+          {t("addToCart")}
+        </button>
+      )}
     </article>
   );
 }

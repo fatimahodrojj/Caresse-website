@@ -1,14 +1,17 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { getClinicSettings, telHref } from "@/lib/settings";
 
 /**
  * "Ready to Take the First Step?" call to action on the CTA gradient.
  * Mobile: stacked, buttons side by side at half width, characters below.
  * Desktop (xl): text left, characters right.
  */
-export default function CTA() {
-  const t = useTranslations("Cta");
+export default async function CTA() {
+  const t = await getTranslations("Cta");
+  // Phone number from the admin panel (Settings).
+  const { phone } = await getClinicSettings();
   return (
     <section className="bg-cta px-4 py-5 font-sans text-white md:px-8 md:py-12 xl:px-20 xl:py-[120px]">
       <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-3 md:flex-row md:items-center md:gap-10 xl:flex-row xl:items-center xl:gap-20">
@@ -25,7 +28,7 @@ export default function CTA() {
               {t("bookNow")}
             </Link>
             <a
-              href="tel:+96171056803"
+              href={telHref(phone)}
               className="flex h-12 flex-1 items-center justify-center rounded-full border-2 border-white px-[18px] text-[15px] font-bold md:flex-none md:px-8 xl:h-auto xl:flex-none xl:px-9 xl:py-4 xl:text-lg"
             >
               {t("callUs")}

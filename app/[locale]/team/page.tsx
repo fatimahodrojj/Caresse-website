@@ -9,6 +9,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { routing } from "@/i18n/routing";
 import { pageMetadata } from "@/lib/seo";
+import { getTeam } from "@/lib/therapists";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/team">): Promise<Metadata> {
   return pageMetadata((await params).locale, "team");
@@ -20,6 +21,7 @@ export default async function TeamPage({ params }: PageProps<"/[locale]/team">) 
   if (!hasLocale(routing.locales, locale)) notFound();
   setRequestLocale(locale);
   const t = await getTranslations("TeamPage");
+  const team = await getTeam(locale);
 
   return (
     <>
@@ -36,7 +38,7 @@ export default async function TeamPage({ params }: PageProps<"/[locale]/team">) 
               </p>
             </div>
 
-            <TeamProfiles />
+            <TeamProfiles members={team} />
 
             <div data-reveal className="flex flex-col items-center gap-3 pt-3 text-center xl:gap-4 xl:pt-4">
               <Link

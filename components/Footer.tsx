@@ -1,6 +1,7 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
+import { getClinicSettings, telHref } from "@/lib/settings";
 import { homeHref } from "@/data/navigation";
 
 // Wordmark letter colours from Figma (docs/design-system.md, Core palette).
@@ -14,7 +15,6 @@ const wordmark = [
   { letter: "e", color: "text-gold" },
 ];
 
-const INSTAGRAM_URL = "https://www.instagram.com/caresseclinic";
 const DEVELOPER_URL = "https://www.linkedin.com/company/codeyy/";
 
 const quickLinks = [
@@ -28,8 +28,12 @@ const quickLinks = [
  * Footer: brand block, Quick Links and Contact Info.
  * Mobile: brand block, then two columns side by side. Tablet and desktop: one row.
  */
-export default function Footer() {
-  const t = useTranslations("Footer");
+export default async function Footer() {
+  const t = await getTranslations("Footer");
+  // Contact details are edited in the admin panel (Settings).
+  const settings = await getClinicSettings();
+  const address = (await getLocale()) === "ar" ? settings.addressAr : settings.addressEn;
+  const [emailUser, emailDomain] = settings.email.split("@");
   return (
     <footer id="contact" className="bg-navy p-3 font-sans text-white md:px-8 md:py-8 xl:px-20 xl:pb-10 xl:pt-6">
       <div data-reveal className="mx-auto flex max-w-[1280px] flex-col gap-2 md:gap-8 xl:gap-16">
@@ -46,7 +50,7 @@ export default function Footer() {
               {t("tagline")}
             </p>
             <a
-              href={INSTAGRAM_URL}
+              href={settings.instagramUrl}
               target="_blank"
               rel="noopener noreferrer"
               aria-label={t("instagramLabel")}
@@ -71,16 +75,18 @@ export default function Footer() {
               ))}
             </FooterColumn>
             <FooterColumn title={t("contactTitle")} className="md:w-[240px] md:flex-none xl:w-[240px]">
-              <li>{t("address")}</li>
+              <li>{address}</li>
               <li>
-                <a href="tel:+96171056803" dir="ltr">+961 71056803</a>
+                <a href={telHref(settings.phone)} dir="ltr">
+                  {settings.phone}
+                </a>
               </li>
               <li>
                 {/* Break only after the "@" on narrow screens. */}
-                <a href="mailto:caresseclinic@gmail.com" dir="ltr">
-                  caresseclinic@
+                <a href={`mailto:${settings.email}`} dir="ltr">
+                  {`${emailUser}@`}
                   <wbr />
-                  gmail.com
+                  {emailDomain}
                 </a>
               </li>
             </FooterColumn>

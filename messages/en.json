@@ -128,21 +128,7 @@
   "Team": {
     "title": "Meet Our Team",
     "subtitle": "A dedicated, specialized group of professionals passionate about supporting the healthy growth of our families.",
-    "knowMore": "Know More About Our Therapy →",
-    "members": {
-      "rawan": {
-        "name": "Rawan Cherry",
-        "role": "Founder | Speech-Language Therapist | Feeding Therapist | Family Coach"
-      },
-      "ali": {
-        "name": "Ali Atie",
-        "role": "Applied Behavior Analysis Technician (ABAT)"
-      },
-      "mariam": {
-        "name": "Mariam Al-Itawi",
-        "role": "Occupational Therapist"
-      }
-    }
+    "knowMore": "Know More About Our Therapy →"
   },
   "TeamPage": {
     "title": "Meet Caresse Family",
@@ -150,43 +136,7 @@
     "expertiseTitle": "Areas of Expertise",
     "about": "About {name}",
     "cta": "Book Your First Session",
-    "ctaNote": "Start with a free consultation and let us create a supportive, personalized therapeutic plan for your family.",
-    "members": {
-      "rawan": {
-        "firstName": "Rawan",
-        "credential": "Master's in Speech-Language Pathology (SLP), OPT Level 1 Certified",
-        "experience": "6+ years in speech-language therapy & feeding therapy",
-        "expertise": [
-          "Communication disorders",
-          "Feeding therapy",
-          "Family coaching",
-          "Pediatric SLP"
-        ],
-        "bio": "Rawan founded Caresse Clinic with a deep commitment to every child's right to communicate and thrive. With over 6 years of clinical experience and a Master's in Speech-Language Pathology, she specializes in language and communication difficulties, feeding and swallowing challenges, severe ASD, and developmental delays. Certified in OPT Level 1, she integrates a sensory-motor approach and provides individualized, family-centered intervention, guiding parents with practical strategies to support progress beyond the therapy setting."
-      },
-      "ali": {
-        "firstName": "Ali",
-        "credential": "Applied Behavior Analysis Technician (ABAT)",
-        "experience": "3+ years in behavioral intervention",
-        "expertise": [
-          "Autism spectrum support",
-          "Behavior modification",
-          "Social skills training"
-        ],
-        "bio": "Ali is dedicated to transforming challenging behaviors into meaningful progress through evidence-based, compassionate intervention. With over 3 years of experience supporting more than 200 individuals with ASD across Lebanon and Kuwait, his individualized behavioral interventions focus on developing functional skills, communication, independence, and adaptive behavior. He works closely with families to ensure consistency of strategies across environments, empowering parents to support their child's progress at home and in daily life."
-      },
-      "mariam": {
-        "firstName": "Mariam",
-        "credential": "Bachelor's in Occupational Therapy, Certified Sensory Integration Specialist",
-        "experience": "10+ years in pediatric occupational therapy",
-        "expertise": [
-          "Fine & gross motor skills",
-          "Daily living activities",
-          "Sensory integration"
-        ],
-        "bio": "Mariam brings her occupational therapy expertise to children with ASD, ADHD, learning and developmental difficulties, sensory processing challenges, and delays in sensorimotor, fine, and gross motor skills. Her interventions focus on activities of daily living and independence, developing functional skills and promoting greater confidence and autonomy. She provides individualized, client-centered treatment plans and collaborates closely with parents with practical strategies to support progress within therapy and in daily life."
-      }
-    }
+    "ctaNote": "Start with a free consultation and let us create a supportive, personalized therapeutic plan for your family."
   },
   "Cta": {
     "title": "Ready to Take the First Step?",
@@ -203,7 +153,6 @@
     "about": "About Us",
     "ourTeam": "Our Team",
     "contactTitle": "Contact Info",
-    "address": "Airport Road, Zaarour Center, Third floor",
     "copyright": "© 2026 Caresse Clinic. All rights reserved.",
     "credit": "Website by <link>Codey</link>",
     "goodbye": "Goodbye from Caresse!",
@@ -275,23 +224,9 @@
   "ClinicEmail": {
     "intro": "A new appointment request was submitted on caresseclinic.com.",
     "subject": "New appointment request: {service}",
-    "for": "For",
-    "parentName": "Parent's name",
     "name": "Name",
     "phone": "Phone",
-    "formLanguage": "Form language",
-    "languages": {
-      "EN": "English",
-      "AR": "Arabic"
-    },
-    "childFirstName": "Child's first name",
-    "childAge": "Child's age",
     "service": "Service",
-    "preferredTime": "Preferred time",
-    "notes": "Needs or goals",
-    "notesNone": "(none)",
-    "received": "Received",
-    "beirutTime": "{time} (Beirut time)",
-    "requestId": "Request ID"
+    "open": "Open the request in the admin panel"
   }
 }

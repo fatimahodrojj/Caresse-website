@@ -45,26 +45,28 @@ enum RequestStatus {
 /// notes and the child's details may contain health information: never log
 /// them (see CLAUDE.md, Privacy).
 model AppointmentRequest {
-  id             String         @id @default(cuid())
-  appointmentFor AppointmentFor
+  id              String         @id @default(cuid())
+  appointmentFor  AppointmentFor
   /// Parent's name when appointmentFor = CHILD, patient's name when SELF.
-  firstName      String
-  lastName       String
+  firstName       String
+  lastName        String
   /// Normalised: digits with an optional leading "+".
-  phone          String
+  phone           String
   /// Only set when appointmentFor = CHILD.
-  childFirstName String?
+  childFirstName  String?
   /// Whole years, 0-17. Only set when appointmentFor = CHILD.
-  childAge       Int?
-  service        Service
-  timeSlot       TimeSlot
-  notes          String?        @db.Text
+  childAge        Int?
+  service         Service
+  timeSlot        TimeSlot
+  notes           String?        @db.Text
   /// The site language the form was filled in; the clinic can reply in it.
-  language       Language       @default(EN)
-  status         RequestStatus  @default(NEW)
+  language        Language       @default(EN)
+  status          RequestStatus  @default(NEW)
+  /// When the clinic last changed the status in the admin panel.
+  statusChangedAt DateTime?
   /// When the person ticked the consent box (set on the server).
-  consentAt      DateTime
-  createdAt      DateTime       @default(now())
+  consentAt       DateTime
+  createdAt       DateTime       @default(now())
 
   @@index([status, createdAt])
   @@index([phone, createdAt])
@@ -78,4 +80,112 @@ model SubmissionAttempt {
   createdAt DateTime @default(now())
 
   @@index([ipHash, createdAt])
+}
+
+/// An admin panel account. Only the argon2id hash of the password is stored.
+model AdminUser {
+  id                String         @id @default(cuid())
+  email             String         @unique
+  passwordHash      String
+  createdAt         DateTime       @default(now())
+  passwordChangedAt DateTime       @default(now())
+  sessions          AdminSession[]
+}
+
+/// A signed-in admin. The id is the SHA-256 of the random token in the
+/// cookie, so a database leak does not reveal usable session tokens.
+model AdminSession {
+  id        String    @id
+  userId    String
+  user      AdminUser @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime  @default(now())
+  expiresAt DateTime
+
+  @@index([userId])
+  @@index([expiresAt])
+}
+
+/// Failed admin sign-in attempts, for rate limiting. Salted hashes only
+/// (never the IP or the email itself). Rows older than 24 hours are deleted.
+model LoginAttempt {
+  id        String   @id @default(cuid())
+  ipHash    String
+  emailHash String
+  createdAt DateTime @default(now())
+
+  @@index([ipHash, createdAt])
+  @@index([emailHash, createdAt])
+}
+
+/// Clinic details shown on the site, and admin settings. A single row (id 1).
+model ClinicSettings {
+  id              Int      @id @default(1)
+  phone           String
+  email           String
+  addressEn       String
+  addressAr       String
+  instagramUrl    String
+  /// Handled requests (contacted, approved, declined) older than this are
+  /// deleted automatically.
+  retentionMonths Int      @default(12)
+  updatedAt       DateTime @updatedAt
+}
+
+/// Profile colour on the site (photo ring, role, icons, tags).
+enum Accent {
+  SKY
+  PINK
+  PURPLE
+}
+
+/// A team member shown on the homepage (Meet Our Team) and on /team.
+model Therapist {
+  id                   String   @id @default(cuid())
+  sortOrder            Int
+  visible              Boolean  @default(true)
+  nameEn               String
+  nameAr               String
+  roleEn               String
+  roleAr               String
+  credentialEn         String   @default("")
+  credentialAr         String   @default("")
+  experienceEn         String   @default("")
+  experienceAr         String   @default("")
+  expertiseEn          String[]
+  expertiseAr          String[]
+  bioEn                String   @db.Text
+  bioAr                String   @db.Text
+  photoUrl             String
+  /// Optional crop for photos that need it (CSS object-position, zoom).
+  /// Reset when a new photo is uploaded.
+  photoPosition        String?
+  photoZoom            Float    @default(1)
+  /// Crop for the wide photo on /team on phones (CSS object-position).
+  profilePhotoPosition String?
+  /// Small character illustration under the homepage card (a path under
+  /// public/images/illustrations), or none.
+  character            String?
+  accent               Accent   @default(SKY)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+
+  @@index([sortOrder])
+}
+
+/// A product in "Our Therapy Shop" on the homepage. No cart or checkout yet.
+model Product {
+  id            String   @id @default(cuid())
+  sortOrder     Int
+  visible       Boolean  @default(true)
+  nameEn        String
+  nameAr        String
+  descriptionEn String   @db.Text
+  descriptionAr String   @db.Text
+  /// Price in US cents (e.g. 2550 = $25.50).
+  priceCents    Int
+  imageUrl      String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([sortOrder])
 }

@@ -1,3 +1,4 @@
+import { neonConfig } from "@neondatabase/serverless";
 import { PrismaNeon } from "@prisma/adapter-neon";
 import { PrismaClient } from "@/lib/generated/prisma/client";
 
@@ -12,6 +13,16 @@ function createClient() {
   const connectionString = process.env.DATABASE_URL;
   if (!connectionString) {
     throw new Error("DATABASE_URL is not set");
+  }
+  // Local development only: reach a local Postgres through a WebSocket
+  // proxy (Neon's documented local setup, see docs/admin-setup.md). Never
+  // set on Vercel.
+  const localProxy = process.env.NEON_LOCAL_WS_PROXY;
+  if (localProxy) {
+    neonConfig.wsProxy = (host, port) => `${localProxy}/v1?address=${host}:${port}`;
+    neonConfig.useSecureWebSocket = false;
+    neonConfig.pipelineTLS = false;
+    neonConfig.pipelineConnect = false;
   }
   return new PrismaClient({ adapter: new PrismaNeon({ connectionString }) });
 }

@@ -7,6 +7,7 @@ import { hasLocale } from "next-intl";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 import { pageMetadata } from "@/lib/seo";
+import { getClinicSettings } from "@/lib/settings";
 
 export async function generateMetadata({ params }: PageProps<"/[locale]/book">): Promise<Metadata> {
   return pageMetadata((await params).locale, "book");
@@ -39,7 +40,7 @@ export default async function BookPage({ params }: PageProps<"/[locale]/book">) 
 
         <section className="bg-cream-form px-4 pb-5 pt-4 md:px-8 md:pb-20 md:pt-6">
           <div className="mx-auto max-w-[901px]">
-            <BookingForm />
+            <BookingForm clinicPhone={(await getClinicSettings()).phone} />
           </div>
         </section>
       </main>
