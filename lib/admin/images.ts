@@ -56,25 +56,52 @@ export async function uploadImage(file: File, folder: "therapists" | "products",
   if (!blobConfigured()) {
     return { status: "error", message: "Photo uploads are not set up yet (Vercel Blob). See docs/admin-setup.md." };
   }
-  try {
-    const blob = await put(`${folder}/${randomUUID()}.webp`, output, { access: "public", contentType: "image/webp" });
-    return { status: "ok", url: blob.url };
-  } catch (error) {
-    // Logs the error type only, never the file or its contents.
-    console.error(`admin.upload_failed code=${error instanceof Error ? error.name : "unknown"}`);
-    return {
-      status: "error",
-      message: "The photo could not be uploaded. Nothing was changed. Please try again; if it keeps failing, check the Blob storage in Vercel.",
-    };
+
+  const pathname = `${folder}/${randomUUID()}.webp`;
+  // Public stores give a public URL. Private stores reject public uploads;
+  // then the photo is stored privately and served by app/media (same site).
+  const failures: string[] = [];
+  for (const access of ["public", "private"] as const) {
+    try {
+      const blob = await put(pathname, output, { access, contentType: "image/webp" });
+      return { status: "ok", url: access === "public" ? blob.url : `${MEDIA_PREFIX}${pathname}` };
+    } catch (error) {
+      failures.push(`${access}:${describeError(error)}`);
+    }
   }
+  console.error(`admin.upload_failed ${failures.join(" ")}`);
+  return {
+    status: "error",
+    message: "The photo could not be uploaded. Nothing was changed. Please try again; if it keeps failing, check the Blob storage in Vercel.",
+  };
 }
 
-/** Deletes a photo from Vercel Blob (photos in /public are left alone). */
+/** Where photos from a private Blob store are served (app/media/[...path]). */
+export const MEDIA_PREFIX = "/media/";
+
+/** Photo paths this site creates: therapists/<uuid>.webp or products/<uuid>.webp. */
+export const MEDIA_PATH = /^(therapists|products)\/[0-9a-f-]{36}\.webp$/;
+
+/**
+ * Error type plus Vercel Blob's own message (it describes the storage setup,
+ * e.g. missing credentials or a private store, and never contains the file
+ * or personal data).
+ */
+function describeError(error: unknown): string {
+  if (!(error instanceof Error)) return "unknown";
+  const detail = error.message.startsWith("Vercel Blob:") ? ` "${error.message.slice(0, 300)}"` : "";
+  return `${error.name}${detail}`;
+}
+
+/** Deletes an uploaded photo (photos in /public are left alone). */
 export async function deleteImage(url: string | null | undefined): Promise<void> {
-  if (!url || !url.includes(".public.blob.vercel-storage.com")) return;
+  if (!url) return;
+  const privatePath = url.startsWith(MEDIA_PREFIX) ? url.slice(MEDIA_PREFIX.length) : null;
+  if (!privatePath && !url.includes(".blob.vercel-storage.com")) return;
+  if (privatePath && !MEDIA_PATH.test(privatePath)) return;
   try {
-    await del(url);
+    await del(privatePath ?? url);
   } catch (error) {
-    console.error(`admin.image_delete_failed code=${error instanceof Error ? error.name : "unknown"}`);
+    console.error(`admin.image_delete_failed ${describeError(error)}`);
   }
 }

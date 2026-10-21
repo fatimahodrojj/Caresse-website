@@ -65,4 +65,6 @@ The site needs a Postgres database. Two options:
 
 Without `BLOB_STORE_ID` or `BLOB_READ_WRITE_TOKEN`, photo uploads show "Photo uploads are not set up yet"; everything else works. (`BLOB_STORE_ID` only works on Vercel; locally, use a read-write token.)
 
+Public and private Blob stores both work: photos in a private store are served through the site itself (`/media/...`).
+
 If an upload fails (for example a storage problem), the admin shows "The photo could not be uploaded" and nothing is saved, so you can simply try again.
